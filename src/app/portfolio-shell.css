@@ -1,0 +1,75 @@
+/* GitHub my-portfolio-on-git のポートフォリオシェル用（編集誌レイヤーとは別） */
+
+.site-body-portfolio,
+.site-body-portfolio::before {
+  background-image: none !important;
+  background-color: #f8fafc !important;
+  opacity: 1;
+}
+
+.site-body-portfolio::before {
+  display: none !important;
+}
+
+.profile-gradient-section {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(45, 212, 191, 0.2) 0%, transparent 32%),
+    radial-gradient(circle at 82% 18%, rgba(56, 189, 248, 0.22) 0%, transparent 34%),
+    linear-gradient(135deg, #ffffff 0%, #f7fffb 42%, #eef9ff 100%);
+}
+
+.post-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 5.5%, transparent);
+  background: color-mix(in srgb, var(--color-paper-elevate) 92%, transparent);
+  box-shadow: var(--shadow-editorial);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.post-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-navy-deep), var(--color-navy));
+}
+
+.post-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-ink) 28%, transparent) 100%
+  );
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
+}
+
+.post-card:hover .post-card__media::after {
+  opacity: 0.35;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-cf-orange) 35%, var(--color-navy));
+  color: var(--color-ivory);
+}

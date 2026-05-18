@@ -1,27 +1,34 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
-import Link from "next/link";
+import { Fraunces, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { SiteChrome } from "@/components/SiteChrome";
 
 import "./globals.css";
 
-const notoSerifJp = Noto_Serif_JP({
+const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
   variable: "--font-noto-serif-jp",
   display: "swap",
 });
 
-const notoSansJp = Noto_Sans_JP({
+const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-noto-sans-jp",
   display: "swap",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-cormorant",
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-portfolio-mono",
   display: "swap",
 });
 
@@ -30,92 +37,38 @@ export const metadata: Metadata = {
     typeof process.env.NEXT_PUBLIC_SITE_URL === "string" &&
     process.env.NEXT_PUBLIC_SITE_URL.length > 0
       ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-      : undefined,
+      : new URL("http://localhost:3000"),
   title: {
-    default: "The Literary Review",
-    template: "%s | The Literary Review",
+    default: "矢野英人 | 医療介護のAIクリエイター ポートフォリオ",
+    template: "%s | 矢野英人",
   },
   description:
-    "エディトリアル・マガジンスタイルの日本語ブログ。「思考と言葉の交差点」より。",
+    "理学療法士の臨床18年。介護・医療・金融・Web3 のライティング。記事執筆100本以上。",
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName: "矢野英人 | 医療介護のAIクリエイター",
+    title: "矢野英人 | 医療介護のAIクリエイター ポートフォリオ",
+    description:
+      "理学療法士の臨床18年。介護・医療・金融・Web3 のライティング。記事執筆100本以上。",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
-
-function Header() {
-  return (
-    <header className="mb-14 space-y-5 text-center animate-reveal">
-      <div
-        aria-hidden="true"
-        className="mx-auto h-[2px] w-full max-w-3xl animate-expand-width bg-gradient-to-r from-transparent via-espresso to-transparent"
-      />
-
-      <div className="mx-auto flex max-w-xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 text-[10px] font-medium uppercase tracking-[0.22em] text-walnut sm:px-0">
-        <span className="issue-badge rounded-full border-transparent bg-transparent px-3 py-1 text-[10px] normal-case tracking-[0.06em] text-gold ring-1 ring-gold/50">
-          Est. 2026
-        </span>
-        <span className="font-medium normal-case tracking-wide text-espresso font-sans">
-          思考と言葉の交差点
-        </span>
-        <span className="font-medium uppercase tracking-[0.2em] text-walnut">東京</span>
-      </div>
-
-      <Link href="/" className="group mx-auto flex max-w-4xl flex-col items-center px-6">
-        <p className="masthead-title text-balance px-6 text-[clamp(2.6rem,6vw,3.95rem)] leading-[1.06] tracking-tight text-ink decoration-transparent transition-colors group-hover:text-espresso md:px-0">
-          The Literary Review
-        </p>
-      </Link>
-
-      <div className="mx-auto px-10">
-        <p className="text-center font-sans text-[11px] font-medium uppercase tracking-[0.32em] text-walnut">
-          Essays · Criticism · Stories
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-3xl px-10">
-        <div className="masthead-rule animate-reveal-delay-1 mx-auto mb-2 h-px w-full max-w-2xl rounded-full opacity-95" />
-        <div className="mx-auto h-px w-full max-w-2xl rounded-full bg-gradient-to-r from-transparent via-sand to-transparent opacity-95" />
-      </div>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="mt-24 animate-reveal border-t border-sand bg-cream pb-14 pt-12">
-      <div className="mx-auto max-w-4xl px-6 text-center text-walnut">
-        <hr className="divider-double mx-auto mb-10 max-w-sm" />
-
-        <p className="masthead-title mb-8 text-xl text-espresso md:text-2xl">The Literary Review</p>
-
-        <p className="mb-8 text-xl text-sand md:text-2xl" aria-hidden="true">
-          ◆
-        </p>
-
-        <p className="font-mono text-xs tracking-[0.2em] text-walnut">© {new Date().getFullYear()} THE LITERARY REVIEW</p>
-      </div>
-    </footer>
-  );
-}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const fontVars = `${notoSerifJp.variable} ${notoSansJp.variable} ${cormorantGaramond.variable}`;
-
   return (
     <html lang="ja" id="top">
       <body
-        className={`${fontVars} min-h-screen bg-cream text-ink antialiased selection:bg-burgundy selection:text-ivory`}
-        style={{ fontFamily: "var(--font-sans-jp)" }}
+        className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
       >
-        <div className="relative z-10 flex min-h-screen flex-col">
-          <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-6 pb-24 pt-10 md:pb-28 md:pt-14">
-            <Header />
-
-            <div className="flex-1 animate-reveal-delay-2">{children}</div>
-          </div>
-          <Footer />
-        </div>
+        <GoogleAnalytics />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

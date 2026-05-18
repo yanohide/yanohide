@@ -73,7 +73,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: `記事が見つかりません | The Literary Review`,
+      title: `記事が見つかりません`,
     };
   }
 
@@ -81,7 +81,7 @@ export async function generateMetadata({
   const description =
     post.seo?.description?.trim() ||
     post.excerpt?.trim() ||
-    "The Literary Review — エディトリアル・マガジンの記事です。";
+    "医療・介護・ライティング関連の記事です。";
 
   let ogImage: string = absoluteUrl(DEFAULT_EYECATCH);
   try {
@@ -176,7 +176,7 @@ export default async function PostPage({
   return (
     <article id="top" className="article-canvas animate-reveal font-sans">
       <div className="mb-10 md:mb-12">
-        <Link href="/" className="back-link font-sans">
+        <Link href="/blog" className="back-link font-sans">
           <span className="arrow" aria-hidden>
             ←
           </span>
@@ -265,12 +265,12 @@ export default async function PostPage({
             image: structuredImage,
             url: absoluteUrl(`/posts/${post.slug.current}`),
             author: {
-              "@type": "Organization",
-              name: "The Literary Review",
+              "@type": "Person",
+              name: "矢野英人",
             },
             publisher: {
               "@type": "Organization",
-              name: "The Literary Review",
+              name: "矢野英人 | 医療介護のAIクリエイター",
             },
             keywords: post.tags?.map((tag) => tag.title).join(", ") || undefined,
           }),
@@ -287,7 +287,7 @@ export default async function PostPage({
 
       <footer className="mt-16 border-t border-sand/45 pt-10 font-sans">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-          <Link href="/" className="back-link">
+          <Link href="/blog" className="back-link">
             <span className="arrow" aria-hidden>
               ←
             </span>

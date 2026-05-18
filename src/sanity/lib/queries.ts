@@ -11,7 +11,22 @@ export const POSTS_QUERY = defineQuery(
     publishedAt,
     excerpt,
     eyecatch,
-    heroImage { asset, alt }
+    heroImage { asset, alt },
+    "categories": categories[]->{ _id, title, slug },
+    "tags": tags[]->{ _id, title, slug }
+  }`
+);
+
+export const SEARCH_POSTS_QUERY = defineQuery(
+  `*[_type == "post" && ${published}] | order(coalesce(publishedAt, _createdAt) desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    "searchText": pt::text(body),
+    "categories": categories[]->{ _id, title, slug },
+    "tags": tags[]->{ _id, title, slug }
   }`
 );
 
