@@ -2,35 +2,43 @@
 
 @plugin "@tailwindcss/typography";
 
-:root {
-  --color-cream: #f5f0e8;
-  --color-ink: #1c1917;
-  --color-espresso: #44403c;
-  --color-walnut: #78716c;
-  --color-sand: #d6d3d1;
-  --color-parchment: #e7e5e4;
-  --color-burgundy: #991b1b;
-  --color-gold: #a16207;
-  --color-navy: #1e3a5f;
-  --color-ivory: #fefce8;
-
-  --font-serif-jp: var(--font-noto-serif-jp), "Yu Mincho", serif;
-  --font-sans-jp: var(--font-noto-sans-jp), "Hiragino Sans", sans-serif;
-  --font-display: var(--font-cormorant), Georgia, serif;
-}
-
 @theme inline {
-  --color-cream: #f5f0e8;
-  --color-ink: #1c1917;
-  --color-espresso: #44403c;
-  --color-walnut: #78716c;
-  --color-sand: #d6d3d1;
-  --color-parchment: #e7e5e4;
-  --color-burgundy: #991b1b;
-  --color-gold: #a16207;
+  --color-clinic-surface: #f2f0ec;
+  --color-clinic-mist: #e6e2dc;
+  --color-clinic-depth: #dddbd6;
+  --color-clinic-glow: #faf8f4;
+  --color-clinic-shadow: #c4bfba;
+  --color-paper-elevate: #fffcf7;
+  --color-ink-faint: #3d3833;
+  --color-care: #2a6d78;
+  --color-digital: #3a6f8c;
+  --color-cream: #f3ede3;
+  --color-cream-deep: #e8dfd2;
+  --color-ink: #1a1614;
+  --color-espresso: #3f3a36;
+  --color-walnut: #6e6860;
+  --color-sand: #c9c4be;
+  --color-parchment: #e5e0d8;
+  --color-burgundy: #8b1e1e;
+  --color-burgundy-deep: #6b1518;
+  --color-gold: #8a5a0f;
+  --color-gold-bright: #b8860b;
+  --color-gold-soft: #938d81;
   --color-navy: #1e3a5f;
-  --color-ivory: #fefce8;
+  --color-navy-deep: #0f1c2e;
+  --color-ivory: #fdf9ed;
+  --color-ember: #c45c3e;
+
+  --font-serif-jp: var(--font-noto-serif-jp), "Noto Serif JP", "Yu Mincho", serif;
+  --font-sans-jp: var(--font-noto-sans-jp), "Noto Sans JP", "Hiragino Sans", sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+
+  --shadow-editorial: 0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 20px 50px -15px rgba(26, 22, 20, 0.12), 0 0 0 1px rgba(26, 22, 20, 0.04);
+  --shadow-card-hover: 0 24px 60px -20px rgba(15, 28, 46, 0.18);
 }
+
+@import "./article-layout.css";
 
 @keyframes fade-slide-up {
   from {
@@ -179,35 +187,6 @@
   text-transform: uppercase;
   color: var(--color-gold);
   border: 1px solid rgb(161 98 7 / 0.55);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: gap 240ms ease;
-}
-
-.back-link:hover {
-  gap: 0.6rem;
-}
-
-.article-prose.prose-lg {
-  --tw-prose-body: var(--color-ink);
-  --tw-prose-headings: var(--color-espresso);
-  --tw-prose-links: var(--color-burgundy);
-  font-family: var(--font-serif-jp);
-  font-feature-settings: "palt" 1;
-}
-
-.article-prose > p:first-of-type::first-letter {
-  font-family: var(--font-display);
-  float: left;
-  margin: 0.08em 0.12em 0 0;
-  font-size: 4.5em;
-  line-height: 0.78;
-  font-weight: 600;
-  color: var(--color-burgundy);
 }
 
 body::before {

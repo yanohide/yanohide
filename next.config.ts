@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
+    ],
+  },
   /*
    * Cloudflare local bindings (requires macOS 13.5+ / supported Linux workerd runtime):
    * import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";

@@ -1,194 +1,303 @@
-import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import type { PortableTextBlock } from "@portabletext/types";
+import type { TypedObject } from "@portabletext/types";
+import type { SanityImageSource } from "@sanity/image-url";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { PostBody } from "@/components/PostBody";
+import { TableOfContents, extractToc } from "@/components/TableOfContents";
 import { sanityFetch } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/imageUrl";
 import { POST_QUERY, POST_SLUGS_QUERY } from "@/sanity/lib/queries";
 
-type PostDetail = {
+const DEFAULT_EYECATCH = "/eyecatch/cover-01.svg";
+
+const SITE_URL =
+  typeof process.env.NEXT_PUBLIC_SITE_URL === "string" && process.env.NEXT_PUBLIC_SITE_URL.length > 0
+    ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
+    : "http://localhost:3000";
+
+type Post = {
   _id: string;
+  _updatedAt?: string;
   title: string;
   slug: { current: string };
   publishedAt: string | null;
-  body?: PortableTextBlock[];
+  excerpt?: string | null;
+  body: TypedObject[] | null;
+  eyecatch: string | null;
+  heroImage?: {
+    asset?: { _ref?: string };
+    alt?: string;
+  } | null;
+  categories?: { _id: string; title: string; slug?: { current?: string } }[] | null;
+  tags?: { _id: string; title: string; slug?: { current?: string } }[] | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: { asset?: { _ref?: string }; alt?: string } | null;
+    noIndex?: boolean | null;
+  } | null;
 };
 
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+function isRefAsset(img: { asset?: { _ref?: string } } | null | undefined): boolean {
+  return Boolean(img?.asset?._ref);
 }
 
-function getVolNo(dateString: string) {
-  const d = new Date(dateString);
-  return { vol: d.getFullYear() - 2025, no: d.getMonth() + 1 };
-}
-
-const portableTextComponents: PortableTextComponents = {
-  marks: {
-    link({ children, value }) {
-      const href = typeof value?.href === "string" ? value.href : "#";
-      const external = !href.startsWith("/");
-      return (
-        <a
-          href={href}
-          className="font-semibold text-burgundy underline underline-offset-[5px] transition-colors hover:text-espresso"
-          rel={external ? "noopener noreferrer" : undefined}
-          target={external ? "_blank" : undefined}
-        >
-          {children}
-        </a>
-      );
-    },
-  },
-  block: {
-    h2({ children }) {
-      return (
-        <h2 className="mb-8 mt-10 font-serif text-4xl leading-tight tracking-tighter text-espresso first:mt-12 [font-family:var(--font-serif-jp)]">
-          {children}
-        </h2>
-      );
-    },
-    h3({ children }) {
-      return (
-        <h3 className="mb-6 mt-8 font-serif text-3xl tracking-tighter text-espresso [font-family:var(--font-serif-jp)]">
-          {children}
-        </h3>
-      );
-    },
-    blockquote({ children }) {
-      return (
-        <blockquote className="my-14 border-y border-double border-sand px-14 py-[1rem] italic leading-relaxed text-walnut [font-family:var(--font-serif-jp)]">
-          {children}
-        </blockquote>
-      );
-    },
-    normal({ children }) {
-      return <p className="mb-[1rem]">{children}</p>;
-    },
-  },
-};
-
-export async function generateStaticParams() {
-  const rows = await sanityFetch<Array<{ slug: string | null }>>({
-    query: POST_SLUGS_QUERY,
-    revalidate: 60,
-    fallback: [],
-  });
-
-  return rows
-    .filter((row): row is { slug: string } => typeof row.slug === "string" && row.slug.length > 0)
-    .map((row) => ({ slug: row.slug }));
-}
-
-type PageProps = { params: Promise<{ slug: string }> };
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-
-  const post = await sanityFetch<Pick<PostDetail, "title" | "publishedAt"> | null>({
-    query: `*[_type == "post" && slug.current == $slug][0]{title, publishedAt}`,
-    params: { slug },
-    revalidate: 60,
-    fallback: null,
-  });
-
-  if (!post?.title) {
-    return { title: "Not found" };
-  }
-
-  const description = `${post.title} — The Literary Review`;
-
-  return {
-    title: post.title,
-    description,
-    openGraph: {
-      title: post.title,
-      description,
-      locale: "ja_JP",
-      type: "article",
-      publishedTime: post.publishedAt ?? undefined,
-    },
-  };
-}
-
-export default async function PostPage({ params }: PageProps) {
-  const { slug } = await params;
-
-  const post = await sanityFetch<PostDetail | null>({
+async function getPost(slug: string) {
+  return sanityFetch<Post | null>({
     query: POST_QUERY,
     params: { slug },
     revalidate: 60,
     fallback: null,
   });
+}
+
+function absoluteUrl(path: string) {
+  return new URL(path.startsWith("/") ? path : `/${path}`, `${SITE_URL}/`).toString();
+}
+
+function imageUrl(source: SanityImageSource, width: number, height?: number) {
+  const builder = urlForImage(source).width(width).auto("format");
+  return (height ? builder.height(height) : builder).url();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return {
+      title: `記事が見つかりません | The Literary Review`,
+    };
+  }
+
+  const title = post.seo?.title?.trim() || post.title;
+  const description =
+    post.seo?.description?.trim() ||
+    post.excerpt?.trim() ||
+    "The Literary Review — エディトリアル・マガジンの記事です。";
+
+  let ogImage: string = absoluteUrl(DEFAULT_EYECATCH);
+  try {
+    if (post.seo?.image && isRefAsset(post.seo.image)) {
+      ogImage = imageUrl(post.seo.image as SanityImageSource, 1200, 630);
+    } else if (post.heroImage && isRefAsset(post.heroImage)) {
+      ogImage = imageUrl(post.heroImage as SanityImageSource, 1200, 630);
+    }
+  } catch {
+    ogImage = absoluteUrl(DEFAULT_EYECATCH);
+  }
+
+  const url = absoluteUrl(`/posts/${post.slug.current}`);
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    robots: post.seo?.noIndex ? { index: false, follow: false } : undefined,
+    openGraph: {
+      type: "article",
+      locale: "ja_JP",
+      url,
+      title,
+      description,
+      publishedTime: post.publishedAt ?? undefined,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const slugs = await sanityFetch<Array<{ slug: string | null }>>({
+    query: POST_SLUGS_QUERY,
+    revalidate: 60,
+    fallback: [],
+  });
+  return slugs
+    .filter((row): row is { slug: string } => typeof row.slug === "string" && row.slug.length > 0)
+    .map((row) => ({ slug: row.slug }));
+}
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  const dateRef = post.publishedAt ?? new Date().toISOString();
-  const volNo = getVolNo(dateRef);
+  function getVolNo(dateString: string) {
+    const d = new Date(dateString);
+    return { vol: d.getFullYear() - 2025, no: d.getMonth() + 1 };
+  }
+
+  const volNo =
+    post.publishedAt && !Number.isNaN(new Date(post.publishedAt).getTime())
+      ? getVolNo(post.publishedAt)
+      : null;
+
+  let heroSrc: string;
+  let heroAlt: string;
+  try {
+    if (post.heroImage && isRefAsset(post.heroImage)) {
+      heroSrc = imageUrl(post.heroImage as SanityImageSource, 1600, 900);
+      heroAlt = post.heroImage.alt?.trim() || "";
+    } else if (post.eyecatch && post.eyecatch.length > 0) {
+      heroSrc = post.eyecatch;
+      heroAlt = "";
+    } else {
+      heroSrc = DEFAULT_EYECATCH;
+      heroAlt = "";
+    }
+  } catch {
+    heroSrc =
+      post.eyecatch && post.eyecatch.length > 0 ? post.eyecatch : DEFAULT_EYECATCH;
+    heroAlt = "";
+  }
+
+  const structuredImage = heroSrc.startsWith("http") ? heroSrc : absoluteUrl(heroSrc);
 
   return (
-    <article className="mx-auto max-w-[49rem] px-2 pb-[4.6875rem] md:max-w-none md:px-3">
-      <Link href="/" className="back-link mb-14 text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">
-        <span aria-hidden className="-mt-px text-base font-light">
-          ←
-        </span>
-        <span>ALL ARTICLES</span>
-      </Link>
-
-      <div className="mb-[1rem] mt-[-0.0625rem] flex flex-row flex-wrap items-center gap-[0.9375rem] text-[13px] text-walnut">
-        <time dateTime={new Date(dateRef).toISOString()} className="font-medium lowercase">
-          {formatDate(dateRef)}
-        </time>
-        <span className="issue-badge whitespace-nowrap rounded-none bg-transparent py-px text-[13px] font-semibold lowercase tracking-normal text-gold uppercase">
-          Vol.{volNo.vol} No.{volNo.no}
-        </span>
+    <article id="top" className="article-canvas animate-reveal font-sans">
+      <div className="mb-10 md:mb-12">
+        <Link href="/" className="back-link font-sans">
+          <span className="arrow" aria-hidden>
+            ←
+          </span>
+          <span>記事一覧へ戻る</span>
+        </Link>
       </div>
 
-      <header className="mb-12 md:mb-16">
-        <h1 className="mt-[-0.5rem] mb-8 max-w-4xl text-[clamp(1.975rem,4.93vw,3rem)] leading-[1.12] tracking-tighter text-balance font-black md:text-[2.975rem] [font-family:var(--font-serif-jp)]">
+      <header className="article-hero relative mb-6 md:mb-8">
+        <h1 className="font-serif-jp text-[clamp(1.45rem,3.2vw,2.1rem)] font-bold leading-[1.35] tracking-[0.02em] text-ink">
           {post.title}
         </h1>
-
-        <div className="mb-14 flex items-center justify-center gap-6 px-6 text-xl text-sand md:gap-10">
-          <span className="h-px flex-1 max-w-[8rem] bg-sand" aria-hidden />
-          <span aria-hidden>◆</span>
-          <span className="h-px flex-1 max-w-[8rem] bg-sand" aria-hidden />
-        </div>
       </header>
 
-      <div className="article-prose prose-lg prose-stone mx-auto mb-24 max-w-2xl">
-        {post.body?.length ? (
-          <PortableText components={portableTextComponents} value={post.body} />
-        ) : (
-          <p className="rounded-sm border border-sand px-11 py-[2.9375rem] text-center italic text-walnut">本文がありません。</p>
-        )}
+      <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-sand/50 pb-3 font-sans">
+        {post.publishedAt ? (
+          <time
+            className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-digital/90"
+            dateTime={post.publishedAt}
+          >
+            {new Date(post.publishedAt).toLocaleDateString("ja-JP", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        ) : null}
+        {post.categories?.map((category) => (
+          <span
+            key={category._id}
+            className="rounded-full bg-care/10 px-2.5 py-1 text-[0.65rem] font-bold tracking-wide text-care"
+          >
+            {category.title}
+          </span>
+        ))}
+        {volNo ? (
+          <span className="issue-badge rounded-none border-0 bg-transparent p-0 font-mono normal-case tracking-[0.18em] text-walnut/90">
+            vol.{volNo.vol} · no.{volNo.no}
+          </span>
+        ) : null}
       </div>
 
-      <footer className="mx-auto mb-28 max-w-xl text-center [&>svg]:opacity-92">
-        <div className="mb-[-0.5rem] pb-px text-[2rem] [font-family:var(--font-display)] md:text-[2.25rem]" aria-hidden>
-          ■
+      <div className="article-media-frame relative -mx-0 mb-12 overflow-hidden sm:mb-16">
+        <div className="relative aspect-[2/1] max-h-[24rem] min-h-[12rem] w-full sm:aspect-[21/9]">
+          <Image
+            src={heroSrc}
+            alt={heroAlt}
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="(min-width: 1024px) 48rem, 100vw"
+            unoptimized={
+              heroSrc.endsWith(".svg") ||
+              (heroSrc.startsWith("http") && !heroSrc.includes("cdn.sanity.io"))
+            }
+          />
         </div>
-        <hr className="divider-double mx-auto mb-12 mt-[-0.9375rem] max-w-xl" />
+      </div>
 
-        <div className="mb-[-0.5rem] mt-[-0.5rem] flex flex-wrap items-center justify-center gap-10 md:gap-14">
-          <Link href="/" className="back-link text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">
-            <span aria-hidden className="text-base leading-none">
+      {(() => {
+        const body = Array.isArray(post.body) ? post.body : [];
+        const { items, firstHeadingIndex } = extractToc(body);
+        const lead = firstHeadingIndex > 0 ? body.slice(0, firstHeadingIndex) : body;
+        const main = firstHeadingIndex > 0 ? body.slice(firstHeadingIndex) : [];
+        return (
+          <div
+            className="prose prose-base prose-stone mx-auto max-w-none prose-p:text-ink/95"
+            style={{ letterSpacing: "0.04em" }}
+          >
+            <PostBody value={lead} />
+            {items.length > 0 ? <TableOfContents items={items} /> : null}
+            {main.length > 0 ? <PostBody value={main} /> : null}
+          </div>
+        );
+      })()}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.seo?.description || post.excerpt || undefined,
+            datePublished: post.publishedAt || undefined,
+            dateModified: post._updatedAt || post.publishedAt || undefined,
+            image: structuredImage,
+            url: absoluteUrl(`/posts/${post.slug.current}`),
+            author: {
+              "@type": "Organization",
+              name: "The Literary Review",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "The Literary Review",
+            },
+            keywords: post.tags?.map((tag) => tag.title).join(", ") || undefined,
+          }),
+        }}
+      />
+
+      <div className="end-mark mt-20 flex flex-col items-center gap-3">
+        <span className="h-px w-20 bg-gradient-to-r from-transparent via-sand to-transparent" />
+        <span className="font-mono text-lg text-digital/40" aria-hidden>
+          {"//"}
+        </span>
+        <span className="h-px w-20 bg-gradient-to-l from-transparent via-sand to-transparent" />
+      </div>
+
+      <footer className="mt-16 border-t border-sand/45 pt-10 font-sans">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+          <Link href="/" className="back-link">
+            <span className="arrow" aria-hidden>
               ←
             </span>
-            <span>ALL ARTICLES</span>
+            記事一覧へ戻る
           </Link>
-          <a href="#top" className="back-link whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.28em] text-burgundy">
-            <span>BACK TO TOP</span>
-            <span aria-hidden className="-mt-[1px] text-base align-middle">
-              ↑
-            </span>
+          <a
+            href="#top"
+            className="text-center font-mono text-xs tracking-[0.14em] text-walnut transition-colors duration-300 hover:text-digital"
+          >
+            ページ先頭へ ↑
           </a>
         </div>
       </footer>
