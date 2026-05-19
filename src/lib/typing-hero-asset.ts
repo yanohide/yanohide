@@ -1,3 +1,3 @@
-/** Header & トップヒーローで共有。ノートPCのタイピング風景（Unsplash） */
+/** Header & トップヒーロー：ダークトーンのラップトップ＆コーヒー（Unsplash） */
 export const TYPING_DESK_UNSPLASH =
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=85&w=2000";
+  "https://images.unsplash.com/photo-1752225494606-ae09aca08bea?auto=format&fit=crop&q=85&w=2400";

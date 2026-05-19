@@ -2,6 +2,9 @@
 
 @plugin "@tailwindcss/typography";
 
+@import "./article-layout.css";
+@import "./portfolio-shell.css";
+
 @theme inline {
   --color-clinic-surface: #f2f0ec;
   --color-clinic-mist: #e6e2dc;
@@ -40,9 +43,6 @@
     0 20px 50px -15px rgba(26, 22, 20, 0.12), 0 0 0 1px rgba(26, 22, 20, 0.04);
   --shadow-card-hover: 0 24px 60px -20px rgba(15, 28, 46, 0.18);
 }
-
-@import "./article-layout.css";
-@import "./portfolio-shell.css";
 
 @keyframes fade-slide-up {
   from {

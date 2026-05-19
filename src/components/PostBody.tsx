@@ -778,9 +778,9 @@ const speechBalloonComponent = ({
   /** 話し手名が一致する場合はサイト既定アイコンを優先（本文の吹き出し体裁を統一） */
   const speakerAvatarMap: Record<string, string> = {
     /** トップのプロフィール写真と同一 */
-    ヤノヒデ: "/profile-avatar.png",
-    yanohide: "/profile-avatar.png",
-    矢野英人: "/profile-avatar.png",
+    ヤノヒデ: "/avatars/profile-avatar.png",
+    yanohide: "/avatars/profile-avatar.png",
+    矢野英人: "/avatars/profile-avatar.png",
     編集部: "/avatars/henshubu.svg",
   };
   const mappedBySpeaker =

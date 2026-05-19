@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Fraunces, Great_Vibes, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SiteChrome } from "@/components/SiteChrome";
+import { PORTFOLIO } from "@/lib/portfolio-content";
 
 import "./globals.css";
 
@@ -32,6 +33,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-portfolio-script",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase:
     typeof process.env.NEXT_PUBLIC_SITE_URL === "string" &&
@@ -39,7 +47,7 @@ export const metadata: Metadata = {
       ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
       : new URL("http://localhost:3000"),
   title: {
-    default: "矢野英人 | 医療介護のAIクリエイター ポートフォリオ",
+    default: `${PORTFOLIO.headerBrand} ポートフォリオ`,
     template: "%s | 矢野英人",
   },
   description:
@@ -47,8 +55,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "矢野英人 | 医療介護のAIクリエイター",
-    title: "矢野英人 | 医療介護のAIクリエイター ポートフォリオ",
+    siteName: PORTFOLIO.headerBrand,
+    title: `${PORTFOLIO.headerBrand} ポートフォリオ`,
     description:
       "理学療法士の臨床18年。介護・医療・金融・Web3 のライティング。記事執筆100本以上。",
   },
@@ -65,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="ja" id="top">
       <body
-        className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
+        className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} ${greatVibes.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
       >
         <GoogleAnalytics />
         <SiteChrome>{children}</SiteChrome>
