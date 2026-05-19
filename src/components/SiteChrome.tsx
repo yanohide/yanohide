@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
 import { TYPING_DESK_UNSPLASH } from "@/lib/typing-hero-asset";
 
@@ -19,15 +19,22 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   const isStudio = pathname === "/studio" || pathname.startsWith("/studio/");
   const isHome = pathname === "/";
 
-  const homeHeaderSolid = useSyncExternalStore(
-    (onStoreChange) => {
-      if (typeof window === "undefined") return () => {};
-      window.addEventListener("scroll", onStoreChange, { passive: true });
-      return () => window.removeEventListener("scroll", onStoreChange);
-    },
-    () => typeof window !== "undefined" && isHome && window.scrollY > 10,
-    () => false,
-  );
+  const [homeHeaderSolid, setHomeHeaderSolid] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) {
+      setHomeHeaderSolid(false);
+      return;
+    }
+
+    function syncFromScroll() {
+      setHomeHeaderSolid(window.scrollY > 10);
+    }
+
+    syncFromScroll();
+    window.addEventListener("scroll", syncFromScroll, { passive: true });
+    return () => window.removeEventListener("scroll", syncFromScroll);
+  }, [isHome]);
 
   if (isStudio) {
     return <div className="min-h-dvh">{children}</div>;
