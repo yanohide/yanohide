@@ -18,7 +18,7 @@ function OrderFlowStepLabel({ number, heading }: { number: number; heading: stri
 
 export function PortfolioOrderFlow() {
   return (
-    <div className="mt-12 border-t border-slate-200 bg-white px-4 pt-10 pb-4 md:mt-16 md:px-6 md:pt-12 md:pb-6">
+    <div id="contact" className="mt-12 border-t border-slate-200 bg-white px-4 pt-10 pb-4 md:mt-16 md:px-6 md:pt-12 md:pb-6">
       <PortfolioSectionTitle script="ご依頼から発注までの流れ" />
       <ol className="mx-auto mt-6 max-w-md">
         {ORDER_FLOW_STEPS.map((item, index) => (

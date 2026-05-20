@@ -12,6 +12,7 @@ const nav = [
   { href: "/", label: "ホーム" },
   { href: "/#services", label: "私にできること" },
   { href: "/#samples", label: "実績・サンプル記事" },
+  { href: "/#contact", label: "お問い合わせ" },
 ] as const;
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
