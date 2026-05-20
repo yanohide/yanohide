@@ -1,9 +1,8 @@
 @import "tailwindcss";
-
-@plugin "@tailwindcss/typography";
-
 @import "./article-layout.css";
 @import "./portfolio-shell.css";
+
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   --color-clinic-surface: #f2f0ec;

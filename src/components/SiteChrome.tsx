@@ -62,14 +62,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                 priority
               />
             </div>
-            <div
-              className="absolute inset-0 z-[1] bg-gradient-to-b from-slate-950/30 via-blue-950/16 to-slate-600/10"
-              aria-hidden
-            />
-            <div
-              className="absolute inset-0 z-[1] bg-gradient-to-t from-slate-950/16 via-blue-950/5 to-slate-950/20"
-              aria-hidden
-            />
+            <div className="portfolio-hero-bg-overlay-top absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-bg-overlay-bottom absolute inset-0 z-[1]" aria-hidden />
             <div className="portfolio-hero-grain absolute inset-0 z-[1]" aria-hidden />
           </div>
         </div>
@@ -80,7 +74,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           isHome
             ? homeHeaderSolid
               ? "fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md"
-              : "fixed top-0 left-0 right-0 z-[100] w-full border-b border-transparent bg-transparent shadow-none"
+              : "portfolio-header-on-hero fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/15 bg-transparent shadow-none"
             : "fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md"
         }
       >
@@ -92,7 +86,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           <Link href="/" className="flex shrink-0 items-center gap-2">
             <span
               className={`portfolio-script-title inline-block text-xs font-bold leading-tight sm:text-sm md:text-base ${
-                headerOnHero ? "text-white drop-shadow" : "text-blue-900"
+                headerOnHero ? "portfolio-header-hero-brand text-white" : "text-blue-900"
               }`}
             >
               {PORTFOLIO.headerBrand}
@@ -114,7 +108,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                 href={item.href}
                 className={
                   headerOnHero
-                    ? "portfolio-cinema-nav transition hover:text-white/75"
+                    ? "portfolio-cinema-nav portfolio-header-hero-nav transition hover:text-white/85"
                     : "transition hover:text-blue-600"
                 }
               >

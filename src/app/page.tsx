@@ -22,7 +22,7 @@ export default function HomePage() {
       {/* Hero：シネマティック全画面 */}
       <section className="portfolio-hero portfolio-cinema-frame relative z-10 mx-auto flex flex-col justify-center text-white">
         <div className="portfolio-hero-content relative z-10 w-full px-4 pb-10 pt-14 text-center md:px-8 md:pb-11 md:pt-16">
-          <p className="portfolio-hero-lead mb-1 text-base font-medium tracking-wide text-white/95 md:text-lg">
+          <p className="portfolio-hero-lead mb-1 text-xl font-medium tracking-wide text-white/95 md:text-2xl">
             {PORTFOLIO.headerBrand}
           </p>
           <h1 className="portfolio-hero-name mb-2 mt-3 md:mt-5">ポートフォリオ</h1>
