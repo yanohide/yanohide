@@ -47,7 +47,8 @@
 }
 
 .portfolio-hero-bg-image {
-  filter: brightness(1.22) contrast(1.08) grayscale(0.18) saturate(0.95) hue-rotate(-14deg);
+  filter: blur(3px) brightness(1.22) contrast(1.08) grayscale(0.18) saturate(0.95) hue-rotate(-14deg);
+  transform: scale(1.04);
 }
 
 .portfolio-hero-ai-grid {
@@ -187,6 +188,33 @@
   text-shadow:
     0 1px 2px rgb(15 23 42 / 0.8),
     0 2px 16px rgb(15 23 42 / 0.5);
+}
+
+.portfolio-hero-name-lined {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.portfolio-hero-name-lined::before,
+.portfolio-hero-name-lined::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgb(255 255 255 / 0.8);
+  transform: scaleY(0.35);
+  transform-origin: center;
+}
+
+.portfolio-hero-name-lined::before {
+  top: 0;
+}
+
+.portfolio-hero-name-lined::after {
+  bottom: 0;
 }
 
 .portfolio-hero-role {

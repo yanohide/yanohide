@@ -46,10 +46,10 @@ export default function HomePage() {
               </ruby>
               ｜医療介護のAIクリエイター
             </p>
-            <h1 className="portfolio-hero-name mb-1 mt-4 text-xl font-bold tracking-wide md:mt-5 md:text-2xl">
+            <h1 className="portfolio-hero-name portfolio-hero-name-lined mb-1 mt-6 text-xl font-bold tracking-wide md:mt-8 md:text-2xl">
               ポートフォリオサイト
             </h1>
-            <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-4xl space-y-1.5 text-center text-xs leading-snug md:mt-10 md:text-sm">
+            <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-5xl space-y-1.5 text-center text-sm leading-snug md:mt-10 md:text-base">
               <li>
                 ・<span className="portfolio-hero-bullet-title">確かな情報提供</span>
                 ：臨床経験18年とエビデンスに基づく信頼情報を提供
