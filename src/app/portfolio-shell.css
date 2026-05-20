@@ -47,15 +47,41 @@
 }
 
 .portfolio-hero-bg-image {
-  filter: brightness(1.32) contrast(1) grayscale(0.34) saturate(0.68);
+  filter: brightness(1.22) contrast(1.08) grayscale(0.18) saturate(0.95) hue-rotate(-14deg);
+}
+
+.portfolio-hero-ai-grid {
+  background-image:
+    linear-gradient(rgb(56 189 248 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(56 189 248 / 0.14) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.58) 0%, rgb(0 0 0 / 0.32) 65%, rgb(0 0 0 / 0.22) 100%);
+}
+
+.portfolio-hero-ai-mesh {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='675' viewBox='0 0 1200 675'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-opacity='0.26' stroke-width='1'%3E%3Cpath d='M40 80 L180 140 L340 60 L520 130 L720 70 L920 120 L1160 90'/%3E%3Cpath d='M60 260 L220 220 L400 300 L580 240 L760 280 L980 210 L1140 250'/%3E%3Cpath d='M80 460 L260 420 L420 520 L620 440 L820 500 L1040 430 L1160 470'/%3E%3Cpath d='M30 590 L190 550 L360 610 L540 570 L720 600 L900 540 L1170 580'/%3E%3Cpath d='M180 140 L220 220 M340 60 L400 300 M520 130 L580 240 M720 70 L760 280 M920 120 L980 210'/%3E%3Cpath d='M220 220 L260 420 M400 300 L420 520 M580 240 L620 440 M760 280 L820 500'/%3E%3Cpath d='M260 420 L190 550 M420 520 L360 610 M620 440 L540 570 M820 500 L720 600 M1040 430 L900 540'/%3E%3Cpath d='M80 460 L190 550 M1160 470 L1170 580 M40 80 L60 260 L80 460 L30 590 M1160 90 L1140 250 L1160 470 L1170 580'/%3E%3Cpath d='M120 360 L340 180 L760 360 L980 160'/%3E%3Cpath d='M120 360 L400 300 M760 360 L580 240 M540 570 L720 600'/%3E%3C/g%3E%3Cg fill='%2322d3ee' fill-opacity='0.3'%3E%3Ccircle cx='40' cy='80' r='3.5'/%3E%3Ccircle cx='180' cy='140' r='4'/%3E%3Ccircle cx='340' cy='60' r='3.5'/%3E%3Ccircle cx='520' cy='130' r='4.5'/%3E%3Ccircle cx='720' cy='70' r='3.5'/%3E%3Ccircle cx='920' cy='120' r='4'/%3E%3Ccircle cx='1160' cy='90' r='3.5'/%3E%3Ccircle cx='60' cy='260' r='3.5'/%3E%3Ccircle cx='220' cy='220' r='4'/%3E%3Ccircle cx='400' cy='300' r='4'/%3E%3Ccircle cx='580' cy='240' r='4.5'/%3E%3Ccircle cx='760' cy='280' r='4'/%3E%3Ccircle cx='980' cy='210' r='3.5'/%3E%3Ccircle cx='1140' cy='250' r='3.5'/%3E%3Ccircle cx='80' cy='460' r='3.5'/%3E%3Ccircle cx='260' cy='420' r='4'/%3E%3Ccircle cx='420' cy='520' r='4'/%3E%3Ccircle cx='620' cy='440' r='4.5'/%3E%3Ccircle cx='820' cy='500' r='4'/%3E%3Ccircle cx='1040' cy='430' r='3.5'/%3E%3Ccircle cx='1160' cy='470' r='3.5'/%3E%3Ccircle cx='30' cy='590' r='3.5'/%3E%3Ccircle cx='190' cy='550' r='4'/%3E%3Ccircle cx='360' cy='610' r='4'/%3E%3Ccircle cx='540' cy='570' r='4.5'/%3E%3Ccircle cx='720' cy='600' r='4'/%3E%3Ccircle cx='900' cy='540' r='3.5'/%3E%3Ccircle cx='1170' cy='580' r='3.5'/%3E%3Ccircle cx='120' cy='360' r='3'/%3E%3Ccircle cx='760' cy='360' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.46;
+  mix-blend-mode: screen;
+}
+
+.portfolio-hero-ai-glow {
+  background:
+    radial-gradient(ellipse 52% 46% at 82% 22%, rgb(34 211 238 / 0.38), transparent 58%),
+    radial-gradient(ellipse 42% 38% at 12% 66%, rgb(59 130 246 / 0.3), transparent 54%),
+    radial-gradient(ellipse 55% 45% at 50% 88%, rgb(37 99 235 / 0.24), transparent 68%),
+    radial-gradient(ellipse 38% 32% at 52% 38%, rgb(14 165 233 / 0.16), transparent 62%);
 }
 
 .portfolio-hero-bg-overlay-top {
   background: linear-gradient(
     180deg,
-    rgb(15 23 42 / 0.12) 0%,
-    rgb(30 58 138 / 0.04) 20%,
-    transparent 48%
+    rgb(15 23 42 / 0.14) 0%,
+    rgb(30 58 138 / 0.1) 22%,
+    rgb(14 165 233 / 0.06) 45%,
+    transparent 58%
   );
 }
 
@@ -133,10 +159,29 @@
   -webkit-backdrop-filter: blur(16px) saturate(0.85) grayscale(0.02);
 }
 
-.portfolio-hero-name {
-  font-size: clamp(1.625rem, 5.5vw, 3rem);
+.portfolio-hero-ymaa-badge {
+  filter: drop-shadow(0 2px 10px rgb(15 23 42 / 0.28));
+}
+
+.portfolio-hero-badge-block {
+  width: max-content;
+}
+
+.portfolio-hero-credentials {
+  text-align: left;
+  text-shadow:
+    0 1px 2px rgb(15 23 42 / 0.72),
+    0 2px 8px rgb(15 23 42 / 0.45);
+}
+
+.portfolio-hero-headline {
+  font-size: clamp(1.125rem, 3.5vw, 1.875rem);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+}
+
+.portfolio-hero-name {
   line-height: 1.15;
   color: #ffffff;
   text-shadow:

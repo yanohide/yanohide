@@ -15,7 +15,7 @@ export function PortfolioSectionTitle({
   const chars = Array.from(script);
   const first = chars[0] ?? "";
   const rest = chars.slice(1).join("");
-  const scriptTitleSize = subtitleMatchScript ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl";
+  const scriptTitleSize = subtitleMatchScript ? "text-xl md:text-2xl" : "text-3xl md:text-4xl";
 
   return (
     <header className={`text-center ${className}`}>
@@ -28,7 +28,7 @@ export function PortfolioSectionTitle({
       <h2
         className={
           subtitleMatchScript
-            ? `portfolio-script-title mt-16 leading-snug font-bold text-blue-900 md:mt-20 ${scriptTitleSize}`
+            ? `portfolio-script-title mt-10 leading-snug font-bold text-blue-900 md:mt-12 ${scriptTitleSize}`
             : "mt-8 text-lg font-bold text-blue-900 md:mt-10 md:text-xl"
         }
       >

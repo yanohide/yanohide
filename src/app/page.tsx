@@ -21,35 +21,55 @@ export default function HomePage() {
     <div className="w-full text-slate-800">
       {/* Hero：シネマティック全画面 */}
       <section className="portfolio-hero portfolio-cinema-frame relative z-10 mx-auto flex flex-col justify-center text-white">
-        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-10 pt-[4.2rem] text-center md:px-8 md:pb-11 md:pt-[4.8rem]">
-          <p className="portfolio-hero-lead mb-1 text-xl font-medium tracking-wide text-white/95 md:text-2xl">
-            <ruby>
-              {PORTFOLIO.name}
-              <rt>やのひでと</rt>
-            </ruby>
-            ｜医療介護のAIクリエイター
-          </p>
-          <h1 className="portfolio-hero-name mb-2 mt-6 md:mt-8">ポートフォリオ</h1>
-          <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-4xl space-y-0.5 text-center text-sm leading-snug md:mt-10 md:text-base">
-            <li>
-              ・<span className="portfolio-hero-bullet-title">確かな情報提供</span>
-              ：臨床経験18年とエビデンスに基づく信頼情報を提供
-            </li>
-            <li>
-              ・<span className="portfolio-hero-bullet-title">読者目線の発信</span>
-              ：職員・患者・家族が抱えるリアルな悩みを根本解決
-            </li>
-            <li>
-              ・<span className="portfolio-hero-bullet-title">売上向上に伴走</span>
-              ：AIとWebマーケをフル活用し
-              <span className="font-bold text-yellow-300">貴社の売上向上</span>に貢献
-            </li>
-          </ul>
+        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-7 pt-[3rem] text-center md:px-8 md:pb-8 md:pt-[3.5rem]">
+          <div className="portfolio-hero-badge-block absolute left-2 top-3 z-20 md:left-4 md:top-4">
+            <Image
+              src="/badges/ymaa-certification.png"
+              alt="薬機法医療法 広告遵守 個人認証 YMAA"
+              width={1024}
+              height={924}
+              className="portfolio-hero-ymaa-badge h-auto w-[4.5rem] md:w-[5.5rem]"
+            />
+            <div className="portfolio-hero-credentials mt-1.5 md:mt-2">
+              <ul className="grid w-max grid-cols-1 space-y-0 text-[0.5625rem] leading-snug text-white/88 md:text-[0.625rem]">
+                <li className="whitespace-nowrap">理学療法士</li>
+                <li className="whitespace-nowrap">介護支援専門員</li>
+                <li className="whitespace-nowrap">FP技能士２級</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 md:mt-20">
+            <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white/95">
+              <ruby>
+                {PORTFOLIO.name}
+                <rt>やのひでと</rt>
+              </ruby>
+              ｜医療介護のAIクリエイター
+            </p>
+            <h1 className="portfolio-hero-name mb-1 mt-4 text-xl font-bold tracking-wide md:mt-5 md:text-2xl">
+              ポートフォリオサイト
+            </h1>
+            <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-4xl space-y-1.5 text-center text-xs leading-snug md:mt-10 md:text-sm">
+              <li>
+                ・<span className="portfolio-hero-bullet-title">確かな情報提供</span>
+                ：臨床経験18年とエビデンスに基づく信頼情報を提供
+              </li>
+              <li>
+                ・<span className="portfolio-hero-bullet-title">読者目線の発信</span>
+                ：職員・患者・家族が抱えるリアルな悩みを根本解決
+              </li>
+              <li>
+                ・<span className="portfolio-hero-bullet-title">売上向上に伴走</span>
+                ：AIとWebマーケをフル活用し
+                <span className="font-bold text-yellow-300">貴社の売上向上</span>に貢献
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
       {/* Profile */}
-      <section id="profile" className="profile-gradient-section pb-12 pt-12 md:pb-14 md:pt-16">
+      <section id="profile" className="profile-gradient-section pb-8 pt-8 md:pb-10 md:pt-12">
         <div className="mx-auto max-w-2xl px-4 text-center text-slate-800">
           <PortfolioSectionTitle
             script="プロフィール"
@@ -63,9 +83,9 @@ export default function HomePage() {
                 ｜医療介護のAIクリエイター
               </span>
             }
-            className="mb-8"
+            className="mb-5"
           />
-          <div className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full md:h-36 md:w-36">
+          <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full md:h-32 md:w-32">
             <Image
               src="/avatars/profile-avatar.png"
               alt="矢野英人"
@@ -74,14 +94,14 @@ export default function HomePage() {
               className="h-full w-full object-cover object-center"
             />
           </div>
-          <p className="mb-8 text-sm font-bold leading-relaxed text-slate-700 md:text-base">
+          <p className="mb-5 text-sm font-bold leading-relaxed text-slate-700 md:text-base">
             〜 介護分野のリハビリ歴18年の臨床経験から、
             <br />
             100記事以上納品 × オウンドメディア運用 〜
           </p>
-          <div className="space-y-8 text-sm leading-relaxed text-slate-700 md:text-base">
+          <div className="space-y-5 text-sm leading-relaxed text-slate-700 md:text-base">
             <div>
-              <h3 className="mb-3 font-bold text-slate-900">【ライティング】</h3>
+              <h3 className="mb-2 font-bold text-slate-900">【ライティング】</h3>
               <div className="space-y-1.5">
                 <p>金融・Web3系オウンドメディア運営</p>
                 <p>YMYL個人認証マーク取得</p>
@@ -89,7 +109,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <h3 className="mb-3 font-bold text-slate-900">【キャリア】</h3>
+              <h3 className="mb-2 font-bold text-slate-900">【キャリア】</h3>
               <div className="space-y-1.5">
                 <p>理学療法士として1,000人以上のリハビリ担当</p>
                 <p>医学・リハビリ領域の全国レベルの学会発表</p>
@@ -98,7 +118,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <h3 className="mb-3 font-bold text-slate-900">【保有資格】</h3>
+              <h3 className="mb-2 font-bold text-slate-900">【保有資格】</h3>
               <div className="space-y-1.5">
                 <p>理学療法士・介護支援専門員・FP２級</p>
                 <p>認知症サポーターキャラバンメイト</p>

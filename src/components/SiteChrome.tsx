@@ -62,9 +62,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                 priority
               />
             </div>
-            <div className="portfolio-hero-bg-overlay-top absolute inset-0 z-[1]" aria-hidden />
-            <div className="portfolio-hero-bg-overlay-bottom absolute inset-0 z-[1]" aria-hidden />
-            <div className="portfolio-hero-grain absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-ai-grid absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-ai-mesh absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-ai-glow absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-bg-overlay-top absolute inset-0 z-[2]" aria-hidden />
+            <div className="portfolio-hero-bg-overlay-bottom absolute inset-0 z-[2]" aria-hidden />
+            <div className="portfolio-hero-grain absolute inset-0 z-[2]" aria-hidden />
           </div>
         </div>
       )}
