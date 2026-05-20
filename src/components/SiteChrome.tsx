@@ -12,7 +12,6 @@ const nav = [
   { href: "/", label: "ホーム" },
   { href: "/#services", label: "私にできること" },
   { href: "/#samples", label: "実績・サンプル記事" },
-  { href: "/#contact", label: "お問い合わせ" },
 ] as const;
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -76,44 +75,42 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         className={
           isHome
             ? homeHeaderSolid
-              ? "fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md"
-              : "portfolio-header-on-hero fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/15 bg-transparent shadow-none"
-            : "fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md"
+              ? "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
+              : "portfolio-header-on-hero portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/20 bg-transparent shadow-none"
+            : "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
         }
       >
         <div
-          className={`relative z-10 mx-auto flex min-h-14 items-center justify-between gap-3 px-4 py-3 md:px-8 md:py-5 ${
+          className={`portfolio-header-inner relative z-10 mx-auto flex min-h-12 items-center justify-between gap-4 px-4 py-2.5 md:min-h-[3.25rem] md:px-8 md:py-3 ${
             isHome ? "portfolio-cinema-frame" : "max-w-7xl"
           }`}
         >
-          <Link href="/" className="flex shrink-0 items-center gap-2">
+          <Link href="/" className="portfolio-header-brand-link shrink-0">
             <span
-              className={`portfolio-script-title inline-block text-xs font-bold leading-tight sm:text-sm md:text-base ${
-                headerOnHero ? "portfolio-header-hero-brand text-white" : "text-blue-900"
+              className={`portfolio-header-brand ${
+                headerOnHero ? "portfolio-header-hero-brand text-white" : "text-slate-800"
               }`}
             >
               {PORTFOLIO.headerBrand}
             </span>
           </Link>
           <nav
-            className={
+            className={`portfolio-header-nav ${
               isHome
                 ? headerOnHero
-                  ? "flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-white md:gap-x-7"
-                  : "flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-xs font-medium text-slate-700 md:gap-x-7 md:text-sm"
-                : "hidden flex-wrap items-center justify-end gap-3 text-xs font-medium text-slate-700 md:flex md:gap-5 md:text-sm"
-            }
+                  ? "text-white"
+                  : "text-slate-600"
+                : "hidden text-slate-600 md:flex"
+            }`}
             aria-label="メイン"
           >
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={
-                  headerOnHero
-                    ? "portfolio-cinema-nav portfolio-header-hero-nav transition hover:text-white/85"
-                    : "transition hover:text-blue-600"
-                }
+                className={`portfolio-header-nav-link ${
+                  headerOnHero ? "portfolio-header-hero-nav" : "portfolio-header-nav-link-solid"
+                }`}
               >
                 {item.label}
               </Link>
@@ -143,26 +140,52 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 py-12 md:flex-row md:items-start md:gap-10 md:px-6">
-          <div className="h-24 w-24 shrink-0 overflow-hidden rounded-full ring-2 ring-sky-100">
-            <Image
-              src="/avatars/profile-avatar.png"
-              alt={PORTFOLIO.name}
-              width={96}
-              height={96}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-          <div className="text-center md:text-left">
-            <p className="text-xs font-bold tracking-wider text-sky-600">ABOUT ME</p>
-            <p className="mt-1 text-lg font-bold text-blue-900">
-              {PORTFOLIO.name}｜Yano Hideto
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              プロフィールをご覧いただき、誠にありがとうございます。Webライターの{PORTFOLIO.name}
-              と申します。SEO記事執筆を中心に、医療・介護・金融分野で丁寧な仕事と円滑なコミュニケーションを心がけています。お問い合わせをお待ちしております。
-            </p>
+      <footer className="relative z-[2] isolate border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-3xl bg-white px-4 py-12 md:px-6">
+          <div className="portfolio-footer-about">
+            <p className="portfolio-footer-about-label">ABOUT ME</p>
+            <div className="portfolio-footer-about-inner">
+              <div className="portfolio-footer-about-avatar shrink-0">
+                <Image
+                  src="/avatars/profile-avatar.png"
+                  alt={PORTFOLIO.name}
+                  width={144}
+                  height={144}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+              <div className="portfolio-footer-about-content min-w-0 flex-1 text-left">
+                <p className="portfolio-footer-about-name">
+                  {PORTFOLIO.name} | {PORTFOLIO.nameEn}
+                </p>
+                <div className="portfolio-footer-about-social">
+                  <span className="portfolio-footer-about-social-link" aria-hidden>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </span>
+                  <a
+                    href={`mailto:${PORTFOLIO.email}`}
+                    className="portfolio-footer-about-social-link"
+                    aria-label="メールでお問い合わせ"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="M3 7l9 6 9-6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+                <p className="portfolio-footer-about-bio">{PORTFOLIO.footerBio}</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="border-t border-slate-100 bg-slate-50 py-4">

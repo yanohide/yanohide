@@ -1,8 +1,12 @@
 export const PORTFOLIO = {
   name: "矢野英人",
+  nameEn: "Yano Hideto",
   nameReading: "やの　ひでと",
   tagline: "医療介護のAIクリエイター",
   headerBrand: "矢野英人｜医療介護のAIクリエイター",
+  email: "contact@sonocafe.xyz",
+  footerBio:
+    "プロフィールをご覧いただき、誠にありがとうございます。医療介護のAIクリエイター、矢野英人と申します。主にSEO・AIOを意識した記事構成・本文執筆や、介護・医療・金融系のコンテンツ制作を中心に承っております。丁寧な下調べを基本とし、円滑なコミュニケーションを心がけております。みなさまからのお問い合わせを、心よりお待ちしております。",
 } as const;
 
 export const SAMPLE_ARTICLES = [
@@ -55,6 +59,30 @@ export const SAMPLE_ARTICLES = [
     excerpt:
       "見守りサービス18社を種類別に比較。費用・特徴・選び方のポイントを表形式で整理。",
     image: "https://sonocafe.xyz/wp-content/uploads/2025/12/7.jpg",
+  },
+] as const;
+
+export const ORDER_FLOW_STEPS = [
+  {
+    number: 1,
+    heading: "お問い合わせ",
+    ctaLabel: "お問合せフォームへ",
+    ctaHref: "mailto:contact@sonocafe.xyz",
+  },
+  {
+    number: 2,
+    heading: "お見積り・内容確認",
+    detail: "各種メール・チャットツールにて対応いたします。",
+  },
+  {
+    number: 3,
+    heading: "初稿提出",
+    detail: "5,000文字：1週間以内",
+    note: "※文字数や作業工程により前後します。",
+  },
+  {
+    number: 4,
+    heading: "修正対応・納品",
   },
 ] as const;
 
