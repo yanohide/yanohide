@@ -57,7 +57,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                 src={TYPING_DESK_UNSPLASH}
                 alt=""
                 fill
-                className="portfolio-hero-bg-image object-cover object-[center_38%]"
+                className="portfolio-hero-bg-image object-cover object-center"
                 sizes="(min-width: 1280px) 1152px, 100vw"
                 priority
               />

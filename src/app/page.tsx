@@ -22,29 +22,29 @@ export default function HomePage() {
       {/* Hero：シネマティック全画面 */}
       <section className="portfolio-hero portfolio-cinema-frame relative z-10 mx-auto flex flex-col justify-center text-white">
         <div className="portfolio-hero-content relative z-10 w-full px-4 pb-7 pt-[3rem] text-center md:px-8 md:pb-8 md:pt-[3.5rem]">
-          <div className="portfolio-hero-badge-block absolute left-2 top-3 z-20 md:left-4 md:top-4">
+          <div className="portfolio-hero-badge-block absolute left-2 top-3 md:left-4 md:top-4">
             <Image
               src="/badges/ymaa-certification.png"
               alt="薬機法医療法 広告遵守 個人認証 YMAA"
               width={1024}
               height={924}
-              className="portfolio-hero-ymaa-badge h-auto w-[4.5rem] md:w-[5.5rem]"
+              className="portfolio-hero-ymaa-badge mx-auto h-auto w-[3.75rem] md:w-[4.5rem]"
             />
-            <div className="portfolio-hero-credentials mt-1.5 md:mt-2">
-              <ul className="grid w-max grid-cols-1 space-y-0 text-[0.5625rem] leading-snug text-white/88 md:text-[0.625rem]">
+            <div className="portfolio-hero-credentials">
+              <ul className="grid w-full grid-cols-1 space-y-0 text-[0.5rem] leading-snug text-white/92 md:text-[0.5625rem]">
                 <li className="whitespace-nowrap">理学療法士</li>
                 <li className="whitespace-nowrap">介護支援専門員</li>
                 <li className="whitespace-nowrap">FP技能士２級</li>
               </ul>
             </div>
           </div>
-          <div className="mt-12 md:mt-20">
+          <div className="mt-10 md:mt-16">
             <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white/95">
               <ruby>
                 {PORTFOLIO.name}
                 <rt>やのひでと</rt>
               </ruby>
-              ｜医療介護のAIクリエイター
+              <span className="ml-[0.5em]">医療介護のAIクリエイター</span>
             </p>
             <h1 className="portfolio-hero-name portfolio-hero-name-lined mb-1 mt-6 text-xl font-bold tracking-wide md:mt-8 md:text-2xl">
               ポートフォリオサイト
@@ -61,7 +61,7 @@ export default function HomePage() {
               <li>
                 ・<span className="portfolio-hero-bullet-title">売上向上に伴走</span>
                 ：AIとWebマーケをフル活用し
-                <span className="font-bold text-yellow-300">貴社の売上向上</span>に貢献
+                貴社の売上向上に貢献
               </li>
             </ul>
           </div>
