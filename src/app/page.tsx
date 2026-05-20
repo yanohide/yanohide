@@ -333,7 +333,7 @@ export default function HomePage() {
       </section>
 
       {/* Samples */}
-      <section id="samples" className="bg-slate-100 py-16">
+      <section id="samples" className="bg-slate-100 pt-16 pb-6 md:pb-8">
         <div className="mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="執筆実績・サンプル記事" subtitleMatchScript className="mb-12" />
           <PortfolioSampleList />

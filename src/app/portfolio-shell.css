@@ -70,15 +70,15 @@
 }
 
 .portfolio-order-step-label-number {
-  margin-top: 0.125rem;
-  font-size: clamp(2.25rem, 7vw, 3rem);
+  margin-top: 0;
+  font-size: clamp(2rem, 6vw, 2.75rem);
   font-weight: 800;
   line-height: 1;
   color: #1d4ed8;
 }
 
 .portfolio-order-step-label-heading {
-  margin-top: 0.25rem;
+  margin-top: 0.125rem;
   font-size: 0.875rem;
   font-weight: 700;
   color: #0f172a;
@@ -138,7 +138,8 @@
   display: flex;
   align-items: flex-start;
   width: 100%;
-  margin-block: 1.25rem;
+  margin-top: -0.625rem;
+  margin-bottom: 0.125rem;
 }
 
 .portfolio-order-flow-connector-line {
@@ -157,7 +158,8 @@
 
 @media (min-width: 768px) {
   .portfolio-order-flow-connector {
-    margin-block: 1.5rem;
+    margin-top: -0.875rem;
+    margin-bottom: 0.25rem;
   }
 
   .portfolio-order-flow-cta {

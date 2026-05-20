@@ -141,7 +141,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       </main>
 
       <footer className="relative z-[2] isolate border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-3xl bg-white px-4 py-12 md:px-6">
+        <div className="mx-auto max-w-3xl bg-white px-4 pt-8 pb-10 md:px-6 md:pt-10 md:pb-12">
           <div className="portfolio-footer-about">
             <p className="portfolio-footer-about-label">ABOUT ME</p>
             <div className="portfolio-footer-about-inner">
