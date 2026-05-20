@@ -22,7 +22,8 @@ export function PortfolioSectionTitle({
   const subtitleSize = "text-xl md:text-2xl";
 
   return (
-    <header className={`text-center ${className}`}>
+    <header className={`portfolio-section-title text-center ${className}`}>
+      <div className="portfolio-section-title-rule" aria-hidden />
       {script ? (
         <p
           className={`portfolio-script-title flex items-start justify-center gap-0 leading-none ${scriptSize}`}

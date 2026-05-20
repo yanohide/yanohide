@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
 import { PORTFOLIO } from "@/lib/portfolio-content";
+import { TYPING_DESK_UNSPLASH } from "@/lib/typing-hero-asset";
 
 /** 参照リポの PNG が含まれないため、同等トーンのストック写真で代替 */
 const IMG_MEDICAL_REHAB = "/strengths/medical-rehab.png";
@@ -14,36 +15,56 @@ export default function HomePage() {
   return (
     <div className="w-full text-slate-800">
       {/* Hero：シネマティック全画面 */}
-      <section className="portfolio-hero portfolio-cinema-frame relative z-10 mx-auto flex flex-col justify-center text-white">
-        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-7 pt-[3rem] text-center md:px-8 md:pb-8 md:pt-[3.5rem]">
-          <div className="portfolio-hero-badge-block absolute left-2 top-3 md:left-4 md:top-4">
-            <Image
-              src="/badges/ymaa-certification.png"
-              alt="薬機法医療法 広告遵守 個人認証 YMAA"
-              width={1024}
-              height={924}
-              className="portfolio-hero-ymaa-badge mx-auto h-auto w-[3.75rem] md:w-[4.5rem]"
-            />
-            <div className="portfolio-hero-credentials">
-              <ul className="grid w-full grid-cols-1 space-y-0 text-[0.5rem] leading-snug text-white/92 md:text-[0.5625rem]">
-                <li className="whitespace-nowrap">理学療法士</li>
-                <li className="whitespace-nowrap">介護支援専門員</li>
-                <li className="-mt-0.5 whitespace-nowrap text-[0.5625rem] md:-mt-1 md:text-[0.625rem]">FP技能士２級</li>
-              </ul>
+      <section className="portfolio-hero relative z-10 w-full text-white">
+        <div className="portfolio-hero-bg-shell pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <div className="relative h-full w-full">
+            <div className="absolute inset-0 overflow-hidden">
+              <Image
+                src={TYPING_DESK_UNSPLASH}
+                alt=""
+                fill
+                className="portfolio-hero-bg-image object-cover object-center"
+                sizes="100vw"
+                priority
+              />
             </div>
+            <div className="portfolio-hero-ai-grid absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-ai-mesh absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-ai-glow absolute inset-0 z-[1]" aria-hidden />
+            <div className="portfolio-hero-bg-overlay-top absolute inset-0 z-[2]" aria-hidden />
+            <div className="portfolio-hero-bg-overlay-bottom absolute inset-0 z-[2]" aria-hidden />
+            <div className="portfolio-hero-grain absolute inset-0 z-[2]" aria-hidden />
           </div>
-          <div className="mt-10 md:mt-16">
-            <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white/95">
+        </div>
+        <div className="portfolio-hero-badge-block absolute left-2 top-[3.25rem] z-20 md:left-4 md:top-14">
+          <Image
+            src="/badges/ymaa-certification.png"
+            alt="薬機法医療法 広告遵守 個人認証 YMAA"
+            width={1024}
+            height={924}
+            className="portfolio-hero-ymaa-badge mx-auto h-auto w-[3.75rem] md:w-[4.5rem]"
+          />
+          <div className="portfolio-hero-credentials">
+            <ul className="grid w-full grid-cols-1 space-y-0 text-[0.5rem] leading-snug text-white/92 md:text-[0.5625rem]">
+              <li className="whitespace-nowrap">理学療法士</li>
+              <li className="whitespace-nowrap">介護支援専門員</li>
+              <li className="-mt-0.5 whitespace-nowrap text-[0.5625rem] md:-mt-1 md:text-[0.625rem]">FP技能士２級</li>
+            </ul>
+          </div>
+        </div>
+        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-4 pt-14 text-center md:px-8 md:pb-5 md:pt-16">
+          <div className="portfolio-hero-main">
+            <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white">
               <ruby>
                 {PORTFOLIO.name}
                 <rt>やのひでと</rt>
               </ruby>
               <span className="ml-[0.5em]">医療介護のAIクリエイター</span>
             </p>
-            <h1 className="portfolio-hero-name portfolio-hero-name-lined mb-1 mt-6 text-xl font-bold tracking-wide md:mt-8 md:text-2xl">
+            <h1 className="portfolio-hero-name mb-1 mt-4 text-xl font-bold tracking-wide md:mt-5 md:text-2xl">
               ポートフォリオサイト
             </h1>
-            <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-5xl space-y-1.5 text-center text-sm leading-snug md:mt-10 md:text-base">
+            <ul className="portfolio-hero-lead mx-auto mt-5 w-full max-w-5xl space-y-1 text-center text-sm leading-snug md:mt-6 md:text-base">
               <li>
                 ・<span className="portfolio-hero-bullet-title">確かな情報提供</span>
                 ：臨床経験18年とエビデンスに基づく信頼情報を提供
@@ -63,8 +84,8 @@ export default function HomePage() {
       </section>
 
       {/* Profile */}
-      <section id="profile" className="profile-gradient-section pb-8 pt-8 md:pb-10 md:pt-12">
-        <div className="mx-auto max-w-2xl px-4 text-center text-slate-800">
+      <section id="profile" className="portfolio-section portfolio-section--profile pb-8 pt-8 md:pb-10 md:pt-12">
+        <div className="portfolio-section-inner mx-auto max-w-2xl px-4 text-center text-slate-800">
           <PortfolioSectionTitle
             script="プロフィール"
             subtitleMatchScript
@@ -75,7 +96,7 @@ export default function HomePage() {
             }
             className="mb-5"
           />
-          <div className="mx-auto mb-3 h-32 w-32 overflow-hidden rounded-full md:mb-4 md:h-36 md:w-36">
+          <div className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36">
             <Image
               src="/avatars/profile-avatar.png"
               alt="矢野英人"
@@ -94,7 +115,7 @@ export default function HomePage() {
             <br />
             100記事以上納品 × オウンドメディア運用 〜
           </p>
-          <div className="space-y-8 text-sm leading-relaxed text-slate-700 md:space-y-10 md:text-base">
+          <div className="portfolio-content-body space-y-8 text-sm md:space-y-10 md:text-base">
             <div>
               <h3 className="mb-2 font-bold text-slate-900">【ライティング】</h3>
               <div className="space-y-1.5">
@@ -130,15 +151,15 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section id="services" className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-2xl px-4">
+      <section id="services" className="portfolio-section portfolio-section--services py-16">
+        <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="私にできること" subtitleMatchScript className="mb-12" />
           <div className="mx-auto flex w-full flex-col items-center">
             <div className="w-fit max-w-full">
               <div className="grid grid-cols-2 gap-6 md:gap-12">
                 <div className="ml-8 min-w-0 w-fit text-left text-sm text-slate-700 md:ml-11 md:text-base">
-                  <h3 className="mb-4 text-left text-base font-bold text-blue-900 md:mb-6 md:text-xl">
-                    <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+                  <h3 className="mb-4 text-left text-base font-bold md:mb-6 md:text-xl">
+                    <span className="portfolio-subsection-heading">
                       対応可能な業務
                     </span>
                   </h3>
@@ -155,8 +176,8 @@ export default function HomePage() {
                   </ul>
                 </div>
                 <div className="min-w-0 w-fit text-left text-sm text-slate-700 md:text-base">
-                  <h3 className="mb-4 text-left text-base font-bold text-blue-900 md:mb-6 md:text-xl">
-                    <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+                  <h3 className="mb-4 text-left text-base font-bold md:mb-6 md:text-xl">
+                    <span className="portfolio-subsection-heading">
                       執筆可能なジャンル
                     </span>
                   </h3>
@@ -191,19 +212,19 @@ export default function HomePage() {
       </section>
 
       {/* Strengths */}
-      <section id="strengths" className="bg-white py-16">
-        <div className="mx-auto max-w-2xl px-4">
+      <section id="strengths" className="portfolio-section portfolio-section--strengths py-16">
+        <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="得意分野" subtitleMatchScript className="mb-12" />
           <div className="mx-auto flex w-full flex-col items-center">
             <div className="inline-flex w-max max-w-full flex-col space-y-14 ml-5 md:ml-8 md:space-y-16">
             <div className="w-full">
-              <h3 className="mb-6 text-left text-base font-bold text-blue-900 md:mb-8 md:text-xl">
-                <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+              <h3 className="mb-6 text-left text-base font-bold md:mb-8 md:text-xl">
+                <span className="portfolio-subsection-heading">
                   医療・リハビリ分野
                 </span>
               </h3>
               <div className="flex flex-row items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-                <div className="relative h-[152px] w-[268px] shrink-0 overflow-hidden rounded-full shadow-md ring-1 ring-slate-200/70 md:h-[168px] md:w-[292px]">
+                <div className="portfolio-feature-image relative h-[152px] w-[268px] shrink-0 md:h-[168px] md:w-[292px]">
                   <Image
                     src={IMG_MEDICAL_REHAB}
                     alt="理学療法士によるリハビリテーションの様子"
@@ -222,13 +243,13 @@ export default function HomePage() {
               </div>
             </div>
             <div className="w-full">
-              <h3 className="mb-6 text-left text-base font-bold text-blue-900 md:mb-8 md:text-xl">
-                <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+              <h3 className="mb-6 text-left text-base font-bold md:mb-8 md:text-xl">
+                <span className="portfolio-subsection-heading">
                   介護・福祉分野
                 </span>
               </h3>
               <div className="flex flex-row items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-                <div className="relative h-[152px] w-[268px] shrink-0 overflow-hidden rounded-full shadow-md ring-1 ring-slate-200/70 md:h-[168px] md:w-[292px]">
+                <div className="portfolio-feature-image relative h-[152px] w-[268px] shrink-0 md:h-[168px] md:w-[292px]">
                   <Image
                     src={IMG_CARE_WELFARE}
                     alt="介護・福祉施設での利用者の交流の様子"
@@ -247,13 +268,13 @@ export default function HomePage() {
               </div>
             </div>
             <div className="w-full">
-              <h3 className="mb-6 text-left text-base font-bold text-blue-900 md:mb-8 md:text-xl">
-                <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+              <h3 className="mb-6 text-left text-base font-bold md:mb-8 md:text-xl">
+                <span className="portfolio-subsection-heading">
                   金融・Web3分野
                 </span>
               </h3>
               <div className="flex flex-row items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-                <div className="relative h-[152px] w-[268px] shrink-0 overflow-hidden rounded-full shadow-md ring-1 ring-slate-200/70 md:h-[168px] md:w-[292px]">
+                <div className="portfolio-feature-image relative h-[152px] w-[268px] shrink-0 md:h-[168px] md:w-[292px]">
                   <Image
                     src={IMG_FINANCE_WEB3}
                     alt="金融資料・グラフとコインのイメージ"
@@ -277,13 +298,13 @@ export default function HomePage() {
       </section>
 
       {/* お客様への3つのお約束 */}
-      <section id="customer-promises" className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-2xl px-4">
+      <section id="customer-promises" className="portfolio-section portfolio-section--promises py-16">
+        <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="お客様への3つのお約束" subtitleMatchScript className="mb-12" />
           <div className="mx-auto flex w-full flex-col items-center">
             <div className="inline-flex w-max max-w-full flex-col ml-5 md:ml-8">
               <div className="flex flex-row items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-                <div className="relative h-[152px] w-[268px] shrink-0 overflow-hidden rounded-full shadow-md ring-1 ring-slate-200/70 md:h-[168px] md:w-[292px]">
+                <div className="portfolio-feature-image relative h-[152px] w-[268px] shrink-0 md:h-[168px] md:w-[292px]">
                   <Image
                     src={IMG_HANDSHAKE}
                     alt="ビジネスシーンで握手を交わす様子"
@@ -296,7 +317,7 @@ export default function HomePage() {
                   <div className="space-y-5">
                     <div>
                       <p className="text-sm font-bold text-slate-900 md:text-base">
-                        <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+                        <span className="portfolio-subsection-heading">
                           ❶確かな情報提供
                         </span>
                       </p>
@@ -306,7 +327,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-sm font-bold text-slate-900 md:text-base">
-                        <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+                        <span className="portfolio-subsection-heading">
                           ❷読者目線の発信
                         </span>
                       </p>
@@ -316,7 +337,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <p className="text-sm font-bold text-slate-900 md:text-base">
-                        <span className="inline-block underline decoration-sky-200/90 decoration-[0.5em] underline-offset-[0.12em]">
+                        <span className="portfolio-subsection-heading">
                           ❸売上向上に伴走
                         </span>
                       </p>
@@ -333,8 +354,8 @@ export default function HomePage() {
       </section>
 
       {/* Samples */}
-      <section id="samples" className="bg-slate-100 pt-16 pb-6 md:pb-8">
-        <div className="mx-auto max-w-2xl px-4">
+      <section id="samples" className="portfolio-section portfolio-section--samples pt-16 pb-6 md:pb-8">
+        <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="執筆実績・サンプル記事" subtitleMatchScript className="mb-12" />
           <PortfolioSampleList />
         </div>

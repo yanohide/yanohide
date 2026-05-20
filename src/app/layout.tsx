@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Great_Vibes, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
-import { SiteChrome } from "@/components/SiteChrome";
 import { PORTFOLIO } from "@/lib/portfolio-content";
 
 import "./globals.css";
@@ -76,7 +75,7 @@ export default function RootLayout({
         className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} ${greatVibes.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
       >
         <GoogleAnalytics />
-        <SiteChrome>{children}</SiteChrome>
+        {children}
       </body>
     </html>
   );

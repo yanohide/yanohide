@@ -1,12 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { headers } from "next/headers";
 
+import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
 import { PORTFOLIO } from "@/lib/portfolio-content";
-import { TYPING_DESK_UNSPLASH } from "@/lib/typing-hero-asset";
 
 const nav = [
   { href: "/", label: "ホーム" },
@@ -15,93 +12,52 @@ const nav = [
   { href: "/#contact", label: "お問い合わせ" },
 ] as const;
 
-export function SiteChrome({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isStudio = pathname === "/studio" || pathname.startsWith("/studio/");
+const COPYRIGHT_YEAR = 2026;
+
+export async function PortfolioChrome({ children }: { children: React.ReactNode }) {
+  const pathname = (await headers()).get("x-pathname") ?? "/";
   const isHome = pathname === "/";
-
-  const [homeScrollPastHero, setHomeScrollPastHero] = useState(false);
-
-  useEffect(() => {
-    if (!isHome) {
-      return;
-    }
-
-    function syncFromScroll() {
-      setHomeScrollPastHero(window.scrollY > 10);
-    }
-
-    syncFromScroll();
-    window.addEventListener("scroll", syncFromScroll, { passive: true });
-    return () => window.removeEventListener("scroll", syncFromScroll);
-  }, [isHome]);
-
-  const homeHeaderSolid = isHome && homeScrollPastHero;
-
-  if (isStudio) {
-    return <div className="min-h-dvh">{children}</div>;
-  }
-
-  const headerOnHero = isHome && !homeHeaderSolid;
 
   return (
     <>
-      {isHome && (
-        <div
-          className="pointer-events-none fixed inset-x-0 top-0 z-0 h-[58svh] min-h-[400px] w-full"
-          aria-hidden
-        >
-          <div className="portfolio-cinema-frame relative mx-auto h-full">
-            <div className="absolute inset-0 overflow-hidden">
-              <Image
-                src={TYPING_DESK_UNSPLASH}
-                alt=""
-                fill
-                className="portfolio-hero-bg-image object-cover object-center"
-                sizes="(min-width: 1280px) 1152px, 100vw"
-                priority
-              />
-            </div>
-            <div className="portfolio-hero-ai-grid absolute inset-0 z-[1]" aria-hidden />
-            <div className="portfolio-hero-ai-mesh absolute inset-0 z-[1]" aria-hidden />
-            <div className="portfolio-hero-ai-glow absolute inset-0 z-[1]" aria-hidden />
-            <div className="portfolio-hero-bg-overlay-top absolute inset-0 z-[2]" aria-hidden />
-            <div className="portfolio-hero-bg-overlay-bottom absolute inset-0 z-[2]" aria-hidden />
-            <div className="portfolio-hero-grain absolute inset-0 z-[2]" aria-hidden />
-          </div>
+      {isHome ? <PortfolioHeaderScroll /> : null}
+
+      {isHome ? (
+        <div className="portfolio-ambient-layer" aria-hidden>
+          <div className="portfolio-ambient-layer__wash" />
+          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--1" />
+          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--2" />
+          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--3" />
         </div>
-      )}
+      ) : null}
 
       <header
+        data-portfolio-header={isHome ? "" : undefined}
         className={
           isHome
-            ? homeHeaderSolid
-              ? "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
-              : "portfolio-header-on-hero portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/20 bg-transparent shadow-none"
+            ? "portfolio-header-on-hero portfolio-header-bar portfolio-header-bar--on-hero fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/20 bg-transparent shadow-none"
             : "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
         }
       >
         <div
-          className={`portfolio-header-inner relative z-10 mx-auto flex min-h-12 items-center justify-between gap-4 px-4 py-2.5 md:min-h-[3.25rem] md:px-8 md:py-3 ${
-            isHome ? "portfolio-cinema-frame" : "max-w-7xl"
+          className={`portfolio-header-inner relative z-10 flex w-full min-h-12 items-center gap-3 px-4 py-2.5 md:min-h-[3.25rem] md:gap-4 md:px-8 md:py-3 ${
+            isHome ? "" : "mx-auto max-w-7xl"
           }`}
         >
           <Link href="/" className="portfolio-header-brand-link shrink-0">
             <span
-              className={`portfolio-header-brand ${
-                headerOnHero ? "portfolio-header-hero-brand text-white" : "text-slate-800"
-              }`}
+              className={
+                isHome
+                  ? "portfolio-header-brand portfolio-header-hero-brand whitespace-nowrap text-white"
+                  : "portfolio-header-brand whitespace-nowrap text-slate-800"
+              }
             >
               {PORTFOLIO.headerBrand}
             </span>
           </Link>
           <nav
-            className={`portfolio-header-nav ${
-              isHome
-                ? headerOnHero
-                  ? "text-white"
-                  : "text-slate-600"
-                : "hidden text-slate-600 md:flex"
+            className={`portfolio-header-nav ml-auto shrink-0 ${
+              isHome ? "text-white" : "hidden text-slate-600 md:flex"
             }`}
             aria-label="メイン"
           >
@@ -109,16 +65,18 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`portfolio-header-nav-link ${
-                  headerOnHero ? "portfolio-header-hero-nav" : "portfolio-header-nav-link-solid"
-                }`}
+                className={
+                  isHome
+                    ? "portfolio-header-nav-link portfolio-header-hero-nav"
+                    : "portfolio-header-nav-link portfolio-header-nav-link-solid"
+                }
               >
                 {item.label}
               </Link>
             ))}
           </nav>
         </div>
-        {!isHome && !headerOnHero && (
+        {!isHome ? (
           <div className="border-t border-slate-100 px-4 py-2 md:hidden">
             <div className="mx-auto flex max-w-7xl flex-wrap gap-x-3 gap-y-1 text-xs font-medium text-slate-600">
               {nav.map((item) => (
@@ -128,7 +86,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </header>
 
       <main
@@ -141,8 +99,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="relative z-[2] isolate border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-3xl bg-white px-4 pt-8 pb-10 md:px-6 md:pt-10 md:pb-12">
+      <footer
+        className={`portfolio-footer-shell relative z-[2] isolate border-t border-slate-200/80${
+          isHome ? " portfolio-ambient-zone" : ""
+        }`}
+      >
+        <div className="relative z-[1] mx-auto max-w-3xl px-4 pt-8 pb-10 md:px-6 md:pt-10 md:pb-12">
           <div className="portfolio-footer-about">
             <p className="portfolio-footer-about-label">ABOUT ME</p>
             <div className="portfolio-footer-about-inner">
@@ -189,9 +151,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </div>
-        <div className="border-t border-slate-100 bg-slate-50 py-4">
+        <div
+          className={`border-t border-slate-100 py-4${
+            isHome ? " bg-slate-50/35" : " bg-slate-50"
+          }`}
+        >
           <p className="text-center text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} {PORTFOLIO.headerBrand}
+            &copy; {COPYRIGHT_YEAR} {PORTFOLIO.headerBrand}
           </p>
         </div>
       </footer>
