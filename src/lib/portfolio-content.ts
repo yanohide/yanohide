@@ -1,9 +1,9 @@
 export const PORTFOLIO = {
   name: "矢野英人",
   nameEn: "Yano Hideto",
-  nameReading: "やの　ひでと",
+  nameReading: "やの ひでと",
   tagline: "医療介護のAIクリエイター",
-  headerBrand: "矢野英人｜医療介護のAIクリエイター",
+  headerBrand: "医療介護のAIクリエイター",
   email: "contact@sonocafe.xyz",
   footerBio:
     "プロフィールをご覧いただき、誠にありがとうございます。医療介護のAIクリエイター、矢野英人と申します。主にSEO・AIOを意識した記事構成・本文執筆や、介護・医療・金融系のコンテンツ制作を中心に承っております。丁寧な下調べを基本とし、円滑なコミュニケーションを心がけております。みなさまからのお問い合わせを、心よりお待ちしております。",

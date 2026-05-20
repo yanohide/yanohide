@@ -7,6 +7,7 @@ import { PORTFOLIO } from "@/lib/portfolio-content";
 
 const nav = [
   { href: "/", label: "ホーム" },
+  { href: "/#profile", label: "プロフィール" },
   { href: "/#services", label: "私にできること" },
   { href: "/#samples", label: "実績・サンプル記事" },
   { href: "/#contact", label: "お問い合わせ" },
