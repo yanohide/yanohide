@@ -21,17 +21,28 @@ export default function HomePage() {
     <div className="w-full text-slate-800">
       {/* Hero：シネマティック全画面 */}
       <section className="portfolio-hero portfolio-cinema-frame relative z-10 mx-auto flex flex-col justify-center text-white">
-        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-10 pt-14 text-center md:px-8 md:pb-11 md:pt-16">
+        <div className="portfolio-hero-content relative z-10 w-full px-4 pb-10 pt-[4.2rem] text-center md:px-8 md:pb-11 md:pt-[4.8rem]">
           <p className="portfolio-hero-lead mb-1 text-xl font-medium tracking-wide text-white/95 md:text-2xl">
-            {PORTFOLIO.headerBrand}
+            <ruby>
+              {PORTFOLIO.name}
+              <rt>やのひでと</rt>
+            </ruby>
+            ｜医療介護のAIクリエイター
           </p>
-          <h1 className="portfolio-hero-name mb-2 mt-3 md:mt-5">ポートフォリオ</h1>
+          <h1 className="portfolio-hero-name mb-2 mt-6 md:mt-8">ポートフォリオ</h1>
           <ul className="portfolio-hero-lead mx-auto mt-8 w-full max-w-4xl space-y-0.5 text-center text-sm leading-snug md:mt-10 md:text-base">
-            <li>・確かな情報提供：エビデンスと経験に基づく信頼情報を提供します</li>
-            <li>・読者目線の発信：専門分野の難しい内容も分かりやすく解説します</li>
             <li>
-              ・売上向上に伴走：AI×マーケティングで
-              <span className="ml-0.5 font-bold text-yellow-300">売上アップに貢献</span>します
+              ・<span className="portfolio-hero-bullet-title">確かな情報提供</span>
+              ：臨床経験18年とエビデンスに基づく信頼情報を提供
+            </li>
+            <li>
+              ・<span className="portfolio-hero-bullet-title">読者目線の発信</span>
+              ：職員・患者・家族が抱えるリアルな悩みを根本解決
+            </li>
+            <li>
+              ・<span className="portfolio-hero-bullet-title">売上向上に伴走</span>
+              ：AIとWebマーケをフル活用し
+              <span className="font-bold text-yellow-300">貴社の売上向上</span>に貢献
             </li>
           </ul>
         </div>
@@ -45,7 +56,11 @@ export default function HomePage() {
             subtitleMatchScript
             subtitle={
               <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-                {PORTFOLIO.headerBrand}
+                <ruby>
+                  {PORTFOLIO.name}
+                  <rt>やのひでと</rt>
+                </ruby>
+                ｜医療介護のAIクリエイター
               </span>
             }
             className="mb-8"

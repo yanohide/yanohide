@@ -105,6 +105,17 @@
     0 2px 12px rgb(15 23 42 / 0.45);
 }
 
+.portfolio-hero-lead ruby rt {
+  font-size: 0.42em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.portfolio-hero-bullet-title {
+  font-weight: 700;
+}
+
 .portfolio-hero-content {
   border-radius: 0;
   border-left: none;
