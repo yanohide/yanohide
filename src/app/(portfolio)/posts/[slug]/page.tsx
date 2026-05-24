@@ -3,26 +3,26 @@ import type { SanityImageSource } from "@sanity/image-url";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { PostBody } from "@/components/PostBody";
 import { TableOfContents, extractToc } from "@/components/TableOfContents";
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/imageUrl";
-import { POST_QUERY, POST_SLUGS_QUERY } from "@/sanity/lib/queries";
+import { getPreviewOrigin } from "@/sanity/lib/preview";
+import { POST_PREVIEW_QUERY, POST_QUERY, POST_SLUGS_QUERY } from "@/sanity/lib/queries";
 
 const DEFAULT_EYECATCH = "/eyecatch/cover-01.svg";
 
-const SITE_URL =
-  typeof process.env.NEXT_PUBLIC_SITE_URL === "string" && process.env.NEXT_PUBLIC_SITE_URL.length > 0
-    ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
-    : "http://localhost:3000";
+const SITE_URL = getPreviewOrigin();
 
 type Post = {
   _id: string;
   _updatedAt?: string;
   title: string;
   slug: { current: string };
+  status?: "draft" | "published" | null;
   publishedAt: string | null;
   excerpt?: string | null;
   body: TypedObject[] | null;
@@ -45,12 +45,15 @@ function isRefAsset(img: { asset?: { _ref?: string } } | null | undefined): bool
   return Boolean(img?.asset?._ref);
 }
 
-async function getPost(slug: string) {
+async function getPost(slug: string, options?: { preview?: boolean }) {
+  const isPreview = options?.preview ?? (await draftMode()).isEnabled;
   return sanityFetch<Post | null>({
-    query: POST_QUERY,
+    query: isPreview ? POST_PREVIEW_QUERY : POST_QUERY,
     params: { slug },
     revalidate: 60,
     fallback: null,
+    stega: isPreview ? undefined : false,
+    perspective: isPreview ? undefined : "published",
   });
 }
 
@@ -69,7 +72,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = await getPost(slug, { preview: false });
 
   if (!post) {
     return {
@@ -124,6 +127,8 @@ export async function generateStaticParams() {
     query: POST_SLUGS_QUERY,
     revalidate: 60,
     fallback: [],
+    perspective: "published",
+    stega: false,
   });
   return slugs
     .filter((row): row is { slug: string } => typeof row.slug === "string" && row.slug.length > 0)
@@ -172,9 +177,18 @@ export default async function PostPage({
   }
 
   const structuredImage = heroSrc.startsWith("http") ? heroSrc : absoluteUrl(heroSrc);
+  const isPreview = (await draftMode()).isEnabled;
 
   return (
     <article id="top" className="article-canvas animate-reveal font-sans">
+      {isPreview ? (
+        <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          <strong>プレビュー表示中</strong>
+          <span className="ml-2">
+            {post.status === "draft" ? "（下書き・未公開）" : "（公開前の変更内容）"}
+          </span>
+        </div>
+      ) : null}
       <div className="mb-10 md:mb-12">
         <Link href="/blog" className="back-link font-sans">
           <span className="arrow" aria-hidden>
@@ -270,7 +284,7 @@ export default async function PostPage({
             },
             publisher: {
               "@type": "Organization",
-              name: "矢野英人 | 医療介護のAIクリエイター",
+              name: "矢野英人 | 医療介護の現場AI研究所",
             },
             keywords: post.tags?.map((tag) => tag.title).join(", ") || undefined,
           }),

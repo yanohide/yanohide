@@ -2,12 +2,12 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: "post",
-  title: "Post",
+  title: "記事",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "タイトル",
       type: "string",
       validation: (rule) => rule.required(),
     }),
@@ -58,7 +58,7 @@ export default defineType({
     }),
     defineField({
       name: "publishedAt",
-      title: "Published At",
+      title: "公開日時",
       type: "datetime",
       hidden: ({ parent }) => parent?.status === "draft",
       validation: (rule) =>

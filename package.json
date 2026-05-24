@@ -16,6 +16,7 @@
     "@opennextjs/cloudflare": "^1.19.10",
     "@portabletext/react": "^6.2.0",
     "@sanity/image-url": "^2.1.1",
+    "@sanity/locale-ja-jp": "^1.1.35",
     "@tailwindcss/typography": "^0.5.19",
     "next": "16.2.6",
     "next-sanity": "^12.4.5",
@@ -35,6 +36,8 @@
     "eslint-config-next": "16.2.6",
     "gray-matter": "^4.0.3",
     "tailwindcss": "^4",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^5",
     "wrangler": "^4.92.0"
   },

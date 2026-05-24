@@ -55,7 +55,7 @@ export default function HomePage() {
         <div className="portfolio-hero-content relative z-10 w-full px-4 pb-4 pt-14 text-center md:px-8 md:pb-5 md:pt-16">
           <div className="portfolio-hero-main">
             <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white">
-              医療介護のAIクリエイター
+              {PORTFOLIO.tagline}
             </p>
             <h1 className="portfolio-hero-name mb-1 mt-4 text-xl font-bold tracking-wide md:mt-5 md:text-2xl">
               ポートフォリオサイト
@@ -87,7 +87,7 @@ export default function HomePage() {
             subtitleMatchScript
             subtitle={
               <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-                医療介護のAIクリエイター
+                {PORTFOLIO.tagline}
               </span>
             }
             className="mb-5"
@@ -103,7 +103,7 @@ export default function HomePage() {
           </div>
           <p className="portfolio-script-title mb-5 text-center text-sm font-bold leading-snug text-blue-900 md:text-base">
             <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-              HIDE｜
+              管理人：
               <ruby>
                 {PORTFOLIO.name}
                 <rt>{PORTFOLIO.nameReading}</rt>

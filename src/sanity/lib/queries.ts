@@ -58,3 +58,27 @@ export const POST_SLUGS_QUERY = defineQuery(
     "slug": slug.current
   }`
 );
+
+/** Draft Mode プレビュー用：`status` に関係なく slug で取得 */
+export const POST_PREVIEW_QUERY = defineQuery(
+  `*[_type == "post" && slug.current == $slug][0]{
+    _id,
+    _updatedAt,
+    title,
+    slug,
+    publishedAt,
+    status,
+    excerpt,
+    eyecatch,
+    heroImage { asset, alt },
+    body,
+    "categories": categories[]->{ _id, title, slug },
+    "tags": tags[]->{ _id, title, slug },
+    seo {
+      title,
+      description,
+      noIndex,
+      image { asset, alt }
+    }
+  }`
+);

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { PortfolioOrderFlow } from "@/components/PortfolioOrderFlow";
 import { SAMPLE_ARTICLES } from "@/lib/portfolio-content";
@@ -7,10 +8,8 @@ type SampleArticle = (typeof SAMPLE_ARTICLES)[number];
 
 function SampleArticleLink({ article }: { article: SampleArticle }) {
   return (
-    <a
+    <Link
       href={article.href}
-      target="_blank"
-      rel="noopener noreferrer"
       className="portfolio-sample-link group flex gap-4 py-6 md:gap-6"
     >
       <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-slate-100 shadow-sm ring-1 ring-slate-200/80 md:h-24 md:w-36">
@@ -33,7 +32,7 @@ function SampleArticleLink({ article }: { article: SampleArticle }) {
           {article.excerpt}
         </p>
       </div>
-    </a>
+    </Link>
   );
 }
 

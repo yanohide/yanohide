@@ -6,13 +6,18 @@
 //   NEXT_PUBLIC_SANITY_PROJECT_ID / SANITY_STUDIO_PROJECT_ID
 //   NEXT_PUBLIC_SANITY_DATASET / SANITY_STUDIO_DATASET（省略時 production）
 //   SANITY_API_TOKEN / SANITY_AUTH_TOKEN（Editor 以上）
+//
+// Front matter 任意フィールド:
+//   heroImage または image … アイキャッチURLまたは .md からの相対パス（heroImage に変換して送信）
+//   heroImageAlt / imageAlt … heroImage の alt（推奨）
+//   eyecatch … 図形アイキャッチ（/eyecatch/cover-01.svg などスキーマの値）
 
 import { randomUUID } from "node:crypto";
 import { createClient } from "@sanity/client";
 import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import matter from "gray-matter";
-import { mdToPortableText } from "./md-to-portable-text.mjs";
+import { mdToPortableText, uploadImageAsset } from "./md-to-portable-text.mjs";
 
 loadDotenv(".env.local");
 loadDotenv(".env");
@@ -44,6 +49,8 @@ if (!existsSync(absPath)) {
   process.exit(1);
 }
 
+const baseDir = dirname(absPath);
+
 console.log(`Reading: ${filePath}`);
 const raw = readFileSync(absPath, "utf8");
 const { data, content } = matter(raw);
@@ -56,10 +63,6 @@ if (!data.title || !data.slug) {
 console.log(`Title:   ${data.title}`);
 console.log(`Slug:    ${data.slug}`);
 
-const prepared = preprocessMarkdown(content);
-const body = await mdToPortableText(prepared);
-console.log(`Body:    ${body.length} blocks`);
-
 const client = createClient({
   projectId,
   dataset,
@@ -67,6 +70,10 @@ const client = createClient({
   apiVersion: "2025-01-01",
   useCdn: false,
 });
+
+const prepared = preprocessMarkdown(content);
+const body = await mdToPortableText(prepared, { client, baseDir });
+console.log(`Body:    ${body.length} blocks`);
 
 const draftId = `drafts.${randomUUID()}`;
 
@@ -82,6 +89,28 @@ const doc = {
 
 if (data.publishedAt) {
   doc.publishedAt = new Date(data.publishedAt).toISOString();
+}
+
+if (data.eyecatch) {
+  doc.eyecatch = String(data.eyecatch).trim();
+}
+
+const heroSrc = data.heroImage || data.image;
+if (heroSrc) {
+  try {
+    const asset = await uploadImageAsset(client, String(heroSrc).trim(), baseDir);
+    const altRaw =
+      data.heroImageAlt ?? data.imageAlt ?? data.title ?? "";
+    const alt = String(altRaw).trim() || "アイキャッチ";
+    doc.heroImage = {
+      _type: "image",
+      asset: { _type: "reference", _ref: asset._id },
+      alt,
+    };
+    console.log(`Hero:    アイキャッチ画像をアップロード済み (${asset._id})`);
+  } catch (e) {
+    console.warn(`Hero:    アイキャッチのアップロードをスキップ: ${e.message}`);
+  }
 }
 
 try {
@@ -102,12 +131,7 @@ try {
 }
 
 function preprocessMarkdown(md) {
-  let s = md.replace(/^広告\s*$/gm, "").trimStart();
-  s = s.replace(/!\[([^\]]*)\]\((https?:[^)\s]+)\)/g, (_, alt, url) => {
-    const label = alt?.trim() ? `画像（${alt.trim()}）` : "画像を表示";
-    return `[${label}](${url})`;
-  });
-  return s;
+  return md.replace(/^広告\s*$/gm, "").trimStart();
 }
 
 function loadDotenv(relPath) {
@@ -119,7 +143,7 @@ function loadDotenv(relPath) {
     if (!trimmed || trimmed.startsWith("#")) continue;
     const eq = trimmed.indexOf("=");
     if (eq === -1) continue;
-    const key = trimmed.slice(0, eq).trim();
+    const envKey = trimmed.slice(0, eq).trim();
     let value = trimmed.slice(eq + 1).trim();
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
@@ -127,6 +151,6 @@ function loadDotenv(relPath) {
     ) {
       value = value.slice(1, -1);
     }
-    if (!process.env[key]) process.env[key] = value;
+    if (!process.env[envKey]) process.env[envKey] = value;
   }
 }
