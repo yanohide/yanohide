@@ -3,6 +3,7 @@ import Link from "next/link";
 import { headers } from "next/headers";
 
 import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
+import { PortfolioMotion } from "@/components/PortfolioMotion";
 import { PORTFOLIO } from "@/lib/portfolio-content";
 
 const nav = [
@@ -22,6 +23,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
   return (
     <>
       {isHome ? <PortfolioHeaderScroll /> : null}
+      {isHome ? <PortfolioMotion /> : null}
 
       {isHome ? (
         <div className="portfolio-ambient-layer" aria-hidden>

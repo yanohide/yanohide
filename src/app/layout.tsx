@@ -6,6 +6,8 @@ import { PORTFOLIO } from "@/lib/portfolio-content";
 
 import "./globals.css";
 
+export const runtime = "edge";
+
 const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["400", "700", "900"],

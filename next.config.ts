@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
+/**
+ * Cloudflare Pages（@cloudflare/next-on-pages）向け:
+ * `runtime: 'edge'` は next.config では指定できません。
+ * App Router では各 layout / page / route で
+ *   export const runtime = 'edge';
+ * を export します（ルートは src/app/layout.tsx）。
+ */
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: import.meta.dirname,
+  },
   images: {
     remotePatterns: [
       {
