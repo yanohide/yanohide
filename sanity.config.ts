@@ -4,8 +4,8 @@ import { jaJPLocale } from "@sanity/locale-ja-jp";
 import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
-import schemas from "@/sanity/schemas";
-import { presentationResolve } from "@/sanity/presentation/resolve";
+import schemas from "./src/sanity/schemas";
+import { presentationResolve } from "./src/sanity/presentation/resolve";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID?.trim();
 const dataset =

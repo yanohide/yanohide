@@ -16,11 +16,17 @@ if [[ -f .env.local ]]; then
   set +a
 fi
 
-if ! npx wrangler whoami >/dev/null 2>&1; then
+if [[ -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
+  echo "Error: CLOUDFLARE_ACCOUNT_ID が未設定です。"
+  echo "  Cloudflare ダッシュボード URL の https://dash.cloudflare.com/<account_id>/ から確認し、"
+  echo "  .env.local に CLOUDFLARE_ACCOUNT_ID=... を追加するか、wrangler.jsonc に account_id を設定してください。"
+  exit 1
+fi
+
+if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]] && ! npx wrangler whoami >/dev/null 2>&1; then
   echo "Error: Cloudflare に未ログインです。"
   echo "  npx wrangler login"
   echo "  または .env.local / 環境変数に CLOUDFLARE_API_TOKEN を設定してください。"
-  echo "  （Account ID が必要な場合は CLOUDFLARE_ACCOUNT_ID も）"
   exit 1
 fi
 

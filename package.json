@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--max-old-space-size=4096' next dev --webpack",
+    "dev:turbo": "NODE_OPTIONS='--max-old-space-size=4096' next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "build:cf": "opennextjs-cloudflare build",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "deploy:cf": "bash scripts/deploy-cloudflare.sh",
     "preview:worker": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy:worker": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -24,7 +26,8 @@
     "next-sanity": "^12.4.5",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sanity": "^5.25.1"
+    "sanity": "^5.25.1",
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
     "@portabletext/markdown": "^1.2.0",

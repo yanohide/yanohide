@@ -11,28 +11,6 @@ const IMG_CARE_WELFARE = "/strengths/care-welfare.png";
 const IMG_FINANCE_WEB3 = "/strengths/finance-web3.png";
 const IMG_HANDSHAKE = "/customer-promises/handshake.png";
 
-const STATS = [
-  { value: 18, suffix: "", label: "理学療法士 臨床年数", group: false },
-  { value: 1000, suffix: "＋", label: "リハビリ担当（人）", group: true },
-  { value: 100, suffix: "＋", label: "記事 納品実績", group: false },
-  { value: 3, suffix: "", label: "専門分野（医療・介護・金融）", group: false },
-] as const;
-
-const SKILL_CHIPS = [
-  "サイト設計",
-  "キーワード選定",
-  "記事構成",
-  "本文執筆",
-  "ファクトチェック",
-  "SEOライティング",
-  "AIOライティング",
-  "E-E-A-T",
-  "YMYL",
-  "WordPress入稿",
-  "画像作成｜Canva",
-  "バイブコーディング",
-] as const;
-
 const PROMISES = [
   {
     no: "1",
@@ -125,18 +103,22 @@ export default function HomePage() {
             className="portfolio-hero-ymaa-badge mx-auto h-auto w-[3.75rem] md:w-[4.5rem]"
           />
           <div className="portfolio-hero-credentials">
-            <ul className="grid w-full grid-cols-1 space-y-0 text-[0.5rem] leading-snug text-white/92 md:text-[0.5625rem]">
-              <li className="whitespace-nowrap">理学療法士</li>
-              <li className="whitespace-nowrap">介護支援専門員</li>
-              <li className="-mt-0.5 whitespace-nowrap text-[0.5625rem] md:-mt-1 md:text-[0.625rem]">FP技能士２級</li>
+            <ul className="portfolio-hero-credentials-list">
+              <li>理学療法士</li>
+              <li>介護支援専門員</li>
+              <li>FP技能士２級</li>
             </ul>
           </div>
         </div>
         <div className="portfolio-hero-content relative z-10 w-full px-4 pb-4 pt-14 text-center md:px-8 md:pb-5 md:pt-16">
           <div className="portfolio-hero-main">
-            <span className="portfolio-eyebrow mb-3">MEDICAL × CARE × AI</span>
-            <p className="portfolio-hero-lead portfolio-hero-headline mb-1 font-medium tracking-wide text-white">
-              {PORTFOLIO.tagline}
+            <p className="portfolio-hero-headline mb-1 tracking-wide">
+              <span className="portfolio-hero-headline__stack">
+                <span className="portfolio-hero-headline__shadow" aria-hidden="true">
+                  {PORTFOLIO.tagline}
+                </span>
+                <span className="portfolio-hero-headline__flow">{PORTFOLIO.tagline}</span>
+              </span>
             </p>
             <h1 className="portfolio-hero-name mb-1 mt-4 text-xl font-bold tracking-wide md:mt-5 md:text-2xl">
               ポートフォリオサイト
@@ -160,37 +142,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats band：実績を数字で一望 */}
+      {/* キャッチコピー帯：横スクロール */}
       <section className="portfolio-section portfolio-section--stats py-12 md:py-14">
-        <div className="portfolio-section-inner mx-auto max-w-3xl px-4">
-          <div className="portfolio-stats">
-            {STATS.map((stat, index) => (
-              <div
-                key={stat.label}
-                className="portfolio-stat-card"
-                data-reveal="zoom"
-                style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
-              >
-                <span
-                  className="portfolio-stat-value portfolio-gradient-text"
-                  data-countup={stat.value}
-                  data-countup-suffix={stat.suffix}
-                  data-countup-group={stat.group ? "true" : "false"}
-                >
-                  {stat.group ? stat.value.toLocaleString("en-US") : stat.value}
-                  {stat.suffix}
-                </span>
-                <span className="portfolio-stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Skill marquee：対応スキルが流れる */}
-          <div className="portfolio-marquee mt-8" data-reveal style={{ "--rv-delay": "120ms" } as React.CSSProperties}>
+        <div className="portfolio-section-inner mx-auto max-w-none px-0">
+          <div className="portfolio-marquee portfolio-marquee--text" data-reveal style={{ "--rv-delay": "120ms" } as React.CSSProperties}>
             <div className="portfolio-marquee__track py-1">
-              {[...SKILL_CHIPS, ...SKILL_CHIPS].map((chip, index) => (
-                <span key={`${chip}-${index}`} className="portfolio-chip" aria-hidden={index >= SKILL_CHIPS.length}>
-                  {chip}
+              {[0, 1].map((loop) => (
+                <span
+                  key={loop}
+                  className="portfolio-marquee-text"
+                  aria-hidden={loop === 1}
+                >
+                  {PORTFOLIO.marqueeMessage}
+                  <span className="portfolio-marquee-text__sep" aria-hidden="true">
+                    {"　　"}
+                  </span>
                 </span>
               ))}
             </div>
@@ -445,9 +411,7 @@ export default function HomePage() {
       <section id="samples" className="portfolio-section portfolio-section--samples pt-16 pb-6 md:pb-8">
         <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="執筆実績・サンプル記事" subtitleMatchScript className="mb-12" />
-          <div data-reveal>
-            <PortfolioSampleList />
-          </div>
+          <PortfolioSampleList />
         </div>
       </section>
     </div>

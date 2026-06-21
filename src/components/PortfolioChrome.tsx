@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { headers } from "next/headers";
 
+import { PortfolioHashLink } from "@/components/PortfolioHashLink";
+import { PortfolioHashSync } from "@/components/PortfolioHashSync";
 import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
 import { PortfolioMotion } from "@/components/PortfolioMotion";
 import { PORTFOLIO } from "@/lib/portfolio-content";
@@ -24,6 +25,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
     <>
       {isHome ? <PortfolioHeaderScroll /> : null}
       {isHome ? <PortfolioMotion /> : null}
+      <PortfolioHashSync />
 
       {isHome ? (
         <div className="portfolio-ambient-layer" aria-hidden>
@@ -47,7 +49,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
             isHome ? "" : "mx-auto max-w-7xl"
           }`}
         >
-          <Link href="/" className="portfolio-header-brand-link shrink-0">
+          <PortfolioHashLink href="/" className="portfolio-header-brand-link shrink-0">
             <span
               className={
                 isHome
@@ -57,7 +59,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
             >
               {PORTFOLIO.headerBrand}
             </span>
-          </Link>
+          </PortfolioHashLink>
           <nav
             className={`portfolio-header-nav ml-auto shrink-0 ${
               isHome ? "text-white" : "hidden text-slate-600 md:flex"
@@ -65,7 +67,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
             aria-label="メイン"
           >
             {nav.map((item) => (
-              <Link
+              <PortfolioHashLink
                 key={item.href}
                 href={item.href}
                 className={
@@ -75,7 +77,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
                 }
               >
                 {item.label}
-              </Link>
+              </PortfolioHashLink>
             ))}
           </nav>
         </div>
@@ -83,9 +85,9 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
           <div className="border-t border-slate-100 px-4 py-2 md:hidden">
             <div className="mx-auto flex max-w-7xl flex-wrap gap-x-3 gap-y-1 text-xs font-medium text-slate-600">
               {nav.map((item) => (
-                <Link key={item.href} href={item.href} className="hover:text-blue-600">
+                <PortfolioHashLink key={item.href} href={item.href} className="hover:text-blue-600">
                   {item.label}
-                </Link>
+                </PortfolioHashLink>
               ))}
             </div>
           </div>
