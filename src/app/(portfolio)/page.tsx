@@ -208,7 +208,6 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
-              data-reveal
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -226,8 +225,6 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
-              data-reveal
-              style={{ "--rv-delay": "90ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -247,8 +244,6 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
-              data-reveal
-              style={{ "--rv-delay": "180ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -272,7 +267,6 @@ export default function HomePage() {
           <div
             className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight mx-auto px-6 py-8 md:px-10 md:py-10"
             data-spotlight
-            data-reveal
           >
             <div className="portfolio-card-body grid grid-cols-2 gap-6 md:gap-12">
               <div className="min-w-0 text-left text-sm text-slate-700 md:text-base">
@@ -333,7 +327,7 @@ export default function HomePage() {
         <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="得意分野" subtitleMatchScript className="mb-12" />
           <div className="flex w-full flex-col space-y-6 md:space-y-8">
-            {STRENGTHS.map((strength, index) => (
+            {STRENGTHS.map((strength) => (
               <div
                 key={strength.heading}
                 className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-6 md:px-8 md:py-7"
@@ -351,14 +345,11 @@ export default function HomePage() {
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 268px, 292px"
+                        loading="eager"
                         unoptimized
                       />
                     </div>
-                    <ul
-                      className="min-w-0 flex-1 list-outside list-disc space-y-1.5 pl-5 text-left text-sm text-slate-700 md:text-base"
-                      data-reveal
-                      style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
-                    >
+                    <ul className="min-w-0 flex-1 list-outside list-disc space-y-1.5 pl-5 text-left text-sm text-slate-700 md:text-base">
                       {strength.items.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
@@ -382,17 +373,16 @@ export default function HomePage() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 268px, 292px"
+              loading="eager"
               unoptimized
             />
           </div>
           <div className="grid gap-4 md:gap-5">
-            {PROMISES.map((promise, index) => (
+            {PROMISES.map((promise) => (
               <div
                 key={promise.no}
                 className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight flex items-start gap-4 px-5 py-5 md:px-7 md:py-6"
                 data-spotlight
-                data-reveal
-                style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
                 <span className="portfolio-promise-badge portfolio-card-body" aria-hidden>
                   {promise.no}
