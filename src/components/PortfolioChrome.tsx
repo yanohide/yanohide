@@ -120,6 +120,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
                   width={144}
                   height={144}
                   className="h-full w-full object-cover object-center"
+                  unoptimized
                 />
               </div>
               <div className="portfolio-footer-about-content min-w-0 flex-1 text-left">

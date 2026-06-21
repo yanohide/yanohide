@@ -72,6 +72,8 @@ export function PortfolioMotion() {
     let scrollRestoreTimer: number | undefined;
     let onPageShow: ((event: PageTransitionEvent) => void) | undefined;
     let onHashSync: (() => void) | undefined;
+    let onRevealScroll: (() => void) | undefined;
+    let revealScrollRaf = 0;
     if (prefersReduced) {
       revealEls.forEach((el) => el.classList.add("is-revealed"));
     } else {
@@ -93,6 +95,18 @@ export function PortfolioMotion() {
         requestAnimationFrame(syncAfterScrollRestore);
       });
       scrollRestoreTimer = window.setTimeout(syncAfterScrollRestore, 150);
+      onRevealScroll = () => {
+        if (revealScrollRaf !== 0) return;
+        revealScrollRaf = window.requestAnimationFrame(() => {
+          revealScrollRaf = 0;
+          syncVisibleReveals(
+            Array.from(
+              document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-revealed)"),
+            ),
+          );
+        });
+      };
+      window.addEventListener("scroll", onRevealScroll, { passive: true });
       onPageShow = (event: PageTransitionEvent) => {
         if (!event.persisted) return;
         syncVisibleReveals(
@@ -189,6 +203,10 @@ export function PortfolioMotion() {
       if (onHashSync) {
         window.removeEventListener("portfolio:hash-sync", onHashSync);
       }
+      if (onRevealScroll) {
+        window.removeEventListener("scroll", onRevealScroll);
+      }
+      if (revealScrollRaf) window.cancelAnimationFrame(revealScrollRaf);
       if (rafId) window.cancelAnimationFrame(rafId);
       revealObserver?.disconnect();
       countObserver?.disconnect();

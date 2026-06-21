@@ -83,6 +83,7 @@ export default function HomePage() {
                 className="portfolio-hero-bg-image object-cover object-center"
                 sizes="100vw"
                 priority
+                unoptimized
               />
             </div>
             <div className="portfolio-hero-ai-grid absolute inset-0 z-[1]" aria-hidden />
@@ -101,6 +102,8 @@ export default function HomePage() {
             width={1024}
             height={924}
             className="portfolio-hero-ymaa-badge mx-auto h-auto w-[3.75rem] md:w-[4.5rem]"
+            priority
+            unoptimized
           />
           <div className="portfolio-hero-credentials">
             <ul className="portfolio-hero-credentials-list">
@@ -177,16 +180,14 @@ export default function HomePage() {
             }
             className="mb-5"
           />
-          <div
-            className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36"
-            data-reveal="zoom"
-          >
+          <div className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36">
             <Image
               src="/avatars/profile-avatar.png"
               alt="矢野英人"
               width={200}
               height={200}
               className="h-full w-full object-cover object-center"
+              unoptimized
             />
           </div>
           <p className="portfolio-script-title mb-5 text-center text-sm font-bold leading-snug text-blue-900 md:text-base">
@@ -337,8 +338,6 @@ export default function HomePage() {
                 key={strength.heading}
                 className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-6 md:px-8 md:py-7"
                 data-spotlight
-                data-reveal
-                style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
                 <div className="portfolio-card-body">
                   <h3 className="mb-5 text-left text-base font-bold md:mb-6 md:text-xl">
@@ -352,9 +351,14 @@ export default function HomePage() {
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 268px, 292px"
+                        unoptimized
                       />
                     </div>
-                    <ul className="min-w-0 flex-1 list-outside list-disc space-y-1.5 pl-5 text-left text-sm text-slate-700 md:text-base">
+                    <ul
+                      className="min-w-0 flex-1 list-outside list-disc space-y-1.5 pl-5 text-left text-sm text-slate-700 md:text-base"
+                      data-reveal
+                      style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
+                    >
                       {strength.items.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
@@ -371,16 +375,14 @@ export default function HomePage() {
       <section id="customer-promises" className="portfolio-section portfolio-section--promises py-16">
         <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="お客様への3つのお約束" subtitleMatchScript className="mb-12" />
-          <div
-            className="portfolio-feature-image relative mx-auto mb-8 h-[152px] w-[268px] md:h-[168px] md:w-[292px]"
-            data-reveal="zoom"
-          >
+          <div className="portfolio-feature-image relative mx-auto mb-8 h-[152px] w-[268px] md:h-[168px] md:w-[292px]">
             <Image
               src={IMG_HANDSHAKE}
               alt="ビジネスシーンで握手を交わす様子"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 268px, 292px"
+              unoptimized
             />
           </div>
           <div className="grid gap-4 md:gap-5">
