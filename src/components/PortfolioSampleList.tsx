@@ -37,9 +37,6 @@ function SampleArticleLink({ article }: { article: SampleArticle }) {
 }
 
 export function PortfolioSampleList() {
-  const sample5 = SAMPLE_ARTICLES.find((article) => article.id === "sample-5");
-  const listedArticles = SAMPLE_ARTICLES.filter((article) => article.id !== "sample-5");
-
   return (
     <div className="mx-auto flex w-full flex-col items-center">
       <div className="inline-flex w-full max-w-full flex-col ml-5 md:ml-8">
@@ -83,22 +80,14 @@ export function PortfolioSampleList() {
         </div>
 
         <ul className="portfolio-sample-list w-full divide-y divide-slate-200/80">
-        {listedArticles.map((article) => (
-          <li key={article.id}>
-            <SampleArticleLink article={article} />
-            {article.id === "sample-4" ? (
-              <>
-                {sample5 ? (
-                  <div className="border-t border-slate-200">
-                    <SampleArticleLink article={sample5} />
-                  </div>
-                ) : null}
-                <PortfolioOrderFlow />
-              </>
-            ) : null}
-          </li>
-        ))}
+          {SAMPLE_ARTICLES.map((article) => (
+            <li key={article.id}>
+              <SampleArticleLink article={article} />
+            </li>
+          ))}
         </ul>
+
+        <PortfolioOrderFlow />
       </div>
     </div>
   );
