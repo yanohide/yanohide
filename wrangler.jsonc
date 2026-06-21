@@ -2,6 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
   "name": "sonocafe-portfolio",
+  "account_id": "22035394e81836d91ca88ba2729ea65f",
   "compatibility_date": "2026-01-13",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
