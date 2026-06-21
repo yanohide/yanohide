@@ -69,7 +69,7 @@ export function PortfolioMotion() {
       document.querySelectorAll<HTMLElement>("[data-reveal]"),
     );
     let revealObserver: IntersectionObserver | null = null;
-    let scrollRestoreTimer: ReturnType<typeof window.setTimeout> | undefined;
+    let scrollRestoreTimer: number | undefined;
     let onPageShow: ((event: PageTransitionEvent) => void) | undefined;
     let onHashSync: (() => void) | undefined;
     if (prefersReduced) {
