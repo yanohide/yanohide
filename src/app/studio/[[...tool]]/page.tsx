@@ -4,6 +4,10 @@ import config from "../../../../sanity.config";
 
 export { metadata, viewport } from "next-sanity/studio";
 
+// Cloudflare Pages（@cloudflare/next-on-pages）では、動的ルートごとに
+// Edge Runtime を明示する必要があるため付与。
+export const runtime = "edge";
+
 export default function StudioPage() {
   // browser（既定）だと SSR 時に Studio が描画され SchemaError になる。
   // hash ならクライアントマウントまで Studio を描画しない。

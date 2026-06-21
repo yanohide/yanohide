@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import { client, sanityConfigured } from "@/sanity/lib/client";
 import { getSanityReadToken } from "@/sanity/lib/preview";
 
+export const runtime = "edge";
+
 const draftModeHandlers = sanityConfigured
   ? defineEnableDraftMode({
       client: client.withConfig({
