@@ -79,7 +79,7 @@ export function PortfolioSampleList() {
         </p>
         </div>
 
-        <ul className="portfolio-sample-list w-full divide-y divide-slate-200/80">
+        <ul className="portfolio-sample-list w-full divide-y divide-slate-200/80" data-reveal>
           {SAMPLE_ARTICLES.map((article) => (
             <li key={article.id}>
               <SampleArticleLink article={article} />

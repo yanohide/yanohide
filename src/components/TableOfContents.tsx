@@ -65,28 +65,30 @@ export function extractToc(body: TypedObject[] | null | undefined): {
 export function TableOfContents({ items }: { items: TocItem[] }) {
   if (!items || items.length === 0) return null;
   return (
-    <aside className="not-prose my-10 border-y border-sand/70 py-4" aria-label="目次">
+    <aside className="not-prose my-12" aria-label="目次">
       <details
         open
-        className="group/toc mx-auto max-w-[40rem]"
+        className="article-toc group/toc mx-auto max-w-[40rem] px-5 py-4 sm:px-7 sm:py-5"
       >
         <summary
-          className="flex cursor-pointer list-none items-center justify-center gap-2 select-none py-1 font-sans text-[0.85rem] font-semibold tracking-wide text-walnut transition-colors hover:text-ink [&::-webkit-details-marker]:hidden"
+          className="flex cursor-pointer list-none items-center justify-center gap-2 select-none py-1 font-serif-jp text-[0.95rem] font-bold tracking-[0.14em] text-ink transition-colors hover:text-burgundy [&::-webkit-details-marker]:hidden"
         >
-          <span aria-hidden className="text-[0.95rem] leading-none">
+          <span aria-hidden className="h-px w-8 bg-gradient-to-r from-transparent to-sand" />
+          <span aria-hidden className="text-[0.95rem] leading-none text-gold-bright">
             ≡
           </span>
-          <span>目次</span>
+          <span>目 次</span>
           <span
             aria-hidden
             className="ml-1 inline-block text-[0.7rem] leading-none text-walnut/70 transition-transform duration-200 group-open/toc:rotate-180"
           >
             ▼
           </span>
+          <span aria-hidden className="h-px w-8 bg-gradient-to-l from-transparent to-sand" />
           <span className="sr-only group-open/toc:hidden">開く</span>
           <span className="sr-only hidden group-open/toc:inline">閉じる</span>
         </summary>
-        <ol className="mt-3 space-y-1 px-2 text-[0.82rem] leading-snug">
+        <ol className="mt-4 space-y-0.5 text-[0.84rem] leading-snug">
           {items.map((item) => (
             <li
               key={item.id}
@@ -94,15 +96,25 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
             >
               <a
                 href={`#${item.id}`}
-                className="group flex items-baseline gap-2 py-0.5 text-digital decoration-digital/30 underline-offset-4 transition-colors hover:text-burgundy hover:underline hover:decoration-burgundy/40"
+                className={`article-toc-link group flex items-baseline gap-2.5 px-2 py-1 ${
+                  item.level === 2
+                    ? "font-semibold text-ink"
+                    : "text-espresso/90"
+                }`}
               >
-                <span className="shrink-0 font-mono text-[0.72rem] text-walnut/70">
+                <span
+                  className={`shrink-0 font-mono text-[0.7rem] tracking-tight ${
+                    item.level === 2 ? "text-ember" : "text-walnut/75"
+                  }`}
+                >
                   {item.number}
                 </span>
-                <span aria-hidden className="text-walnut/50">
+                <span aria-hidden className="text-sand">
                   │
                 </span>
-                <span className="min-w-0 flex-1">{item.text}</span>
+                <span className="min-w-0 flex-1 transition-colors group-hover:text-burgundy">
+                  {item.text}
+                </span>
               </a>
             </li>
           ))}

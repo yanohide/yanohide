@@ -6,6 +6,7 @@ import Link from "next/link";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
+import { ArticleProgress } from "@/components/ArticleProgress";
 import { PostBody } from "@/components/PostBody";
 import { TableOfContents, extractToc } from "@/components/TableOfContents";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -181,6 +182,7 @@ export default async function PostPage({
 
   return (
     <article id="top" className="article-canvas animate-reveal font-sans">
+      <ArticleProgress />
       {isPreview ? (
         <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">
           <strong>プレビュー表示中</strong>
@@ -199,7 +201,11 @@ export default async function PostPage({
       </div>
 
       <header className="article-hero relative mb-6 md:mb-8">
-        <h1 className="font-serif-jp text-[clamp(1.45rem,3.2vw,2.1rem)] font-bold leading-[1.35] tracking-[0.02em] text-ink">
+        <span
+          aria-hidden
+          className="mb-4 block h-[3px] w-14 rounded-full bg-gradient-to-r from-gold-bright to-ember"
+        />
+        <h1 className="font-serif-jp text-[clamp(1.45rem,3.2vw,2.1rem)] font-bold leading-[1.45] tracking-[0.02em] text-ink">
           {post.title}
         </h1>
       </header>

@@ -1,6 +1,7 @@
 /**
- * sonocafe.xyz WordPress REST API → Sanity 用 Markdown
+ * WordPress REST API → Sanity 用 Markdown
  * Usage: node scripts/kaimonavi/wp-to-md.mjs <slug> <output.md> '<json meta>'
+ * WP 取得先は環境変数 WP_BASE（例: https://snooks.xsrv.jp）。未設定時は snooks。
  */
 import fs from "node:fs";
 import TurndownService from "turndown";
@@ -13,9 +14,13 @@ if (!slug || !dest || !metaJson) {
 }
 
 const meta = JSON.parse(metaJson);
+const wpBase = (process.env.WP_BASE || "https://snooks.xsrv.jp").replace(
+  /\/$/,
+  "",
+);
 
 const res = await fetch(
-  `https://sonocafe.xyz/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=content`,
+  `${wpBase}/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}&_fields=content`,
 );
 const posts = await res.json();
 if (!posts?.[0]?.content?.rendered) {
@@ -25,29 +30,119 @@ if (!posts?.[0]?.content?.rendered) {
 
 let html = posts[0].content.rendered;
 
-// swell 吹き出し → :::speech
-html = html.replace(
-  /<div class="swell-block-balloon">[\s\S]*?<img[^>]+src="([^"]+)"[^>]*>[\s\S]*?<span class="c-balloon__iconName">([^<]*)<\/span>[\s\S]*?<p>([\s\S]*?)<\/p>[\s\S]*?<\/div><\/div><\/div><\/div>/gi,
-  (_, avatar, speaker, text) => {
-    const body = text.replace(/<[^>]+>/g, "").trim();
-    return `\n\n:::speech\nspeaker: ${speaker.trim() || "ヤノヒデ"}\nside: right\ntone: sky\n\n${body}\n:::\n\n`;
-  },
-);
+/** 開始タグ位置から、入れ子を考慮して対応する閉じタグ終端を返す */
+function findBalancedEnd(html, openStart, openTagRe, closeTag) {
+  const openRe = new RegExp(openTagRe, "gi");
+  const closeRe = new RegExp(closeTag, "gi");
+  openRe.lastIndex = openStart;
+  const first = openRe.exec(html);
+  if (!first || first.index !== openStart) return -1;
 
-// capbox → 箇条書きブロック（タイトル + リスト）
-html = html.replace(
-  /<div class="swell-block-capbox[^"]*">[\s\S]*?<span><strong>([\s\S]*?)<\/strong><\/span>[\s\S]*?<div class="cap_box_content">([\s\S]*?)<\/div><\/div>/gi,
-  (_, title, inner) => {
-    const t = title.replace(/<[^>]+>/g, "").trim();
-    return `\n\n**${t}**\n\n${inner}\n\n`;
-  },
-);
+  let depth = 1;
+  let pos = openRe.lastIndex;
+  while (depth > 0 && pos < html.length) {
+    openRe.lastIndex = pos;
+    closeRe.lastIndex = pos;
+    const nextOpen = openRe.exec(html);
+    const nextClose = closeRe.exec(html);
+    if (!nextClose) return -1;
+    if (nextOpen && nextOpen.index < nextClose.index) {
+      depth += 1;
+      pos = nextOpen.index + nextOpen[0].length;
+    } else {
+      depth -= 1;
+      pos = nextClose.index + nextClose[0].length;
+    }
+  }
+  return depth === 0 ? pos : -1;
+}
 
-// 広告・目次ブロック等を除去
+function stripTags(s) {
+  return s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+}
+
+/** swell 吹き出し → :::speech（入れ子対応。過大マッチで本文欠落しない） */
+function convertBalloons(src) {
+  const openRe = /<div class="swell-block-balloon">/gi;
+  let out = "";
+  let last = 0;
+  let m;
+  while ((m = openRe.exec(src))) {
+    const start = m.index;
+    const end = findBalancedEnd(src, start, "<div\\b", "</div>");
+    if (end < 0) break;
+    out += src.slice(last, start);
+    const block = src.slice(start, end);
+    const speakerMatch = block.match(
+      /<span class="c-balloon__iconName">([^<]*)<\/span>/i,
+    );
+    const speaker = speakerMatch?.[1]?.trim() || "案内";
+    const side = /-bln-right/.test(block) ? "right" : "left";
+    const textMatch = block.match(
+      /<div class="c-balloon__text">([\s\S]*?)<span class="c-balloon__shapes">/i,
+    );
+    const bodyHtml = textMatch?.[1] ?? "";
+    const body = stripTags(bodyHtml);
+    if (body) {
+      out += `\n\n:::speech\nspeaker: ${speaker}\nside: ${side}\ntone: sky\n\n${body}\n:::\n\n`;
+    }
+    last = end;
+    openRe.lastIndex = end;
+  }
+  out += src.slice(last);
+  return out;
+}
+
+/** swell capbox → 太字タイトル + 中身 HTML（入れ子対応） */
+function convertCapboxes(src) {
+  const openRe = /<div class="swell-block-capbox[^"]*">/gi;
+  let out = "";
+  let last = 0;
+  let m;
+  while ((m = openRe.exec(src))) {
+    const start = m.index;
+    const end = findBalancedEnd(src, start, "<div\\b", "</div>");
+    if (end < 0) break;
+    out += src.slice(last, start);
+    const block = src.slice(start, end);
+    const titleMatch = block.match(
+      /<div class="cap_box_ttl[^"]*">([\s\S]*?)<\/div>/i,
+    );
+    const title = stripTags(titleMatch?.[1] ?? "");
+    let inner = "";
+    const contentOpen = block.search(/<div class="cap_box_content">/i);
+    if (contentOpen >= 0) {
+      const contentEnd = findBalancedEnd(
+        block,
+        contentOpen,
+        "<div\\b",
+        "</div>",
+      );
+      if (contentEnd > 0) {
+        const openTagEnd = block.indexOf(">", contentOpen) + 1;
+        inner = block.slice(openTagEnd, contentEnd - "</div>".length);
+      }
+    }
+    if (title) out += `\n\n**${title}**\n\n`;
+    out += inner;
+    last = end;
+    openRe.lastIndex = end;
+  }
+  out += src.slice(last);
+  return out;
+}
+
+html = convertBalloons(html);
+html = convertCapboxes(html);
+
+// 広告・目次ブロック等を除去（最初の閉じ div まで＝浅いブロック想定）
 html = html.replace(/<div[^>]*class="[^"]*p-ad[^"]*"[\s\S]*?<\/div>/gi, "");
 html = html.replace(/<div[^>]*id="toc[^"]*"[\s\S]*?<\/div>/gi, "");
 
-const turndown = new TurndownService({ headingStyle: "atx", bulletListMarker: "-" });
+const turndown = new TurndownService({
+  headingStyle: "atx",
+  bulletListMarker: "-",
+});
 turndown.use(gfm);
 
 turndown.addRule("removeEmpty", {
@@ -55,17 +150,27 @@ turndown.addRule("removeEmpty", {
   replacement: () => "",
 });
 
+// :::speech フェンスを turndown が壊さないようプレースホルダ化
+// （アンダースコアは turndown がエスケープするため使わない）
+const speechHolders = [];
+html = html.replace(
+  /\n*:::speech\n([\s\S]*?)\n:::\n*/g,
+  (_, body) => {
+    const i = speechHolders.length;
+    speechHolders.push(`:::speech\n${body.trim()}\n:::`);
+    return `\n<p>SPEECHPHXX${i}XX</p>\n`;
+  },
+);
+
 let md = turndown.turndown(html);
 
-// 1行に潰れた :::speech を正しい fence 形式へ
-md = md.replace(
-  /:::speech speaker:\s*([^\n]+?)\s+side:\s*(\w+)\s+tone:\s*(\w+)\s+([\s\S]*?)\s+:::/g,
-  (_, speaker, side, tone, text) =>
-    `\n\n:::speech\nspeaker: ${speaker.trim()}\nside: ${side}\ntone: ${tone}\n\n${text.trim()}\n:::\n\n`,
-);
+md = md.replace(/SPEECHPHXX(\d+)XX/g, (_, i) => {
+  return `\n\n${speechHolders[Number(i)]}\n\n`;
+});
 
 md = md.replace(/\\\*\\\*/g, "**");
 
+// UI 残骸のみ除去（本文・吹き出しは消さない）
 const cleanup = [
   /^広告\s*$/gm,
   /^目次\s*$/gm,
@@ -75,18 +180,6 @@ const cleanup = [
   /^URLをコピーしました！\s*$/gm,
   /^よかったらシェアしてね！\s*$/gm,
   /^## 関連記事[\s\S]*$/m,
-  /^悩む人\s*$/gm,
-  /^悩むj人\s*$/gm,
-  /^＼[^\\]+／\s*$/gm,
-  /^※気になるところをタップ[\s\S]*?$/gm,
-  /^本記事の内容\s*$/gm,
-  /^この記事で解決できるお悩み\s*$/gm,
-  /^この記事を書いた人\s*$/gm,
-  /^高齢者見守りサービス比較一覧\s*$/gm,
-  /^＼ まずは内容をチェック／\s*$/gm,
-  /^\[高齢者見守りサービス18社を比較\]\(#comparison\)\s*$/gm,
-  /^という方は、\*\*\[コチラ\]\(#comparison\)\*\*をご覧ください。\s*$/gm,
-  /^:::speech speaker: 悩む人[\s\S]*?:::\s*$/gm,
 ];
 
 for (const re of cleanup) {

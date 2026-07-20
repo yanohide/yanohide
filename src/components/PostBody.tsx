@@ -66,20 +66,20 @@ const tableBlock = ({
   const bodyRows = hasHeader ? rows.slice(1) : rows;
 
   return (
-    <figure className="my-7 w-full overflow-x-auto">
+    <figure className="article-table-frame my-7 w-full overflow-x-auto">
       {value?.caption && (
-        <figcaption className="mb-[0.35rem] text-center text-sm font-semibold text-ink">
+        <figcaption className="mb-[0.45rem] text-center text-sm font-semibold text-ink">
           {value.caption}
         </figcaption>
       )}
-      <table className="w-full min-w-[20rem] border-collapse border border-stone-300 text-[0.95rem] leading-[1.05]">
+      <table className="article-table w-full min-w-[20rem] border-collapse text-[0.95rem] leading-[1.2]">
         {headRow && (
           <thead>
             <tr>
               {(headRow.cells ?? []).map((cell, i) => (
                 <th
                   key={i}
-                  className="border border-sand/50 bg-gold-soft px-4 py-[0.525rem] text-left font-serif-jp font-bold text-white"
+                  className="px-4 py-[0.6rem] text-left font-serif-jp font-bold"
                 >
                   {cell}
                 </th>
@@ -89,11 +89,11 @@ const tableBlock = ({
         )}
         <tbody>
           {bodyRows.map((row, ri) => (
-            <tr key={row._key ?? ri} className="bg-white">
+            <tr key={row._key ?? ri}>
               {(row.cells ?? []).map((cell, ci) => (
                 <td
                   key={ci}
-                  className="border border-stone-300 px-4 py-[0.525rem] align-top text-espresso/95"
+                  className="px-4 py-[0.6rem] align-top text-espresso/95"
                 >
                   {cell}
                 </td>
@@ -108,13 +108,40 @@ const tableBlock = ({
 
 const imageBlock = ({
   value,
-}: { value?: { asset?: unknown; alt?: string; caption?: string } }) => {
+  isInline,
+}: {
+  value?: { asset?: unknown; alt?: string; caption?: string };
+  isInline?: boolean;
+}) => {
   if (!value?.asset) return null;
   const src = urlForImage(value as SanityImageSource)
     .width(1200)
     .auto("format")
     .url();
   if (!src) return null;
+  // 段落内（inline）に挿入された画像は <p> の子になるため、
+  // <figure>/<div> を使うと HTML として不正になり hydration エラーの原因になる。
+  // span ベースの block 表示でレイアウトは同一に保つ。
+  if (isInline) {
+    return (
+      <span className="my-8 block w-full max-w-3xl">
+        <span className="block overflow-hidden rounded-lg border border-sand/40">
+          <Image
+            src={src}
+            alt={value.alt || ""}
+            width={1200}
+            height={800}
+            className="h-auto w-full"
+          />
+        </span>
+        {value.caption && (
+          <span className="mt-2 block text-center text-sm text-walnut">
+            {value.caption}
+          </span>
+        )}
+      </span>
+    );
+  }
   return (
     <figure className="my-8 w-full max-w-3xl">
       <div className="overflow-hidden rounded-lg border border-sand/40">
@@ -170,7 +197,7 @@ const portableBlocksListsMarks: Pick<
       return (
         <h2
           id={id}
-          className="mt-16 flex min-h-[3.25rem] scroll-mt-24 items-center rounded-sm bg-gold-soft px-5 py-2.5 font-serif-jp text-lg font-bold leading-tight text-white md:text-xl"
+          className="article-h2 mt-16 scroll-mt-24 font-serif-jp text-lg font-bold leading-tight md:text-xl"
         >
           {children}
         </h2>
@@ -179,13 +206,9 @@ const portableBlocksListsMarks: Pick<
     h3: ({ children, value }) => (
       <h3
         id={value?._key ? `h-${value._key}` : undefined}
-        className="relative mt-12 scroll-mt-24 pb-2 font-serif-jp text-lg font-bold text-ink"
+        className="article-h3 mt-12 scroll-mt-24 font-serif-jp text-lg font-bold text-ink"
       >
         {children}
-        <span
-          className="absolute bottom-0 left-0 block h-[2px] w-1/3 bg-gold-soft"
-          aria-hidden
-        />
       </h3>
     ),
     h4: ({ children }) => (
@@ -308,18 +331,18 @@ const richTableBlockComponent = ({
   }
 
   return (
-    <figure className="my-[1.4rem] w-full overflow-x-auto">
-      <table className="w-full min-w-[20rem] border-collapse border border-sand/60 text-sm leading-[1.05]">
+    <figure className="article-table-frame my-[1.4rem] w-full overflow-x-auto">
+      <table className="article-table w-full min-w-[20rem] border-collapse text-sm leading-[1.2]">
         {hasCol && (
           <thead>
             <tr>
               {hasRow && (
-                <th className="border border-sand/50 bg-gold-soft px-3 py-[0.35rem] text-left font-serif-jp font-bold text-white" />
+                <th className="px-3 py-[0.45rem] text-left font-serif-jp font-bold" />
               )}
               {headerLabels.map((label, i) => (
                 <th
                   key={i}
-                  className="border border-sand/50 bg-gold-soft px-3 py-[0.35rem] text-left font-serif-jp font-bold text-white"
+                  className="px-3 py-[0.45rem] text-left font-serif-jp font-bold"
                 >
                   {label}
                 </th>
@@ -333,7 +356,7 @@ const richTableBlockComponent = ({
               {hasRow && (
                 <th
                   scope="row"
-                  className="border border-sand/60 bg-clinic-depth/40 px-3 py-[0.35rem] text-left font-semibold text-ink"
+                  className="article-table-rowhead px-3 py-[0.45rem] text-left font-semibold text-ink"
                 >
                   {row.title ?? ""}
                 </th>
@@ -341,7 +364,7 @@ const richTableBlockComponent = ({
               {(row.cells ?? []).map((cell, ci) => (
                 <td
                   key={cell._key ?? ci}
-                  className="align-top border border-sand/60 px-3 py-[0.35rem] text-espresso/95"
+                  className="align-top px-3 py-[0.45rem] text-espresso/95"
                 >
                   <PortableText
                     value={(cell.content ?? []) as PortableTextBlock[]}

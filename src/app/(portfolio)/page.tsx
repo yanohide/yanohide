@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
-import { PORTFOLIO } from "@/lib/portfolio-content";
+import { PORTFOLIO, PORTFOLIO_STATS } from "@/lib/portfolio-content";
 import { TYPING_DESK_UNSPLASH } from "@/lib/typing-hero-asset";
 
 /** 参照リポの PNG が含まれないため、同等トーンのストック写真で代替 */
@@ -145,7 +145,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* キャッチコピー帯：横スクロール */}
+      {/* キャッチコピー帯：横スクロール + 実績スタッツ */}
       <section className="portfolio-section portfolio-section--stats py-12 md:py-14">
         <div className="portfolio-section-inner mx-auto max-w-none px-0">
           <div className="portfolio-marquee portfolio-marquee--text" data-reveal style={{ "--rv-delay": "120ms" } as React.CSSProperties}>
@@ -163,6 +163,29 @@ export default function HomePage() {
                 </span>
               ))}
             </div>
+          </div>
+          <div className="mx-auto mt-10 max-w-3xl px-4 md:mt-12">
+            <dl className="portfolio-stats">
+              {PORTFOLIO_STATS.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className="portfolio-stat-card"
+                  data-reveal
+                  style={{ "--rv-delay": `${index * 80}ms` } as React.CSSProperties}
+                >
+                  <dd className="portfolio-stat-value portfolio-gradient-text">
+                    <span
+                      data-countup={stat.value}
+                      data-countup-suffix={stat.suffix}
+                      data-countup-group={"group" in stat && stat.group ? "true" : undefined}
+                    >
+                      {stat.display}
+                    </span>
+                  </dd>
+                  <dt className="portfolio-stat-label">{stat.label}</dt>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
@@ -211,6 +234,7 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
+              data-reveal
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -228,6 +252,8 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
+              data-reveal
+              style={{ "--rv-delay": "90ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -247,6 +273,8 @@ export default function HomePage() {
             <div
               className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
               data-spotlight
+              data-reveal
+              style={{ "--rv-delay": "180ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -270,6 +298,7 @@ export default function HomePage() {
           <div
             className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight mx-auto px-6 py-8 md:px-10 md:py-10"
             data-spotlight
+            data-reveal
           >
             <div className="portfolio-card-body grid grid-cols-2 gap-6 md:gap-12">
               <div className="min-w-0 text-left text-sm text-slate-700 md:text-base">
@@ -386,11 +415,13 @@ export default function HomePage() {
             />
           </div>
           <div className="grid gap-4 md:gap-5">
-            {PROMISES.map((promise) => (
+            {PROMISES.map((promise, index) => (
               <div
                 key={promise.no}
                 className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight flex items-start gap-4 px-5 py-5 md:px-7 md:py-6"
                 data-spotlight
+                data-reveal
+                style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
                 <span className="portfolio-promise-badge portfolio-card-body" aria-hidden>
                   {promise.no}

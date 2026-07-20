@@ -98,7 +98,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
         className={
           isHome
             ? "site-main relative z-[1] w-full max-w-none flex-1 bg-transparent px-0 pb-0 pt-0"
-            : "site-main relative z-[1] w-full max-w-none flex-1 bg-slate-50 px-0 pb-0 pt-24 md:pt-20"
+            : "site-main relative z-[1] w-full max-w-none flex-1 bg-clinic-glow px-0 pb-0 pt-24 md:pt-20"
         }
       >
         {children}

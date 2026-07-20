@@ -11,6 +11,13 @@ export const PORTFOLIO = {
     "プロフィールをご覧いただき、誠にありがとうございます。医療介護の現場AI研究所、矢野英人と申します。主にSEO・AIOを意識した記事構成・本文執筆や、介護・医療・金融系のコンテンツ制作を中心に承っております。丁寧な下調べを基本とし、円滑なコミュニケーションを心がけております。みなさまからのお問い合わせを、心よりお待ちしております。",
 } as const;
 
+export const PORTFOLIO_STATS = [
+  { value: 18, suffix: "年+", label: "臨床経験（理学療法士）", display: "18年+" },
+  { value: 100, suffix: "本+", label: "納品記事数", display: "100本+" },
+  { value: 1000, suffix: "人+", label: "リハビリ担当実績", display: "1,000人+", group: true },
+  { value: 5, suffix: ".0", label: "クラウドソーシング総合評価", display: "5.0" },
+] as const;
+
 export const SAMPLE_ARTICLES = [
   {
     id: "sample-1",
