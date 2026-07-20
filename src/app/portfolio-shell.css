@@ -1136,6 +1136,8 @@
 }
 
 [data-reveal="zoom"] {
+  /* ズームは transform のみ。opacity: 0 にすると IO 未発火時に写真が消えるため常に表示 */
+  opacity: 1;
   transform: translateY(20px) scale(0.96);
 }
 

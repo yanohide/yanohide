@@ -180,7 +180,10 @@ export default function HomePage() {
             }
             className="mb-5"
           />
-          <div className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36">
+          <div
+            className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36"
+            data-reveal="zoom"
+          >
             <Image
               src="/avatars/profile-avatar.png"
               alt="矢野英人"
@@ -327,11 +330,13 @@ export default function HomePage() {
         <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="得意分野" subtitleMatchScript className="mb-12" />
           <div className="flex w-full flex-col space-y-6 md:space-y-8">
-            {STRENGTHS.map((strength) => (
+            {STRENGTHS.map((strength, index) => (
               <div
                 key={strength.heading}
                 className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-6 md:px-8 md:py-7"
                 data-spotlight
+                data-reveal
+                style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
                 <div className="portfolio-card-body">
                   <h3 className="mb-5 text-left text-base font-bold md:mb-6 md:text-xl">
@@ -366,7 +371,10 @@ export default function HomePage() {
       <section id="customer-promises" className="portfolio-section portfolio-section--promises py-16">
         <div className="portfolio-section-inner mx-auto max-w-2xl px-4">
           <PortfolioSectionTitle script="お客様への3つのお約束" subtitleMatchScript className="mb-12" />
-          <div className="portfolio-feature-image relative mx-auto mb-8 h-[152px] w-[268px] md:h-[168px] md:w-[292px]">
+          <div
+            className="portfolio-feature-image relative mx-auto mb-8 h-[152px] w-[268px] md:h-[168px] md:w-[292px]"
+            data-reveal="zoom"
+          >
             <Image
               src={IMG_HANDSHAKE}
               alt="ビジネスシーンで握手を交わす様子"

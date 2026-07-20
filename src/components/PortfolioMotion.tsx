@@ -2,19 +2,23 @@
 
 import { useEffect, useRef } from "react";
 
-const REVEAL_THRESHOLD = 0.16;
-const REVEAL_ROOT_MARGIN = "0px 0px -8% 0px";
+const REVEAL_THRESHOLD = 0.1;
+const REVEAL_ROOT_MARGIN = "0px 0px -5% 0px";
+
+function revealThresholdFor(el: HTMLElement): number {
+  return el.dataset.reveal === "zoom" ? 0.05 : REVEAL_THRESHOLD;
+}
 
 /** IntersectionObserver と同じ基準で、すでに画面内にある要素を即座に表示する */
 function revealIfInViewport(el: HTMLElement): boolean {
   const rect = el.getBoundingClientRect();
   if (rect.height <= 0) return false;
-  const rootBottom = window.innerHeight * 0.92;
+  const rootBottom = window.innerHeight * 0.95;
   const visible = Math.max(
     0,
     Math.min(rect.bottom, rootBottom) - Math.max(rect.top, 0),
   );
-  if (visible / rect.height >= REVEAL_THRESHOLD) {
+  if (visible / rect.height >= revealThresholdFor(el)) {
     el.classList.add("is-revealed");
     return true;
   }
@@ -86,7 +90,7 @@ export function PortfolioMotion() {
             }
           });
         },
-        { threshold: REVEAL_THRESHOLD, rootMargin: REVEAL_ROOT_MARGIN },
+        { threshold: [0, REVEAL_THRESHOLD, 0.16], rootMargin: REVEAL_ROOT_MARGIN },
       );
       revealEls.forEach((el) => revealObserver!.observe(el));
       // 戻る操作後のスクロール復元や bfcache 復帰で IO が発火しないケースを補う
@@ -115,13 +119,14 @@ export function PortfolioMotion() {
       };
       window.addEventListener("pageshow", onPageShow);
       onHashSync = () => {
-        window.setTimeout(
-          () =>
-            syncVisibleReveals(
-              Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]")),
-            ),
-          300,
-        );
+        const syncAllReveals = () =>
+          syncVisibleReveals(
+            Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]")),
+          );
+        // smooth scroll 完了前後の両方で同期（カードが opacity: 0 のまま残るのを防ぐ）
+        window.setTimeout(syncAllReveals, 150);
+        window.setTimeout(syncAllReveals, 450);
+        window.setTimeout(syncAllReveals, 900);
       };
       window.addEventListener("portfolio:hash-sync", onHashSync);
     }
