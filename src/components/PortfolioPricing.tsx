@@ -17,7 +17,7 @@ function IconCircle({ children }: { children: React.ReactNode }) {
 export function PortfolioPricing() {
   return (
     <section id="pricing" className="portfolio-pricing-section py-16">
-      <div className="mx-auto max-w-2xl px-4">
+      <div className="portfolio-layout-inner">
         <PortfolioSectionTitle script="プライシング" subtitle="料金と流れについて" className="mb-12" />
 
         <div className="space-y-8">

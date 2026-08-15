@@ -146,7 +146,11 @@ const turndown = new TurndownService({
 turndown.use(gfm);
 
 turndown.addRule("removeEmpty", {
-  filter: (node) => node.nodeName === "P" && !node.textContent.trim(),
+  // 画像だけの段落は textContent が空になるため残す
+  filter: (node) =>
+    node.nodeName === "P" &&
+    !node.textContent.trim() &&
+    !node.querySelector?.("img"),
   replacement: () => "",
 });
 

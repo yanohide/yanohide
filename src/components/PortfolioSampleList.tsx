@@ -54,7 +54,7 @@ export function PortfolioSampleList() {
           alt="クラウドソーシングでの評価画面（総合評価5.0・20件）"
           width={1024}
           height={583}
-          className="portfolio-proof-image mx-auto mt-6 block w-5/6 max-w-2xl"
+          className="portfolio-proof-image mx-auto mt-6 block w-5/6 max-w-[60rem]"
           unoptimized
         />
         <Image
@@ -62,7 +62,7 @@ export function PortfolioSampleList() {
           alt="セゾンのくらし大研究｜矢野英人の記事一覧画面"
           width={1024}
           height={606}
-          className="portfolio-proof-image mx-auto mt-6 block w-5/6 max-w-2xl"
+          className="portfolio-proof-image mx-auto mt-6 block w-5/6 max-w-[60rem]"
           unoptimized
         />
         </div>

@@ -15,12 +15,14 @@ type PortfolioHashLinkProps = {
   href: string;
   className?: string;
   children: ReactNode;
+  onNavigate?: () => void;
 };
 
 export function PortfolioHashLink({
   href,
   className,
   children,
+  onNavigate,
 }: PortfolioHashLinkProps) {
   const pathname = usePathname();
   const sectionId = parsePortfolioHashLink(href);
@@ -33,6 +35,7 @@ export function PortfolioHashLink({
       setPortfolioHash(sectionId);
       scrollToPortfolioSection(sectionId);
       dispatchPortfolioHashSync();
+      onNavigate?.();
       return;
     }
 
@@ -41,6 +44,7 @@ export function PortfolioHashLink({
       setPortfolioHash(null);
       window.scrollTo({ top: 0, behavior: "smooth" });
       dispatchPortfolioHashSync();
+      onNavigate?.();
     }
   }
 

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--max-old-space-size=4096' next dev --webpack",
     "dev:turbo": "NODE_OPTIONS='--max-old-space-size=4096' next dev --turbo",
+    "preview:local": "next build && next start",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

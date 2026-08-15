@@ -18,8 +18,8 @@ export function PortfolioSectionTitle({
   const chars = script ? Array.from(script) : [];
   const first = chars[0] ?? "";
   const rest = chars.slice(1).join("");
-  const scriptSize = scriptSizeClass ?? "text-3xl md:text-4xl";
-  const subtitleSize = "text-xl md:text-2xl";
+  const scriptSize = scriptSizeClass ?? "text-2xl md:text-3xl";
+  const subtitleSize = "text-lg md:text-xl";
 
   return (
     <header className={`portfolio-section-title text-center ${className}`}>

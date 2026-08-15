@@ -38,60 +38,44 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
 
       <header
         data-portfolio-header={isHome ? "" : undefined}
+        data-solid={isHome ? "false" : undefined}
         className={
           isHome
-            ? "portfolio-header-on-hero portfolio-header-bar portfolio-header-bar--on-hero fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/20 bg-transparent shadow-none"
+            ? "portfolio-header-bar portfolio-header-bar--teo fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/70 bg-white"
             : "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
         }
       >
         <div
-          className={`portfolio-header-inner relative z-10 flex w-full min-h-12 items-center gap-3 px-4 py-2.5 md:min-h-[3.25rem] md:gap-4 md:px-8 md:py-3 ${
-            isHome ? "" : "mx-auto max-w-7xl"
+          className={`portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 items-center justify-between gap-3 py-2 md:min-h-[4.25rem] md:gap-4 md:py-3 ${
+            isHome ? "px-0" : ""
           }`}
         >
           <PortfolioHashLink href="/" className="portfolio-header-brand-link shrink-0">
             <span
               className={
                 isHome
-                  ? "portfolio-header-brand portfolio-header-hero-brand whitespace-nowrap text-white"
+                  ? "portfolio-header-brand portfolio-header-brand--teo"
                   : "portfolio-header-brand whitespace-nowrap text-slate-800"
               }
             >
-              {PORTFOLIO.headerBrand}
+              {PORTFOLIO.headerTitle}
             </span>
           </PortfolioHashLink>
           <nav
-            className={`portfolio-header-nav ml-auto shrink-0 ${
-              isHome ? "text-white" : "hidden text-slate-600 md:flex"
-            }`}
+            className="portfolio-header-nav ml-auto flex shrink-0 flex-wrap justify-end text-slate-600"
             aria-label="メイン"
           >
             {nav.map((item) => (
               <PortfolioHashLink
                 key={item.href}
                 href={item.href}
-                className={
-                  isHome
-                    ? "portfolio-header-nav-link portfolio-header-hero-nav"
-                    : "portfolio-header-nav-link portfolio-header-nav-link-solid"
-                }
+                className="portfolio-header-nav-link portfolio-header-nav-link-solid"
               >
                 {item.label}
               </PortfolioHashLink>
             ))}
           </nav>
         </div>
-        {!isHome ? (
-          <div className="border-t border-slate-100 px-4 py-2 md:hidden">
-            <div className="mx-auto flex max-w-7xl flex-wrap gap-x-3 gap-y-1 text-xs font-medium text-slate-600">
-              {nav.map((item) => (
-                <PortfolioHashLink key={item.href} href={item.href} className="hover:text-blue-600">
-                  {item.label}
-                </PortfolioHashLink>
-              ))}
-            </div>
-          </div>
-        ) : null}
       </header>
 
       <main
@@ -109,7 +93,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
           isHome ? " portfolio-ambient-zone" : ""
         }`}
       >
-        <div className="relative z-[1] mx-auto max-w-3xl px-4 pt-8 pb-10 md:px-6 md:pt-10 md:pb-12">
+        <div className="portfolio-layout-inner relative z-[1] pt-8 pb-10 md:pt-10 md:pb-12">
           <div className="portfolio-footer-about">
             <p className="portfolio-footer-about-label">ABOUT ME</p>
             <div className="portfolio-footer-about-inner">

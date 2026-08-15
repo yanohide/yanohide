@@ -3,20 +3,12 @@ export const PORTFOLIO = {
   nameEn: "Yano Hideto",
   nameReading: "やの　ひでと",
   tagline: "介護現場のAI研究所",
-  marqueeMessage:
-    "介護現場の悩みをAIで解決！介護現場における…介護知識、介護技術、高齢者リハビリ、書類作成、ご家族支援、老老介護、介護休暇、高齢者見守り、介護のお金、老人ホーム、介護施設の働き方、介護の死生観etc…。現場経験18年の健康とお金の専門家（理学療法士×ケアマネ×FP2級）が、介護現場の悩みをAI活用でサポート！",
-  headerBrand: "介護現場のAI研究所",
+  headerBrand: "介護現場×AI使いこなす人",
+  headerTitle: "介護現場×AI",
   email: "contact@sonocafe.xyz",
   footerBio:
     "プロフィールをご覧いただき、誠にありがとうございます。医療介護の現場AI研究所、矢野英人と申します。主にSEO・AIOを意識した記事構成・本文執筆や、介護・医療・金融系のコンテンツ制作を中心に承っております。丁寧な下調べを基本とし、円滑なコミュニケーションを心がけております。みなさまからのお問い合わせを、心よりお待ちしております。",
 } as const;
-
-export const PORTFOLIO_STATS = [
-  { value: 18, suffix: "年+", label: "臨床経験（理学療法士）", display: "18年+" },
-  { value: 100, suffix: "本+", label: "納品記事数", display: "100本+" },
-  { value: 1000, suffix: "人+", label: "リハビリ担当実績", display: "1,000人+", group: true },
-  { value: 5, suffix: ".0", label: "クラウドソーシング総合評価", display: "5.0" },
-] as const;
 
 export const SAMPLE_ARTICLES = [
   {
