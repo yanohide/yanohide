@@ -50,19 +50,29 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
             isHome ? "px-0" : ""
           }`}
         >
-          <PortfolioHashLink href="/" className="portfolio-header-brand-link shrink-0">
-            <span
-              className={
-                isHome
-                  ? "portfolio-header-brand portfolio-header-brand--teo"
-                  : "portfolio-header-brand whitespace-nowrap text-slate-800"
-              }
-            >
-              {PORTFOLIO.headerTitle}
-            </span>
+          <PortfolioHashLink
+            href="/"
+            className="portfolio-header-brand-link shrink-0"
+            aria-label={PORTFOLIO.headerTitle}
+          >
+            {isHome ? (
+              <span className="portfolio-header-brand portfolio-header-brand--teo">
+                <span className="portfolio-header-brand-accent" aria-hidden />
+                <span className="portfolio-header-brand-copy">
+                  <span className="portfolio-header-brand-copy__primary">介護AI</span>
+                  <span className="portfolio-header-brand-copy__secondary">
+                    プロダクション
+                  </span>
+                </span>
+              </span>
+            ) : (
+              <span className="portfolio-header-brand whitespace-nowrap text-slate-800">
+                {PORTFOLIO.headerTitle}
+              </span>
+            )}
           </PortfolioHashLink>
           <nav
-            className="portfolio-header-nav ml-auto flex shrink-0 flex-wrap justify-end text-slate-600"
+            className="portfolio-header-nav ml-auto flex shrink-0 flex-wrap justify-end text-black"
             aria-label="メイン"
           >
             {nav.map((item) => (

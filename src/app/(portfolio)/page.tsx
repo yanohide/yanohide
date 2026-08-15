@@ -79,7 +79,7 @@ export default function HomePage() {
               <h1 className="portfolio-hero-teo-headline portfolio-hero-teo-headline--copy">
                 <span>介護現場で</span>
                 <span>AI使いこなして</span>
-                <span>業務をラクにする人</span>
+                <span>業務をラクにする人。</span>
               </h1>
               <div
                 className="portfolio-hero-teo-badge portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-4 md:px-6 md:py-5"
@@ -122,16 +122,7 @@ export default function HomePage() {
       {/* Profile */}
       <section id="profile" className="portfolio-section portfolio-section--profile pb-8 pt-8 md:pb-10 md:pt-12">
         <div className="portfolio-section-inner text-center text-slate-800">
-          <PortfolioSectionTitle
-            script="プロフィール"
-            subtitleMatchScript
-            subtitle={
-              <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-                {PORTFOLIO.tagline}
-              </span>
-            }
-            className="mb-5"
-          />
+          <PortfolioSectionTitle script="プロフィール" className="mb-5" />
           <div
             className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36"
             data-reveal="zoom"
@@ -145,9 +136,9 @@ export default function HomePage() {
               unoptimized
             />
           </div>
-          <p className="portfolio-script-title mb-5 text-center text-base font-bold leading-snug text-blue-900">
+          <p className="portfolio-script-title mb-5 text-center text-lg font-bold leading-snug text-blue-900 md:text-xl">
+            代表者：
             <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-              管理人：
               <ruby>
                 {PORTFOLIO.name}
                 <rt>{PORTFOLIO.nameReading}</rt>
@@ -155,9 +146,7 @@ export default function HomePage() {
             </span>
           </p>
           <p className="mb-8 text-base font-bold leading-relaxed text-slate-700 md:mb-10">
-            〜 介護分野のリハビリ歴18年の臨床経験から、
-            <br />
-            100記事以上納品 × オウンドメディア運用 〜
+            介護リハビリ18年 × AIクライアントワーク × 100以上の案件対応
           </p>
           <div className="portfolio-content-body grid gap-4 md:gap-5">
             <div
