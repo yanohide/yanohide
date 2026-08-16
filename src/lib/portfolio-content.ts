@@ -2,11 +2,11 @@ export const PORTFOLIO = {
   name: "矢野英人",
   nameEn: "Yano Hideto",
   nameReading: "やの　ひでと",
-  headerBrand: "介護AIプロダクション",
-  headerTitle: "介護AIプロダクション",
+  headerBrand: "介護AIラボ",
+  headerTitle: "介護AIラボ",
   email: "contact@sonocafe.xyz",
   footerBio:
-    "プロフィールをご覧いただき、誠にありがとうございます。医療介護の現場AI研究所、矢野英人と申します。主にSEO・AIOを意識した記事構成・本文執筆や、介護・医療・金融系のコンテンツ制作を中心に承っております。丁寧な下調べを基本とし、円滑なコミュニケーションを心がけております。みなさまからのお問い合わせを、心よりお待ちしております。",
+    "プロフィールをご覧いただき、ありがとうございます。介護AIラボ代表の矢野英人（理学療法士・介護支援専門員）です。介護リハビリ18年の現場経験と、100件超のAIクライアントワーク実績を活かし、SEO・AIOを意識した記事構成・執筆、医療・介護・金融系コンテンツ制作を承っております。エビデンスと現場の視点を大切に、読者に届く記事づくりを心がけています。お気軽にお問い合わせください。",
 } as const;
 
 export const SAMPLE_ARTICLES = [
@@ -15,50 +15,55 @@ export const SAMPLE_ARTICLES = [
     label: "サンプル記事①｜KW：介護保険外サービスとは",
     site: "40歳からの介護ナビ",
     title: "介護保険外サービスとは？種類と費用相場｜事業所選びが重要！",
-    href: "/posts/non-insurance-nursing-care-services-types-and-cost",
+    href: "https://sonocafe.xyz/posts/non-insurance-nursing-care-services-types-and-cost",
     excerpt:
-      "介護保険外サービスの種類・料金相場・事業所の選び方を、利用シーン別にわかりやすく解説した記事です。",
-    image: "https://sonocafe.xyz/wp-content/uploads/2025/12/2.jpg",
+      "介護保険の対象外として提供される介護保険外サービスの概要、具体例と費用相場、保険サービスとの組み合わせ、事業所選びのポイントを解説。",
+    image:
+      "https://cdn.sanity.io/images/caycunb5/production/1d562cc7c48143683e47f0f1553ce8d6c160a184-1280x720.jpg",
   },
   {
     id: "sample-2",
     label: "サンプル記事②｜KW：介護うつ",
     site: "40歳からの介護ナビ",
     title: "【セルフチェック】介護うつとは？効果的な治療法からセルフケアまで",
-    href: "/posts/care-depression",
+    href: "https://sonocafe.xyz/posts/care-depression",
     excerpt:
       "介護うつのセルフチェックから専門医相談、家族への協力依頼、サービス活用まで具体的な改善方法を解説。",
-    image: "https://sonocafe.xyz/wp-content/uploads/2025/12/5.jpg",
+    image:
+      "https://cdn.sanity.io/images/caycunb5/production/cd749a8372b8903df006aa4db8204e40869d08e4-1280x720.jpg",
   },
   {
     id: "sample-3",
     label: "サンプル記事③｜KW：認知症 治療",
     site: "40歳からの介護ナビ",
     title: "認知症は治療できる？完治困難でも進行を遅らせる3つの方法と相談先",
-    href: "/posts/dementia-treatment-method",
+    href: "https://sonocafe.xyz/posts/dementia-treatment-method",
     excerpt:
       "認知症治療の現状と進行抑制の方法、相談先を整理し、家族が取れる行動を具体的に紹介。",
-    image: "https://sonocafe.xyz/wp-content/uploads/2025/12/3.jpg",
+    image:
+      "https://cdn.sanity.io/images/caycunb5/production/91887a2930c2e682c2f6439a3c5f54faf87162a4-1280x720.jpg",
   },
   {
     id: "sample-4",
     label: "サンプル記事④｜KW：老人ホーム 高い",
     site: "40歳からの介護ナビ",
     title: "【老後のお金】老人ホームの費用が高い！安くするための６つの対策",
-    href: "/posts/nursinghome-expensive",
+    href: "https://sonocafe.xyz/posts/nursinghome-expensive",
     excerpt:
       "老人ホーム費用の相場・内訳から、費用を抑える具体策と納得して選ぶポイントを解説。",
-    image: "https://sonocafe.xyz/wp-content/uploads/2025/12/6.jpg",
+    image:
+      "https://cdn.sanity.io/images/caycunb5/production/153cc8664c6b6af0ee9c8695026c158501be4e4d-1280x720.jpg",
   },
   {
     id: "sample-5",
     label: "サンプル記事⑤｜KW：高齢者 見守りサービス 比較",
     site: "40歳からの介護ナビ",
-    title: "【迷ったらコレ】高齢者見守りサービス18社を比較【2025年版】",
-    href: "/posts/elderly-care-services-comparison",
+    title: "【迷ったらコレ】高齢者見守りサービス18社を比較【2026年版】",
+    href: "https://sonocafe.xyz/posts/elderly-care-services-comparison",
     excerpt:
       "見守りサービス18社を種類別に比較。費用・特徴・選び方のポイントを表形式で整理。",
-    image: "https://sonocafe.xyz/wp-content/uploads/2025/12/7.jpg",
+    image:
+      "https://cdn.sanity.io/images/caycunb5/production/ed01e17931371920bbabc2b6863978ec479c62d2-1280x720.jpg",
   },
 ] as const;
 
@@ -66,8 +71,8 @@ export const ORDER_FLOW_STEPS = [
   {
     number: 1,
     heading: "お問い合わせ",
-    ctaLabel: "お問合せフォームへ",
-    ctaHref: "mailto:contact@sonocafe.xyz",
+    ctaLabel: "お問い合わせフォームへ",
+    ctaHref: "/contact",
   },
   {
     number: 2,

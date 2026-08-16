@@ -46,9 +46,15 @@ export function PortfolioMotion() {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const root = document.documentElement;
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+
+    root.classList.add("portfolio-motion-ready");
+    if (prefersReduced) {
+      root.classList.add("portfolio-motion-reduced");
+    }
 
     // ── スクロール進捗バー ──────────────────────────────
     const bar = barRef.current;
@@ -197,6 +203,7 @@ export function PortfolioMotion() {
     }
 
     return () => {
+      root.classList.remove("portfolio-motion-ready", "portfolio-motion-reduced");
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (scrollRestoreTimer !== undefined) {

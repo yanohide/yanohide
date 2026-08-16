@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
 import { ORDER_FLOW_STEPS } from "@/lib/portfolio-content";
 
@@ -26,9 +28,12 @@ export function PortfolioOrderFlow() {
             <div className="py-3 text-center md:py-4">
               <OrderFlowStepLabel number={item.number} heading={item.heading} />
               {"ctaLabel" in item && item.ctaLabel ? (
-                <a href={item.ctaHref} className="portfolio-order-flow-cta mx-auto mt-4 text-sm font-bold text-white">
+                <Link
+                  href={item.ctaHref}
+                  className="portfolio-order-flow-cta mx-auto mt-4 text-sm font-bold text-white"
+                >
                   <span className="relative z-[1]">{item.ctaLabel}</span>
-                </a>
+                </Link>
               ) : (
                 <>
                   {"detail" in item && item.detail ? (

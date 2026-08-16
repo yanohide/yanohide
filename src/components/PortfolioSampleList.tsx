@@ -7,15 +7,19 @@ import { SAMPLE_ARTICLES } from "@/lib/portfolio-content";
 type SampleArticle = (typeof SAMPLE_ARTICLES)[number];
 
 function SampleArticleLink({ article }: { article: SampleArticle }) {
+  const isExternal = article.href.startsWith("http");
+
   return (
     <Link
       href={article.href}
       className="portfolio-sample-link group flex gap-4 py-6 md:gap-6"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
     >
       <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-slate-100 shadow-sm ring-1 ring-slate-200/80 md:h-24 md:w-36">
         <Image
           src={article.image}
-          alt=""
+          alt={article.title}
           fill
           className="object-cover transition duration-300 group-hover:scale-105"
           sizes="144px"

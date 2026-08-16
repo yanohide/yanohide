@@ -6,13 +6,14 @@ import { PortfolioHashSync } from "@/components/PortfolioHashSync";
 import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
 import { PortfolioMotion } from "@/components/PortfolioMotion";
 import { PORTFOLIO } from "@/lib/portfolio-content";
+import { PORTFOLIO_HERO_IMAGES } from "@/lib/typing-hero-asset";
 
 const nav = [
   { href: "/", label: "ホーム" },
   { href: "/#profile", label: "プロフィール" },
   { href: "/#services", label: "私にできること" },
   { href: "/#samples", label: "実績・サンプル記事" },
-  { href: "/#contact", label: "お問い合わせ" },
+  { href: "/contact", label: "お問い合わせ" },
 ] as const;
 
 const COPYRIGHT_YEAR = 2026;
@@ -23,7 +24,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
 
   return (
     <>
-      {isHome ? <PortfolioHeaderScroll /> : null}
+      <PortfolioHeaderScroll />
       {isHome ? <PortfolioMotion /> : null}
       <PortfolioHashSync />
 
@@ -37,39 +38,21 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
       ) : null}
 
       <header
-        data-portfolio-header={isHome ? "" : undefined}
-        data-solid={isHome ? "false" : undefined}
-        className={
-          isHome
-            ? "portfolio-header-bar portfolio-header-bar--teo fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/70 bg-white"
-            : "portfolio-header-bar fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/80 bg-white/92 shadow-sm backdrop-blur-md"
-        }
+        data-portfolio-header=""
+        data-solid="false"
+        className="portfolio-header-bar portfolio-header-bar--teo fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/70 bg-white"
       >
-        <div
-          className={`portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 items-center justify-between gap-3 py-2 md:min-h-[4.25rem] md:gap-4 md:py-3 ${
-            isHome ? "px-0" : ""
-          }`}
-        >
+        <div className="portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 items-center justify-between gap-3 px-0 py-2 md:min-h-[4.25rem] md:gap-4 md:py-3">
           <PortfolioHashLink
             href="/"
             className="portfolio-header-brand-link shrink-0"
             aria-label={PORTFOLIO.headerTitle}
           >
-            {isHome ? (
-              <span className="portfolio-header-brand portfolio-header-brand--teo">
-                <span className="portfolio-header-brand-accent" aria-hidden />
-                <span className="portfolio-header-brand-copy">
-                  <span className="portfolio-header-brand-copy__primary">介護AI</span>
-                  <span className="portfolio-header-brand-copy__secondary">
-                    プロダクション
-                  </span>
-                </span>
+            <span className="portfolio-header-brand portfolio-header-brand--teo">
+              <span className="portfolio-header-brand-copy">
+                <span className="portfolio-header-brand-copy__primary">{PORTFOLIO.headerBrand}</span>
               </span>
-            ) : (
-              <span className="portfolio-header-brand whitespace-nowrap text-slate-800">
-                {PORTFOLIO.headerTitle}
-              </span>
-            )}
+            </span>
           </PortfolioHashLink>
           <nav
             className="portfolio-header-nav ml-auto flex shrink-0 flex-wrap justify-end text-black"
@@ -79,7 +62,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
               <PortfolioHashLink
                 key={item.href}
                 href={item.href}
-                className="portfolio-header-nav-link portfolio-header-nav-link-solid"
+                className="portfolio-header-nav-link"
               >
                 {item.label}
               </PortfolioHashLink>
@@ -102,6 +85,11 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
         className={`portfolio-footer-shell relative z-[2] isolate border-t border-slate-200/80${
           isHome ? " portfolio-ambient-zone" : ""
         }`}
+        style={
+          {
+            "--portfolio-hero-photo": `url(${PORTFOLIO_HERO_IMAGES[0].src})`,
+          } as React.CSSProperties
+        }
       >
         <div className="portfolio-layout-inner relative z-[1] pt-8 pb-10 md:pt-10 md:pb-12">
           <div className="portfolio-footer-about">
@@ -152,11 +140,22 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
           </div>
         </div>
         <div
-          className={`border-t border-slate-100 py-4${
-            isHome ? " bg-slate-50/35" : " bg-slate-50"
+          className={`portfolio-footer-bottom relative z-[1] border-t border-slate-100/80 py-4${
+            isHome ? " bg-slate-50/45 backdrop-blur-sm" : " bg-slate-50/70 backdrop-blur-sm"
           }`}
         >
-          <p className="text-center text-xs text-slate-500">
+          <nav className="portfolio-footer-nav" aria-label="フッター">
+            {nav.map((item) => (
+              <PortfolioHashLink
+                key={item.href}
+                href={item.href}
+                className="portfolio-footer-nav-link"
+              >
+                {item.label}
+              </PortfolioHashLink>
+            ))}
+          </nav>
+          <p className="portfolio-footer-copyright">
             &copy; {COPYRIGHT_YEAR} {PORTFOLIO.headerBrand}
           </p>
         </div>

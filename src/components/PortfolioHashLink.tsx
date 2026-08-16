@@ -16,6 +16,7 @@ type PortfolioHashLinkProps = {
   className?: string;
   children: ReactNode;
   onNavigate?: () => void;
+  "aria-label"?: string;
 };
 
 export function PortfolioHashLink({
@@ -23,6 +24,7 @@ export function PortfolioHashLink({
   className,
   children,
   onNavigate,
+  "aria-label": ariaLabel,
 }: PortfolioHashLinkProps) {
   const pathname = usePathname();
   const sectionId = parsePortfolioHashLink(href);
@@ -49,7 +51,12 @@ export function PortfolioHashLink({
   }
 
   return (
-    <Link href={href} className={className} onClick={handleClick}>
+    <Link
+      href={href}
+      className={className}
+      aria-label={ariaLabel}
+      onClick={handleClick}
+    >
       {children}
     </Link>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Great_Vibes, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 
+import { DevPreviewHydrationFix } from "@/components/DevPreviewHydrationFix";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { PORTFOLIO } from "@/lib/portfolio-content";
 
@@ -70,9 +71,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" id="top">
+    <html lang="ja" id="top" suppressHydrationWarning>
+      <head>
+        <DevPreviewHydrationFix />
+      </head>
       <body
         className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} ${greatVibes.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
+        suppressHydrationWarning
       >
         <GoogleAnalytics />
         {children}

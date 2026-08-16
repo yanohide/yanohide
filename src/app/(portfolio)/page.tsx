@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { PortfolioHeroChainMesh } from "@/components/PortfolioHeroChainMesh";
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
 import { PORTFOLIO } from "@/lib/portfolio-content";
@@ -72,7 +73,14 @@ export default function HomePage() {
   return (
     <div className="w-full text-slate-800">
       {/* Hero：TEOTORIATTE風（左コピー × 右写真 × 青レール） */}
-      <section className="portfolio-hero portfolio-hero--teo relative z-10 w-full">
+      <section
+        className="portfolio-hero portfolio-hero--teo relative z-10 w-full"
+        style={
+          {
+            "--portfolio-hero-photo": `url(${PORTFOLIO_HERO_IMAGES[0].src})`,
+          } as React.CSSProperties
+        }
+      >
         <div className="portfolio-hero-teo-grid">
           <div className="portfolio-hero-teo-copy">
             <div className="portfolio-hero-teo-copy-inner">
@@ -95,11 +103,14 @@ export default function HomePage() {
                     priority
                     unoptimized
                   />
-                  <ul className="portfolio-hero-teo-credentials">
-                    <li>理学療法士</li>
-                    <li>介護支援専門員</li>
-                    <li>FP技能士２級</li>
-                  </ul>
+                  <div className="portfolio-hero-teo-badge-copy">
+                    <p className="portfolio-hero-teo-badge-name">{PORTFOLIO.nameEn}</p>
+                    <ul className="portfolio-hero-teo-credentials">
+                      <li>理学療法士</li>
+                      <li>介護支援専門員</li>
+                      <li>FP技能士２級</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,7 +125,7 @@ export default function HomePage() {
               priority
               unoptimized
             />
-            <div className="portfolio-hero-teo-halftone" />
+            <PortfolioHeroChainMesh />
           </div>
         </div>
       </section>
@@ -124,7 +135,7 @@ export default function HomePage() {
         <div className="portfolio-section-inner text-center text-slate-800">
           <PortfolioSectionTitle script="プロフィール" className="mb-5" />
           <div
-            className="portfolio-profile-avatar mx-auto mb-3 h-32 w-32 overflow-hidden md:mb-4 md:h-36 md:w-36"
+            className="portfolio-profile-avatar mx-auto mb-2 h-32 w-32 overflow-hidden md:mb-3 md:h-36 md:w-36"
             data-reveal="zoom"
           >
             <Image
@@ -136,14 +147,11 @@ export default function HomePage() {
               unoptimized
             />
           </div>
+          <p className="portfolio-script-title mb-2 text-center text-sm font-bold leading-snug text-blue-900 md:mb-3 md:text-base">
+            代表者
+          </p>
           <p className="portfolio-script-title mb-5 text-center text-lg font-bold leading-snug text-blue-900 md:text-xl">
-            代表者：
-            <span className="portfolio-sky-underline inline-block whitespace-nowrap">
-              <ruby>
-                {PORTFOLIO.name}
-                <rt>{PORTFOLIO.nameReading}</rt>
-              </ruby>
-            </span>
+            ヤノヒデ｜{PORTFOLIO.name}
           </p>
           <p className="mb-8 text-base font-bold leading-relaxed text-slate-700 md:mb-10">
             介護リハビリ18年 × AIクライアントワーク × 100以上の案件対応

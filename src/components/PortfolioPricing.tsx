@@ -92,7 +92,7 @@ export function PortfolioPricing() {
 
         <p className="mt-12 text-center">
           <Link
-            href="#contact"
+            href="/contact"
             className="inline-block rounded-full bg-blue-800 px-10 py-4 text-base font-bold text-white shadow-lg transition hover:bg-blue-700"
           >
             お問い合わせはこちら

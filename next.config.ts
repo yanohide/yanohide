@@ -8,7 +8,7 @@ import type { NextConfig } from "next";
  * を export します（ルートは src/app/layout.tsx）。
  */
 const nextConfig: NextConfig = {
-  // 開発中の Next.js バッジ（nextjs-portal 関連 UI）を非表示
+  // 開発インジケーター（右下バッジ）のみ非表示。nextjs-portal はエラー表示用コンテナ
   devIndicators: false,
   turbopack: {
     root: import.meta.dirname,
