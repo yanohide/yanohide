@@ -9,6 +9,7 @@
   --portfolio-gutter: 1rem;
   --portfolio-text-base: 1rem;
   --portfolio-text-sm: 0.875rem;
+  --portfolio-header-nav-font-size: 1rem;
   --portfolio-leading: 1.75;
   --portfolio-hero-height: clamp(24rem, 52vh, 32rem);
   --portfolio-hero-image-ratio: 640 / 359;
@@ -1670,7 +1671,10 @@ select.portfolio-contact-form__input {
 
 .portfolio-header-bar--teo .portfolio-header-nav-link {
   position: relative;
-  font-size: 0.875rem;
+  font-family: var(--font-sans-jp), "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: var(--portfolio-header-nav-font-size);
+  font-weight: 600;
+  line-height: 1.35;
   letter-spacing: 0.04em;
   padding: 0.32rem 0.55rem;
   color: #000000;
@@ -1718,7 +1722,7 @@ select.portfolio-contact-form__input {
   }
 
   .portfolio-header-bar--teo .portfolio-header-nav-link {
-    font-size: 0.875rem;
+    font-size: var(--portfolio-header-nav-font-size);
     letter-spacing: 0.04em;
     padding: 0.35rem 0.65rem;
   }
@@ -2061,10 +2065,24 @@ select.portfolio-contact-form__input {
 }
 
 @media (min-width: 768px) {
-  .portfolio-header-nav-link {
+  .portfolio-header-bar:not(.portfolio-header-bar--teo) .portfolio-header-nav-link {
     padding: 0.3rem 0.75rem;
     font-size: 0.6875rem;
     letter-spacing: 0.1em;
+  }
+}
+
+.portfolio-header-bar--teo .portfolio-header-nav-link {
+  font-size: var(--portfolio-header-nav-font-size);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .portfolio-header-bar--teo .portfolio-header-nav-link {
+    font-size: var(--portfolio-header-nav-font-size);
+    letter-spacing: 0.04em;
   }
 }
 
