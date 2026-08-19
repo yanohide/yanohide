@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { PortfolioHeroChainMesh } from "@/components/PortfolioHeroChainMesh";
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
 import { PORTFOLIO } from "@/lib/portfolio-content";
@@ -73,14 +72,7 @@ export default function HomePage() {
   return (
     <div className="w-full text-slate-800">
       {/* Hero：TEOTORIATTE風（左コピー × 右写真 × 青レール） */}
-      <section
-        className="portfolio-hero portfolio-hero--teo relative z-10 w-full"
-        style={
-          {
-            "--portfolio-hero-photo": `url(${PORTFOLIO_HERO_IMAGES[0].src})`,
-          } as React.CSSProperties
-        }
-      >
+      <section className="portfolio-hero portfolio-hero--teo relative z-10 w-full">
         <div className="portfolio-hero-teo-grid">
           <div className="portfolio-hero-teo-copy">
             <div className="portfolio-hero-teo-copy-inner">
@@ -90,8 +82,7 @@ export default function HomePage() {
                 <span>業務をラクにする人。</span>
               </h1>
               <div
-                className="portfolio-hero-teo-badge portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-4 md:px-6 md:py-5"
-                data-spotlight
+                className="portfolio-hero-teo-badge portfolio-glass-card portfolio-gradient-ring px-5 py-4 md:px-6 md:py-5"
               >
                 <div className="portfolio-card-body flex items-center gap-3 md:gap-4">
                   <Image
@@ -125,7 +116,6 @@ export default function HomePage() {
               priority
               unoptimized
             />
-            <PortfolioHeroChainMesh />
           </div>
         </div>
       </section>
@@ -158,9 +148,8 @@ export default function HomePage() {
           </p>
           <div className="portfolio-content-body grid gap-4 md:gap-5">
             <div
-              className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
-              data-spotlight
-              data-reveal
+            className="portfolio-glass-card portfolio-gradient-ring px-5 py-5 text-left md:px-7 md:py-6"
+            data-reveal
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
@@ -176,9 +165,8 @@ export default function HomePage() {
               </div>
             </div>
             <div
-              className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
-              data-spotlight
-              data-reveal
+            className="portfolio-glass-card portfolio-gradient-ring px-5 py-5 text-left md:px-7 md:py-6"
+            data-reveal
               style={{ "--rv-delay": "90ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
@@ -199,9 +187,8 @@ export default function HomePage() {
               </div>
             </div>
             <div
-              className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-5 text-left md:px-7 md:py-6"
-              data-spotlight
-              data-reveal
+            className="portfolio-glass-card portfolio-gradient-ring px-5 py-5 text-left md:px-7 md:py-6"
+            data-reveal
               style={{ "--rv-delay": "180ms" } as React.CSSProperties}
             >
               <div className="portfolio-card-body">
@@ -224,8 +211,7 @@ export default function HomePage() {
         <div className="portfolio-section-inner">
           <PortfolioSectionTitle script="私にできること" subtitleMatchScript className="mb-12" />
           <div
-            className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight mx-auto px-6 py-8 md:px-10 md:py-10"
-            data-spotlight
+            className="portfolio-glass-card portfolio-gradient-ring mx-auto px-6 py-8 md:px-10 md:py-10"
             data-reveal
           >
             <div className="portfolio-card-body grid grid-cols-2 gap-6 md:gap-12">
@@ -290,8 +276,7 @@ export default function HomePage() {
             {STRENGTHS.map((strength, index) => (
               <div
                 key={strength.heading}
-                className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight px-5 py-6 md:px-8 md:py-7"
-                data-spotlight
+                className="portfolio-glass-card portfolio-gradient-ring px-5 py-6 md:px-8 md:py-7"
                 data-reveal
                 style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
@@ -307,7 +292,6 @@ export default function HomePage() {
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 268px, 292px"
-                        loading="eager"
                         unoptimized
                       />
                     </div>
@@ -338,7 +322,6 @@ export default function HomePage() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 268px, 292px"
-              loading="eager"
               unoptimized
             />
           </div>
@@ -346,8 +329,7 @@ export default function HomePage() {
             {PROMISES.map((promise, index) => (
               <div
                 key={promise.no}
-                className="portfolio-glass-card portfolio-gradient-ring portfolio-spotlight flex items-start gap-4 px-5 py-5 md:px-7 md:py-6"
-                data-spotlight
+                className="portfolio-glass-card portfolio-gradient-ring flex items-start gap-4 px-5 py-5 md:px-7 md:py-6"
                 data-reveal
                 style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >

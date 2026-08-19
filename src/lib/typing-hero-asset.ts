@@ -5,7 +5,3 @@ export const PORTFOLIO_HERO_IMAGES = [
     alt: "介護施設のダイニングで過ごす複数の高齢者",
   },
 ] as const;
-
-export const TYPING_DESK_UNSPLASH = PORTFOLIO_HERO_IMAGES[0].src;
-export const HERO_IMAGE_WIDTH = 640;
-export const HERO_IMAGE_HEIGHT = 359;

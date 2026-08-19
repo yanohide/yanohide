@@ -6,7 +6,6 @@ import { PortfolioHashSync } from "@/components/PortfolioHashSync";
 import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
 import { PortfolioMotion } from "@/components/PortfolioMotion";
 import { PORTFOLIO } from "@/lib/portfolio-content";
-import { PORTFOLIO_HERO_IMAGES } from "@/lib/typing-hero-asset";
 
 const nav = [
   { href: "/", label: "ホーム" },
@@ -27,15 +26,6 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
       <PortfolioHeaderScroll />
       {isHome ? <PortfolioMotion /> : null}
       <PortfolioHashSync />
-
-      {isHome ? (
-        <div className="portfolio-ambient-layer" aria-hidden>
-          <div className="portfolio-ambient-layer__wash" />
-          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--1" />
-          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--2" />
-          <div className="portfolio-ambient-layer__orb portfolio-ambient-layer__orb--3" />
-        </div>
-      ) : null}
 
       <header
         data-portfolio-header=""
@@ -81,16 +71,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
         {children}
       </main>
 
-      <footer
-        className={`portfolio-footer-shell relative z-[2] isolate border-t border-slate-200/80${
-          isHome ? " portfolio-ambient-zone" : ""
-        }`}
-        style={
-          {
-            "--portfolio-hero-photo": `url(${PORTFOLIO_HERO_IMAGES[0].src})`,
-          } as React.CSSProperties
-        }
-      >
+      <footer className="portfolio-footer-shell relative z-[2] isolate border-t border-slate-200/80">
         <div className="portfolio-layout-inner relative z-[1] pt-8 pb-10 md:pt-10 md:pb-12">
           <div className="portfolio-footer-about">
             <p className="portfolio-footer-about-label">ABOUT ME</p>
@@ -139,11 +120,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
             </div>
           </div>
         </div>
-        <div
-          className={`portfolio-footer-bottom relative z-[1] border-t border-slate-100/80 py-4${
-            isHome ? " bg-slate-50/45 backdrop-blur-sm" : " bg-slate-50/70 backdrop-blur-sm"
-          }`}
-        >
+        <div className="portfolio-footer-bottom relative z-[1] border-t border-slate-100/80 bg-slate-50 py-4">
           <nav className="portfolio-footer-nav" aria-label="フッター">
             {nav.map((item) => (
               <PortfolioHashLink

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Great_Vibes, JetBrains_Mono, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 
 import { DevPreviewHydrationFix } from "@/components/DevPreviewHydrationFix";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -9,7 +9,7 @@ import "./globals.css";
 
 const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["400", "700"],
   variable: "--font-noto-serif-jp",
   display: "swap",
 });
@@ -18,25 +18,6 @@ const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-noto-sans-jp",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-portfolio-mono",
-  display: "swap",
-});
-
-const greatVibes = Great_Vibes({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-portfolio-script",
   display: "swap",
 });
 
@@ -76,7 +57,7 @@ export default function RootLayout({
         <DevPreviewHydrationFix />
       </head>
       <body
-        className={`${jetbrainsMono.variable} ${notoSerifJP.variable} ${notoSansJP.variable} ${fraunces.variable} ${greatVibes.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
+        className={`${notoSerifJP.variable} ${notoSansJP.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
         suppressHydrationWarning
       >
         <GoogleAnalytics />

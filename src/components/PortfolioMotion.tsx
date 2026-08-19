@@ -34,12 +34,7 @@ function syncVisibleReveals(els: HTMLElement[]) {
 }
 
 /**
- * ポートフォリオのプレミアム演出をまとめて担うクライアントコンポーネント。
- * - スクロール進捗バー（上部のグラデーションバー）
- * - data-reveal 要素のスクロールリビール（IntersectionObserver）
- * - data-countup 要素の数字カウントアップ
- * - data-spotlight 要素のカーソル追従スポットライト（--spot-x / --spot-y）
- *
+ * スクロール進捗バーと data-reveal の表示を担う。
  * React state を使わず DOM 直接操作で完結させ、hydration を安全に保つ。
  */
 export function PortfolioMotion() {
@@ -56,7 +51,6 @@ export function PortfolioMotion() {
       root.classList.add("portfolio-motion-reduced");
     }
 
-    // ── スクロール進捗バー ──────────────────────────────
     const bar = barRef.current;
     let rafId = 0;
     function syncProgress() {
@@ -74,7 +68,6 @@ export function PortfolioMotion() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
 
-    // ── スクロールリビール ──────────────────────────────
     const revealEls = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]"),
     );
@@ -99,7 +92,6 @@ export function PortfolioMotion() {
         { threshold: [0, REVEAL_THRESHOLD, 0.16], rootMargin: REVEAL_ROOT_MARGIN },
       );
       revealEls.forEach((el) => revealObserver!.observe(el));
-      // 戻る操作後のスクロール復元や bfcache 復帰で IO が発火しないケースを補う
       const syncAfterScrollRestore = () => syncVisibleReveals(revealEls);
       requestAnimationFrame(() => {
         requestAnimationFrame(syncAfterScrollRestore);
@@ -129,77 +121,11 @@ export function PortfolioMotion() {
           syncVisibleReveals(
             Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]")),
           );
-        // smooth scroll 完了前後の両方で同期（カードが opacity: 0 のまま残るのを防ぐ）
         window.setTimeout(syncAllReveals, 150);
         window.setTimeout(syncAllReveals, 450);
         window.setTimeout(syncAllReveals, 900);
       };
       window.addEventListener("portfolio:hash-sync", onHashSync);
-    }
-
-    // ── 数字カウントアップ ──────────────────────────────
-    const countEls = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-countup]"),
-    );
-    function formatCount(el: HTMLElement, value: number) {
-      const prefix = el.dataset.countupPrefix ?? "";
-      const suffix = el.dataset.countupSuffix ?? "";
-      const rounded = Math.round(value);
-      const useGroup = el.dataset.countupGroup === "true";
-      const body = useGroup ? rounded.toLocaleString("en-US") : String(rounded);
-      el.textContent = `${prefix}${body}${suffix}`;
-    }
-    function runCount(el: HTMLElement) {
-      const target = Number(el.dataset.countup ?? "0");
-      if (prefersReduced || !Number.isFinite(target)) {
-        formatCount(el, target);
-        return;
-      }
-      const duration = 1400;
-      const start = performance.now();
-      function tick(now: number) {
-        const t = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - t, 3);
-        formatCount(el, target * eased);
-        if (t < 1) window.requestAnimationFrame(tick);
-      }
-      window.requestAnimationFrame(tick);
-    }
-    countEls.forEach((el) => formatCount(el, 0));
-    let countObserver: IntersectionObserver | null = null;
-    if (prefersReduced) {
-      countEls.forEach((el) => runCount(el));
-    } else {
-      countObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              runCount(entry.target as HTMLElement);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.4 },
-      );
-      countEls.forEach((el) => countObserver!.observe(el));
-    }
-
-    // ── カーソル追従スポットライト ─────────────────────
-    const spotlightEls = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-spotlight]"),
-    );
-    function onPointerMove(event: PointerEvent) {
-      const el = event.currentTarget as HTMLElement;
-      const rect = el.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      el.style.setProperty("--spot-x", `${x}%`);
-      el.style.setProperty("--spot-y", `${y}%`);
-    }
-    if (!prefersReduced) {
-      spotlightEls.forEach((el) =>
-        el.addEventListener("pointermove", onPointerMove),
-      );
     }
 
     return () => {
@@ -221,10 +147,6 @@ export function PortfolioMotion() {
       if (revealScrollRaf) window.cancelAnimationFrame(revealScrollRaf);
       if (rafId) window.cancelAnimationFrame(rafId);
       revealObserver?.disconnect();
-      countObserver?.disconnect();
-      spotlightEls.forEach((el) =>
-        el.removeEventListener("pointermove", onPointerMove),
-      );
     };
   }, []);
 

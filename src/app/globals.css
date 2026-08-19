@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "./article-layout.css";
 @import "./portfolio-shell.css";
 
 @plugin "@tailwindcss/typography";
@@ -35,7 +34,7 @@
 
   --font-serif-jp: var(--font-noto-serif-jp), "Noto Serif JP", "Yu Mincho", serif;
   --font-sans-jp: var(--font-noto-sans-jp), "Noto Sans JP", "Hiragino Sans", sans-serif;
-  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-display: var(--font-serif-jp), "Noto Serif JP", "Yu Mincho", serif;
   --font-mono: var(--font-portfolio-mono), ui-monospace, monospace;
 
   --shadow-editorial: 0 1px 0 rgba(255, 255, 255, 0.55) inset,
@@ -54,129 +53,8 @@
   }
 }
 
-@keyframes expand-width {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 .animate-reveal {
   animation: fade-slide-up 0.8s ease-out both;
-}
-
-.animate-reveal-delay-1 {
-  animation: fade-slide-up 0.8s ease-out 0.1s both;
-}
-.animate-reveal-delay-2 {
-  animation: fade-slide-up 0.8s ease-out 0.2s both;
-}
-.animate-reveal-delay-3 {
-  animation: fade-slide-up 0.8s ease-out 0.3s both;
-}
-.animate-reveal-delay-4 {
-  animation: fade-slide-up 0.8s ease-out 0.4s both;
-}
-.animate-reveal-delay-5 {
-  animation: fade-slide-up 0.8s ease-out 0.5s both;
-}
-
-.animate-expand-width {
-  transform-origin: left center;
-  animation: expand-width 0.8s ease-out both;
-}
-
-.hover-underline-grow {
-  background-image: linear-gradient(currentcolor, currentcolor);
-  background-repeat: no-repeat;
-  background-size: 0% 2px;
-  background-position: 0 100%;
-  transition: background-size 280ms ease;
-}
-
-.hover-underline-grow:hover {
-  background-size: 100% 2px;
-}
-
-.hover-bg-slide {
-  position: relative;
-  isolation: isolate;
-  transition:
-    transform 260ms ease,
-    box-shadow 260ms ease;
-}
-
-.hover-bg-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--color-parchment);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 280ms ease;
-}
-
-.hover-bg-slide:hover::before {
-  transform: scaleX(1);
-}
-
-.hover-lift {
-  transition:
-    transform 260ms ease,
-    box-shadow 260ms ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 12px 30px rgb(28 25 23 / 0.08),
-    0 2px 6px rgb(28 25 23 / 0.06);
-}
-
-.masthead-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.masthead-rule {
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-espresso),
-    transparent
-  );
-  box-shadow:
-    0 1px 0 0 var(--color-sand),
-    0 -1px 0 0 var(--color-sand);
-}
-
-.featured-panel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 2px;
-  background: radial-gradient(
-      ellipse 140% 100% at 20% -20%,
-      rgb(255 255 255 / 0.16),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 120% 100% at 100% 0%,
-      rgb(31 71 133 / 0.45),
-      transparent 52%
-    ),
-    var(--color-navy);
-}
-
-.divider-double {
-  height: 0;
-  border: none;
-  border-top: 3px double var(--color-sand);
 }
 
 .issue-badge {
@@ -190,16 +68,6 @@
   text-transform: uppercase;
   color: var(--color-gold);
   border: 1px solid rgb(161 98 7 / 0.55);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27220%27 height=%27220%27%3E%3Cfilter id=%27n%27 x=%270%27 y=%270%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.62%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27220%27 height=%27220%27 filter=%27url(%23n)%27 opacity=%270.62%27/%3E%3C/svg%3E");
 }
 
 * {
