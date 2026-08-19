@@ -81,7 +81,7 @@ export const ORDER_FLOW_STEPS = [
   },
   {
     number: 3,
-    heading: "初稿提出",
+    heading: "初回提出",
     note: "※文字数や作業工程により前後します。",
   },
   {
@@ -99,8 +99,8 @@ export const WORKFLOW_STEPS = [
   },
   {
     step: "STEP 3",
-    title: "初稿提出",
-    detail: "5,000文字：1週間以内（文字数・工程により前後します）",
+    title: "初回提出",
+    detail: "文字数・工程により前後します）",
   },
   { step: "STEP 4", title: "修正対応・納品", detail: "フィードバックを反映し、最終納品いたします。" },
 ] as const;
