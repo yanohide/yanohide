@@ -207,14 +207,14 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section id="services" className="portfolio-section portfolio-section--services py-16">
+      <section id="services" className="portfolio-section portfolio-section--services py-10 md:py-16">
         <div className="portfolio-section-inner">
-          <PortfolioSectionTitle script="私にできること" subtitleMatchScript className="mb-12" />
+          <PortfolioSectionTitle script="私にできること" subtitleMatchScript className="mb-8 md:mb-12" />
           <div
-            className="portfolio-glass-card portfolio-gradient-ring mx-auto px-6 py-8 md:px-10 md:py-10"
+            className="portfolio-glass-card portfolio-gradient-ring mx-auto px-4 py-6 sm:px-6 md:px-10 md:py-10"
             data-reveal
           >
-            <div className="portfolio-card-body grid grid-cols-2 gap-6 md:gap-12">
+            <div className="portfolio-card-body grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
               <div className="min-w-0 text-left text-base text-slate-700">
                 <h3 className="mb-4 text-left text-lg font-bold md:mb-6 md:text-xl">
                   <span className="portfolio-subsection-heading">
@@ -269,9 +269,9 @@ export default function HomePage() {
       </section>
 
       {/* Strengths */}
-      <section id="strengths" className="portfolio-section portfolio-section--strengths py-16">
+      <section id="strengths" className="portfolio-section portfolio-section--strengths py-10 md:py-16">
         <div className="portfolio-section-inner">
-          <PortfolioSectionTitle script="得意分野" subtitleMatchScript className="mb-12" />
+          <PortfolioSectionTitle script="得意分野" subtitleMatchScript className="mb-8 md:mb-12" />
           <div className="flex w-full flex-col space-y-6 md:space-y-8">
             {STRENGTHS.map((strength, index) => (
               <div
@@ -285,13 +285,13 @@ export default function HomePage() {
                     <span className="portfolio-subsection-heading">{strength.heading}</span>
                   </h3>
                   <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:gap-8 md:gap-10">
-                    <div className="portfolio-feature-image relative h-[152px] w-[268px] shrink-0 md:h-[168px] md:w-[292px]">
+                    <div className="portfolio-feature-image relative aspect-[268/152] w-full max-w-[268px] shrink-0 md:max-w-[292px]">
                       <Image
                         src={strength.image}
                         alt={strength.alt}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 268px, 292px"
+                        sizes="(max-width: 768px) 80vw, 292px"
                         unoptimized
                       />
                     </div>
@@ -309,11 +309,11 @@ export default function HomePage() {
       </section>
 
       {/* お客様への3つのお約束 */}
-      <section id="customer-promises" className="portfolio-section portfolio-section--promises py-16">
+      <section id="customer-promises" className="portfolio-section portfolio-section--promises py-10 md:py-16">
         <div className="portfolio-section-inner">
-          <PortfolioSectionTitle script="お客様への3つのお約束" subtitleMatchScript className="mb-12" />
+          <PortfolioSectionTitle script="お客様への3つのお約束" subtitleMatchScript className="mb-8 md:mb-12" />
           <div
-            className="portfolio-feature-image relative mx-auto mb-8 h-[152px] w-[268px] md:h-[168px] md:w-[292px]"
+            className="portfolio-feature-image relative mx-auto mb-8 aspect-[268/152] w-full max-w-[268px] md:max-w-[292px]"
             data-reveal="zoom"
           >
             <Image
@@ -321,7 +321,7 @@ export default function HomePage() {
               alt="ビジネスシーンで握手を交わす様子"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 268px, 292px"
+              sizes="(max-width: 768px) 80vw, 292px"
               unoptimized
             />
           </div>
@@ -329,7 +329,7 @@ export default function HomePage() {
             {PROMISES.map((promise, index) => (
               <div
                 key={promise.no}
-                className="portfolio-glass-card portfolio-gradient-ring flex items-start gap-4 px-5 py-5 md:px-7 md:py-6"
+                className="portfolio-glass-card portfolio-gradient-ring flex items-start gap-3 px-4 py-4 sm:gap-4 sm:px-5 sm:py-5 md:px-7 md:py-6"
                 data-reveal
                 style={{ "--rv-delay": `${index * 90}ms` } as React.CSSProperties}
               >
@@ -349,9 +349,9 @@ export default function HomePage() {
       </section>
 
       {/* Samples */}
-      <section id="samples" className="portfolio-section portfolio-section--samples pt-16 pb-6 md:pb-8">
+      <section id="samples" className="portfolio-section portfolio-section--samples pt-10 pb-6 md:pt-16 md:pb-8">
         <div className="portfolio-section-inner">
-          <PortfolioSectionTitle script="執筆実績・サンプル記事" subtitleMatchScript className="mb-12" />
+          <PortfolioSectionTitle script="執筆実績・サンプル記事" subtitleMatchScript className="mb-8 md:mb-12" />
           <PortfolioSampleList />
         </div>
       </section>

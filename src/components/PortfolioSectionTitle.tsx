@@ -18,7 +18,7 @@ export function PortfolioSectionTitle({
   const chars = script ? Array.from(script) : [];
   const first = chars[0] ?? "";
   const rest = chars.slice(1).join("");
-  const scriptSize = scriptSizeClass ?? "text-2xl md:text-3xl";
+  const scriptSize = scriptSizeClass ?? "text-xl sm:text-2xl md:text-3xl";
   const subtitleSize = "text-lg md:text-xl";
 
   return (

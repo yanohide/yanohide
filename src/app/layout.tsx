@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 
 import { DevPreviewHydrationFix } from "@/components/DevPreviewHydrationFix";
@@ -46,6 +46,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,7 +63,7 @@ export default function RootLayout({
         <DevPreviewHydrationFix />
       </head>
       <body
-        className={`${notoSerifJP.variable} ${notoSansJP.variable} site-body site-body-portfolio scroll-pt-28 font-sans-jp text-slate-800 antialiased md:scroll-pt-20`}
+        className={`${notoSerifJP.variable} ${notoSansJP.variable} site-body site-body-portfolio scroll-pt-24 font-sans-jp text-slate-800 antialiased lg:scroll-pt-28`}
         suppressHydrationWarning
       >
         <GoogleAnalytics />

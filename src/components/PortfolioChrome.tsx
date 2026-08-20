@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 
 import { PortfolioHashLink } from "@/components/PortfolioHashLink";
 import { PortfolioHashSync } from "@/components/PortfolioHashSync";
+import { PortfolioHeaderNav } from "@/components/PortfolioHeaderNav";
 import { PortfolioHeaderScroll } from "@/components/PortfolioHeaderScroll";
 import { PortfolioMotion } from "@/components/PortfolioMotion";
 import { PORTFOLIO } from "@/lib/portfolio-content";
@@ -30,9 +31,10 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
       <header
         data-portfolio-header=""
         data-solid="false"
+        data-menu-open="false"
         className="portfolio-header-bar portfolio-header-bar--teo fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/70 bg-white"
       >
-        <div className="portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 items-center justify-between gap-3 px-0 py-2 md:min-h-[4.25rem] md:gap-4 md:py-3">
+        <div className="portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 items-center justify-between gap-3 py-2 md:min-h-[4.25rem] md:gap-4 md:py-3">
           <PortfolioHashLink
             href="/"
             className="portfolio-header-brand-link shrink-0"
@@ -44,20 +46,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
               </span>
             </span>
           </PortfolioHashLink>
-          <nav
-            className="portfolio-header-nav ml-auto flex shrink-0 flex-wrap justify-end text-black"
-            aria-label="メイン"
-          >
-            {nav.map((item) => (
-              <PortfolioHashLink
-                key={item.href}
-                href={item.href}
-                className="portfolio-header-nav-link"
-              >
-                {item.label}
-              </PortfolioHashLink>
-            ))}
-          </nav>
+          <PortfolioHeaderNav items={nav} />
         </div>
       </header>
 
@@ -65,7 +54,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
         className={
           isHome
             ? "site-main relative z-[1] w-full max-w-none flex-1 bg-transparent px-0 pb-0 pt-0"
-            : "site-main relative z-[1] w-full max-w-none flex-1 bg-clinic-glow px-0 pb-0 pt-24 md:pt-20"
+            : "site-main relative z-[1] w-full max-w-none flex-1 bg-clinic-glow px-0 pb-0 pt-20 lg:pt-24"
         }
       >
         {children}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="portfolio-contact-page mx-auto w-full max-w-3xl px-4 py-8 md:px-6 md:py-12">
+    <div className="portfolio-contact-page mx-auto w-full max-w-3xl px-4 py-8 sm:px-5 md:px-6 md:py-12">
       <p className="mb-6 text-center">
         <Link href="/#contact" className="portfolio-contact-page__back text-sm text-sky-700 hover:text-blue-800">
           ← トップのご依頼フローへ戻る
