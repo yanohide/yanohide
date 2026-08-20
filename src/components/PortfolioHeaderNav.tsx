@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { PortfolioHashLink } from "@/components/PortfolioHashLink";
 
@@ -11,12 +12,29 @@ export type PortfolioNavItem = {
 
 export function PortfolioHeaderNav({ items }: { items: readonly PortfolioNavItem[] }) {
   const [open, setOpen] = useState(false);
+  const [headerEl, setHeaderEl] = useState<HTMLElement | null>(null);
   const panelId = useId();
 
   useEffect(() => {
     const header = document.querySelector<HTMLElement>("[data-portfolio-header]");
-    header?.setAttribute("data-menu-open", open ? "true" : "false");
-  }, [open]);
+    setHeaderEl(header);
+    if (!header) return;
+
+    function syncOffset() {
+      document.documentElement.style.setProperty(
+        "--portfolio-header-offset",
+        `${header.getBoundingClientRect().height}px`,
+      );
+    }
+
+    syncOffset();
+    window.addEventListener("resize", syncOffset);
+    return () => window.removeEventListener("resize", syncOffset);
+  }, []);
+
+  useEffect(() => {
+    headerEl?.setAttribute("data-menu-open", open ? "true" : "false");
+  }, [headerEl, open]);
 
   useEffect(() => {
     if (!open) return;
@@ -43,6 +61,33 @@ export function PortfolioHeaderNav({ items }: { items: readonly PortfolioNavItem
     };
   }, [open]);
 
+  const drawer = (
+    <>
+      <div
+        className={`portfolio-header-drawer-backdrop${open ? " is-open" : ""}`}
+        hidden={!open}
+        onClick={() => setOpen(false)}
+      />
+      <nav
+        id={panelId}
+        className={`portfolio-header-drawer${open ? " is-open" : ""}`}
+        aria-label="モバイル"
+        hidden={!open}
+      >
+        {items.map((item) => (
+          <PortfolioHashLink
+            key={item.href}
+            href={item.href}
+            className="portfolio-header-drawer-link"
+            onNavigate={() => setOpen(false)}
+          >
+            {item.label}
+          </PortfolioHashLink>
+        ))}
+      </nav>
+    </>
+  );
+
   return (
     <>
       <nav className="portfolio-header-nav" aria-label="メイン">
@@ -68,29 +113,7 @@ export function PortfolioHeaderNav({ items }: { items: readonly PortfolioNavItem
         </span>
       </button>
 
-      <div
-        className={`portfolio-header-drawer-backdrop${open ? " is-open" : ""}`}
-        hidden={!open}
-        onClick={() => setOpen(false)}
-      />
-
-      <nav
-        id={panelId}
-        className={`portfolio-header-drawer${open ? " is-open" : ""}`}
-        aria-label="モバイル"
-        hidden={!open}
-      >
-        {items.map((item) => (
-          <PortfolioHashLink
-            key={item.href}
-            href={item.href}
-            className="portfolio-header-drawer-link"
-            onNavigate={() => setOpen(false)}
-          >
-            {item.label}
-          </PortfolioHashLink>
-        ))}
-      </nav>
+      {headerEl ? createPortal(drawer, document.body) : null}
     </>
   );
 }
