@@ -63,7 +63,7 @@ export default function RootLayout({
         <DevPreviewHydrationFix />
       </head>
       <body
-        className={`${notoSerifJP.variable} ${notoSansJP.variable} site-body site-body-portfolio scroll-pt-24 font-sans-jp text-slate-800 antialiased lg:scroll-pt-28`}
+        className={`${notoSerifJP.variable} ${notoSansJP.variable} site-body site-body-portfolio scroll-pt-32 font-sans-jp text-slate-800 antialiased lg:scroll-pt-28`}
         suppressHydrationWarning
       >
         <GoogleAnalytics />
