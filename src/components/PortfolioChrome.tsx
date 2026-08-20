@@ -31,9 +31,10 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
       <header
         data-portfolio-header=""
         data-solid="false"
+        data-menu-open="false"
         className="portfolio-header-bar portfolio-header-bar--teo fixed top-0 left-0 right-0 z-[100] w-full border-b border-slate-200/70 bg-white"
       >
-        <div className="portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 flex-col items-stretch gap-1 py-2 lg:min-h-[4.25rem] lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:py-3">
+        <div className="portfolio-header-inner portfolio-layout-inner relative z-10 flex w-full min-h-14 flex-row items-center justify-between gap-3 py-2 lg:min-h-[4.25rem] lg:gap-4 lg:py-3">
           <PortfolioHashLink
             href="/"
             className="portfolio-header-brand-link shrink-0"
@@ -53,7 +54,7 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
         className={
           isHome
             ? "site-main relative z-[1] w-full max-w-none flex-1 bg-transparent px-0 pb-0 pt-0"
-            : "site-main relative z-[1] w-full max-w-none flex-1 bg-clinic-glow px-0 pb-0 pt-28 lg:pt-24"
+            : "site-main relative z-[1] w-full max-w-none flex-1 bg-clinic-glow px-0 pb-0 pt-20 lg:pt-24"
         }
       >
         {children}
