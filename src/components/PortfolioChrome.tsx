@@ -38,11 +38,14 @@ export async function PortfolioChrome({ children }: { children: React.ReactNode 
           <PortfolioHashLink
             href="/"
             className="portfolio-header-brand-link shrink-0"
-            aria-label={PORTFOLIO.headerTitle}
+            aria-label={`${PORTFOLIO.headerTitle}©`}
           >
             <span className="portfolio-header-brand portfolio-header-brand--teo">
               <span className="portfolio-header-brand-copy">
                 <span className="portfolio-header-brand-copy__primary">{PORTFOLIO.headerBrand}</span>
+                <span className="portfolio-header-brand-copy__mark" aria-hidden="true">
+                  ©
+                </span>
               </span>
             </span>
           </PortfolioHashLink>

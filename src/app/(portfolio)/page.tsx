@@ -77,9 +77,10 @@ export default function HomePage() {
           <div className="portfolio-hero-teo-copy">
             <div className="portfolio-hero-teo-copy-inner">
               <h1 className="portfolio-hero-teo-headline portfolio-hero-teo-headline--copy">
-                <span>介護現場で</span>
-                <span>AI使いこなして</span>
-                <span>業務をラクにする人。</span>
+                <span>医療特化ライター</span>
+                <span className="portfolio-hero-teo-headline-accent">
+                  AI漫画で<strong className="portfolio-hero-teo-headline-gold">売上サポート</strong>
+                </span>
               </h1>
               <div
                 className="portfolio-hero-teo-badge portfolio-glass-card portfolio-gradient-ring px-5 py-4 md:px-6 md:py-5"
@@ -144,7 +145,11 @@ export default function HomePage() {
             ヤノヒデ｜{PORTFOLIO.name}
           </p>
           <p className="mb-8 text-base font-bold leading-relaxed text-slate-700 md:mb-10">
-            介護リハビリ18年 × AIクライアントワーク × 100以上の案件対応
+            介護リハビリ18年{" "}
+            <span className="text-blue-700">×</span>{" "}
+            AIクライアントワーク{" "}
+            <span className="text-blue-700">×</span>{" "}
+            100以上の案件対応
           </p>
           <div className="portfolio-content-body grid gap-4 md:gap-5">
             <div
