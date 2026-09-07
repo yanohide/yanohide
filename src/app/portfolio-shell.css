@@ -950,30 +950,8 @@ select.portfolio-contact-form__input {
 }
 
 .portfolio-hero-teo-headline-gold {
-  color: #80600d;
+  color: var(--portfolio-ai-cyan);
   font-weight: inherit;
-  animation: portfolio-hero-gold-shimmer 7s ease-in-out infinite;
-}
-
-@keyframes portfolio-hero-gold-shimmer {
-  0%,
-  100% {
-    color: #6f5208;
-    text-shadow: 0 0 0 rgb(255 215 96 / 0);
-  }
-
-  50% {
-    color: #a9821a;
-    text-shadow:
-      0 0 8px rgb(214 177 70 / 0.45),
-      0 0 18px rgb(156 116 24 / 0.24);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-hero-teo-headline-gold {
-    animation: none;
-  }
 }
 
 .portfolio-hero-teo-lead {
@@ -1180,8 +1158,7 @@ select.portfolio-contact-form__input {
 }
 
 .portfolio-header-bar--teo[data-solid="true"] .portfolio-header-brand-copy__primary,
-.portfolio-header-bar--teo[data-solid="true"] .portfolio-header-brand-copy__secondary,
-.portfolio-header-bar--teo[data-solid="true"] .portfolio-header-brand-copy__mark {
+.portfolio-header-bar--teo[data-solid="true"] .portfolio-header-brand-copy__secondary {
   color: #ffffff;
 }
 
@@ -1267,8 +1244,8 @@ select.portfolio-contact-form__input {
 
 .portfolio-header-brand-copy {
   display: inline-flex;
-  align-items: flex-end;
-  gap: 0.12rem;
+  align-items: baseline;
+  gap: 0.15rem;
   padding: 0.52rem 0;
 }
 
@@ -1278,16 +1255,6 @@ select.portfolio-contact-form__input {
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #0f172a;
-}
-
-.portfolio-header-brand-copy__mark {
-  font-family: var(--font-serif-jp), "Noto Serif JP", "Yu Mincho", serif;
-  font-size: clamp(0.55rem, 2.1vw, 0.72rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0;
-  color: #0f172a;
-  transform: translateY(0.2em);
 }
 
 .portfolio-header-brand-copy__secondary {

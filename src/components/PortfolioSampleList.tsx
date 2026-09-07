@@ -74,10 +74,10 @@ export function PortfolioSampleList() {
         <div className="mb-10 mt-10 w-full md:mt-12">
         <h3 className="mb-6 text-left text-base font-bold md:mb-8 md:text-xl">
           <span className="portfolio-subsection-heading">
-            サンプル記事
+            サンプルサイト・記事
           </span>
         </h3>
-        <p className="portfolio-content-body text-sm">以下、サンプル記事（①〜⑤）です。</p>
+        <p className="portfolio-content-body text-sm">以下のサンプル記事は自社で作成した介護サービス紹介サイトです。</p>
         <p className="portfolio-content-body mt-3 text-sm">
           ※サイト設計、キーワード選定、SEO・AIO記事構成、記事執筆、表作成、画像作成、入稿まで全工程を管理しています。
         </p>

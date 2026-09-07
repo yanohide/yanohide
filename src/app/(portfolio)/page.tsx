@@ -158,10 +158,11 @@ export default function HomePage() {
             >
               <div className="portfolio-card-body">
                 <h3 className="mb-3 font-bold text-slate-900">
-                  <span className="portfolio-subsection-heading">【ライティング】</span>
+                  <span className="portfolio-subsection-heading">【ライティング×AI漫画】</span>
                 </h3>
                 <ul className="list-outside list-disc space-y-1.5 pl-5 text-left text-slate-700">
-                  <li>医療介護系メディアの記事納品・ファクトチェック</li>
+                  <li>SEO記事のAI漫画制作</li>
+                  <li>執筆・ファクトチェック</li>
                   <li>一部上場企業運営のメディアに記事納品</li>
                   <li>金融・Web3系オウンドメディア運営</li>
                   <li>YMYL個人認証マーク取得</li>
@@ -227,12 +228,11 @@ export default function HomePage() {
                   </span>
                 </h3>
                 <ul className="list-outside list-disc space-y-1.5 pl-5 text-left text-slate-700">
-                  <li>サイト設計</li>
-                  <li>キーワード選定</li>
+                  <li>AI漫画制作</li>
+                  <li>サイト制作・キーワード選定</li>
                   <li>記事構成・本文執筆</li>
                   <li>ファクトチェック</li>
-                  <li>SEOライティング</li>
-                  <li>AIOライティング</li>
+                  <li>SEO・AIOライティング</li>
                   <li>バイブコーディング</li>
                   <li>画像選定・作成｜Canva</li>
                   <li>WordPress入稿</li>

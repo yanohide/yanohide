@@ -2,8 +2,8 @@ export const PORTFOLIO = {
   name: "矢野英人",
   nameEn: "Yano Hideto",
   nameReading: "やの　ひでと",
-  headerBrand: "医療系AI漫画ラボ",
-  headerTitle: "医療系AI漫画ラボ",
+  headerBrand: "医療記事×AI漫画",
+  headerTitle: "医療記事×AI漫画",
   email: "contact@sonocafe.xyz",
   footerBio:
     "プロフィールをご覧いただき、ありがとうございます。介護AIラボ代表の矢野英人（理学療法士・介護支援専門員）です。介護リハビリ18年の現場経験と、100件超のAIクライアントワーク実績を活かし、SEO・AIOを意識した記事構成・執筆、医療・介護・金融系コンテンツ制作を承っております。エビデンスと現場の視点を大切に、読者に届く記事づくりを心がけています。お気軽にお問い合わせください。",
