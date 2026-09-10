@@ -129,6 +129,50 @@
   -webkit-box-decoration-break: clone;
 }
 
+.portfolio-profile-manga {
+  overflow: hidden;
+  border: 3px solid #111827;
+  background: #ffffff;
+  box-shadow: 0 8px 28px rgb(15 23 42 / 0.06);
+}
+
+.portfolio-profile-manga-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0.95rem 0.85rem 0.85rem;
+  border-bottom: 3px solid #111827;
+  background: #89cdf2;
+  text-align: center;
+}
+
+.portfolio-profile-manga-title__main {
+  font-family: var(--font-serif-jp), "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+.portfolio-profile-manga-title__note {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgb(15 23 42 / 0.72);
+}
+
+.portfolio-profile-manga-embed {
+  display: block;
+  width: 100%;
+  height: min(80vh, 36rem);
+  border: 0;
+  background: #f8fafc;
+}
+
 .portfolio-profile-avatar {
   border-radius: 9999px;
   box-shadow:

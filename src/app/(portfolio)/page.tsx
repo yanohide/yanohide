@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
+import { ProfileMangaEmbed } from "@/components/ProfileMangaEmbed";
 import { PORTFOLIO } from "@/lib/portfolio-content";
 import { PORTFOLIO_HERO_IMAGES } from "@/lib/typing-hero-asset";
 
@@ -144,13 +145,14 @@ export default function HomePage() {
           <p className="portfolio-script-title mb-5 text-center text-lg font-bold leading-snug text-blue-900 md:text-xl">
             ヤノヒデ｜{PORTFOLIO.name}
           </p>
-          <p className="mb-8 text-base font-bold leading-relaxed text-slate-700 md:mb-10">
+          <p className="mb-4 text-base font-bold leading-relaxed text-slate-700 md:mb-5">
             介護リハビリ18年{" "}
             <span className="text-blue-700">×</span>{" "}
             AIクライアントワーク{" "}
             <span className="text-blue-700">×</span>{" "}
             100以上の案件対応
           </p>
+          <ProfileMangaEmbed />
           <div className="portfolio-content-body grid gap-4 md:gap-5">
             <div
             className="portfolio-glass-card portfolio-gradient-ring px-5 py-5 text-left md:px-7 md:py-6"
