@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { PortfolioSampleList } from "@/components/PortfolioSampleList";
 import { PortfolioSectionTitle } from "@/components/PortfolioSectionTitle";
@@ -153,6 +154,14 @@ export default function HomePage() {
             100以上の案件対応
           </p>
           <ProfileMangaEmbed />
+          <div className="mx-auto mb-4 w-full max-w-md md:mb-5">
+            <Link
+              href="/contact"
+              className="portfolio-order-flow-cta mx-auto mt-0 text-sm font-bold text-white"
+            >
+              <span className="relative z-[1]">記事を漫画にしてみる</span>
+            </Link>
+          </div>
           <div className="portfolio-content-body grid gap-4 md:gap-5">
             <div
             className="portfolio-glass-card portfolio-gradient-ring px-5 py-5 text-left md:px-7 md:py-6"
