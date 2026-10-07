@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HDS-R 採点シート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+/* Layout: a clinic score sheet. Ruled question cards on the left, a sticky running-total ledger on the right (bottom bar on phones). Indigo ink on cool paper. */
+:root{
+  --paper:#F3F5F8;
+  --sheet:#FFFFFF;
+  --ink:#1B2333;
+  --ink-2:#4A556B;
+  --rule:#D5DBE5;
+  --indigo:#2C4384;
+  --indigo-soft:#E4E9F6;
+  --good:#2E7D4F;
+  --good-soft:#E2F2E8;
+  --warn:#A3650B;
+  --warn-soft:#FBF0DC;
+  --bad:#B3322E;
+  --bad-soft:#F9E3E2;
+  --f-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --step-0:15px; --step-1:17px; --step-2:21px; --step-3:28px; --step-4:44px;
+  --radius:6px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#11151D;--sheet:#192030;--ink:#E4E8F0;--ink-2:#A3ADC2;--rule:#2C3548;
+  --indigo:#93A8EC;--indigo-soft:#232D47;--good:#6FCB93;--good-soft:#1C3328;
+  --warn:#E8B159;--warn-soft:#382B15;--bad:#F08A85;--bad-soft:#3B1E1F;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11151D;--sheet:#192030;--ink:#E4E8F0;--ink-2:#A3ADC2;--rule:#2C3548;
+  --indigo:#93A8EC;--indigo-soft:#232D47;--good:#6FCB93;--good-soft:#1C3328;
+  --warn:#E8B159;--warn-soft:#382B15;--bad:#F08A85;--bad-soft:#3B1E1F;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:var(--step-0);line-height:1.75;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:24px 48px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.35;margin:0}
+p{margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+/* masthead */
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.mast h1{font-size:var(--step-3)}
+.mast .sub{color:var(--ink-2);font-size:13px;letter-spacing:.06em}
+.mast .meta{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.field{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--ink-2);letter-spacing:.04em}
+.field input{font-size:var(--step-0);padding:6px 8px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--sheet);color:var(--ink);min-width:0}
+
+.tabs{display:flex;gap:4px;margin-block:18px 20px;overflow-x:auto;border-bottom:1px solid var(--rule)}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:700;color:var(--ink-2);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--indigo);border-bottom-color:var(--indigo)}
+
+.banner{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:var(--warn-soft);color:var(--ink);border:1px solid var(--warn);border-radius:var(--radius);padding:10px 14px;margin-bottom:18px;font-size:14px}
+
+.btn{border:1px solid var(--indigo);background:var(--indigo);color:var(--sheet);padding:8px 14px;border-radius:var(--radius);font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--indigo)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* test layout */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+.qs{display:flex;flex-direction:column;gap:16px;min-width:0}
+.q{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);padding:18px 20px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px}
+.q .no{font-family:var(--f-display);font-size:var(--step-3);line-height:1;color:var(--indigo)}
+.q .head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:baseline}
+.q h3{font-size:var(--step-2)}
+.q .pts{font-size:13px;color:var(--ink-2)}
+.q .pts b{font-size:var(--step-1);color:var(--ink)}
+.q .body{grid-column:2;display:flex;flex-direction:column;gap:12px;min-width:0}
+.prompt{font-size:var(--step-1);border-left:3px solid var(--indigo);padding-left:12px}
+.prompt::before{content:"検者：";font-size:12px;color:var(--ink-2);letter-spacing:.06em;display:block}
+.note{font-size:13.5px;color:var(--ink-2)}
+.aid{font-size:14px;background:var(--indigo-soft);border-radius:var(--radius);padding:8px 12px}
+.rows{display:flex;flex-direction:column;border-top:1px dashed var(--rule)}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding-block:8px;border-bottom:1px dashed var(--rule)}
+.row .lab{font-weight:700;min-width:0}
+.row .lab small{font-weight:400;color:var(--ink-2);margin-left:6px}
+.row input.obj{width:9em;padding:4px 8px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--paper)}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.seg button{border:0;border-left:1px solid var(--rule);background:var(--sheet);padding:7px 12px;cursor:pointer;font-size:14px;display:flex;gap:6px;align-items:baseline}
+.seg button:first-child{border-left:0}
+.seg button span{font-size:12px;color:var(--ink-2)}
+.seg button[aria-pressed="true"][data-v="0"]{background:var(--bad-soft);color:var(--bad);font-weight:700}
+.seg button[aria-pressed="true"]:not([data-v="0"]){background:var(--indigo);color:var(--sheet);font-weight:700}
+.seg button[aria-pressed="true"] span{color:inherit}
+.seg button:disabled{cursor:not-allowed;opacity:.4}
+.cut{font-size:12.5px;color:var(--warn)}
+
+.switch{display:inline-flex;border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.switch button{border:0;background:var(--sheet);padding:5px 12px;cursor:pointer;font-size:14px}
+.switch button[aria-pressed="true"]{background:var(--indigo-soft);color:var(--indigo);font-weight:700}
+
+.veg-in{display:flex;gap:8px;flex-wrap:wrap}
+.veg-in input{flex:1 1 10em;min-width:0;padding:8px 10px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--paper)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-height:34px}
+.chip{border:1px solid var(--rule);background:var(--paper);border-radius:999px;padding:2px 10px 2px 8px;font-size:14px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip i{font-style:normal;font-size:11px;color:var(--ink-2)}
+.vegcount{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:14px}
+.vegcount .big{font-size:var(--step-3);font-family:var(--f-display);color:var(--indigo)}
+.check{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+
+/* ledger */
+.ledger{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--sheet);border:1px solid var(--ink);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.ledger .total{display:flex;align-items:baseline;gap:6px}
+.ledger .total .n{font-family:var(--f-display);font-size:var(--step-4);line-height:1;color:var(--indigo)}
+.ledger .total .of{color:var(--ink-2)}
+.ledger table{width:100%;border-collapse:collapse;font-size:13.5px}
+.ledger td{padding:3px 0;border-bottom:1px dotted var(--rule)}
+.ledger td:last-child{text-align:right}
+.ledger tr.pending td{color:var(--ink-2)}
+.progress{height:6px;background:var(--rule);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--indigo);width:0;transition:width .25s}
+.timer{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.timer button{border:1px solid var(--rule);background:var(--paper);border-radius:var(--radius);padding:4px 10px;cursor:pointer}
+.timer .tv{font-size:var(--step-2);color:var(--ink);min-width:2.2em;text-align:right}
+.timer.run .tv{color:var(--warn)}
+.ledger .mini{display:none}
+
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:700}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.wait{background:var(--indigo-soft);color:var(--indigo)}
+
+/* result */
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);padding:20px 22px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.res-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px 32px;align-items:center}
+.res-top .n{font-family:var(--f-display);font-size:72px;line-height:1;color:var(--indigo)}
+.res-top .n small{font-size:var(--step-2);color:var(--ink-2)}
+.scale{position:relative;margin-top:30px;margin-bottom:34px;height:14px;border-radius:7px;background:linear-gradient(to right,var(--bad-soft) 0 calc(20.5/30*100%),var(--good-soft) calc(20.5/30*100%) 100%);border:1px solid var(--rule)}
+.scale .cutline{position:absolute;top:-8px;bottom:-8px;left:calc(20.5/30*100%);border-left:2px dashed var(--bad)}
+.scale .tick{position:absolute;top:18px;transform:translateX(-50%);font-size:11px;color:var(--ink-2)}
+.scale .ref{position:absolute;top:-24px;transform:translateX(-50%);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.scale .ref::after{content:"";position:absolute;left:50%;top:18px;height:8px;border-left:1px solid var(--ink-2)}
+.scale .me{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;background:var(--indigo);border:3px solid var(--sheet);box-shadow:0 0 0 1px var(--indigo);transform:translate(-50%,-50%);transition:left .3s}
+.scale-wrap{overflow-x:auto;padding-inline:14px}
+.scale-inner{min-width:420px}
+
+.prof{display:grid;grid-template-columns:minmax(8em,12em) minmax(0,1fr) 3.5em;gap:6px 12px;align-items:center;font-size:14px}
+.prof .bar{height:12px;background:var(--paper);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.prof .bar i{display:block;height:100%}
+.prof .v{text-align:right}
+
+.h2{font-size:var(--step-2);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.h2 small{font-family:var(--f-body);font-size:13px;color:var(--ink-2)}
+.train-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:14px}
+.tcard{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tcard.lost{border-color:var(--warn)}
+.tcard header{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.tcard h3{font-size:var(--step-1)}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;padding:1px 8px;border-radius:3px;background:var(--indigo-soft);color:var(--indigo)}
+.tcard ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px;font-size:14.5px}
+.tcard .lbl{font-size:12px;letter-spacing:.08em;color:var(--ink-2);font-weight:700}
+.tcard p{font-size:14.5px}
+
+.brain-table-wrap{overflow-x:auto}
+.brain-table{border-collapse:collapse;width:100%;min-width:760px;background:var(--sheet);font-size:14px}
+.brain-table th,.brain-table td{border:1px solid var(--rule);padding:10px 12px;vertical-align:top;text-align:left}
+.brain-table th{background:var(--indigo-soft);color:var(--ink);font-weight:700;white-space:nowrap}
+.brain-table td:first-child{white-space:nowrap;font-weight:700}
+
+.prose{max-width:68ch;display:flex;flex-direction:column;gap:10px}
+.prose ul{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px}
+.ref-table{border-collapse:collapse;font-size:14px}
+.ref-table td{padding:4px 18px 4px 0;border-bottom:1px dotted var(--rule)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.disclaimer{font-size:13px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:14px;margin-top:28px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 16px;border-radius:var(--radius);font-size:14px}
+textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:var(--radius);padding:8px}
+
+@media (max-width:880px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .ledger{position:sticky;top:auto;bottom:0;margin-inline:-16px;border-radius:0;border-width:2px 0 0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 10px);flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;z-index:5}
+  .ledger table,.ledger .lt,.ledger .progress,.ledger .timer{display:none}
+  .ledger .btn{padding:6px 12px}
+  .ledger .total .n{font-size:var(--step-3)}
+  .ledger .mini{display:block;font-size:12px;color:var(--ink-2)}
+  .q{grid-template-columns:minmax(0,1fr);padding:16px}
+  .q .no{font-size:var(--step-2)}
+  .q .body{grid-column:1}
+  .res-top{grid-template-columns:minmax(0,1fr)}
+  .prof{grid-template-columns:7.5em minmax(0,1fr) 3em}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="sub">改訂長谷川式簡易知能評価スケール ／ Hasegawa Dementia Scale-Revised</div>
+      <h1>HDS-R 採点シート</h1>
+    </div>
+    <div class="meta">
+      <label class="field" for="f-name">対象者
+        <input id="f-name" type="text" placeholder="氏名・ID（任意）" autocomplete="off">
+      </label>
+      <label class="field" for="f-date">検査日
+        <input id="f-date" type="date">
+      </label>
+      <label class="field" for="f-birth">生年月日
+        <input id="f-birth" type="date">
+      </label>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="ページ切り替え">
+    <button role="tab" id="tab-test" data-tab="test" aria-selected="true">検査・採点</button>
+    <button role="tab" id="tab-result" data-tab="result" aria-selected="false">結果と訓練</button>
+    <button role="tab" id="tab-brain" data-tab="brain" aria-selected="false">脳部位と機能</button>
+    <button role="tab" id="tab-guide" data-tab="guide" aria-selected="false">実施の手引き</button>
+  </nav>
+
+  <div id="banner" class="banner">
+    <span><b>記入例を表示しています。</b>架空の対象者の採点例です。実際の検査は「新しい検査を開始」から始めてください。</span>
+    <button class="btn" type="button" id="btn-new">新しい検査を開始</button>
+  </div>
+
+  <!-- 検査 -->
+  <section id="p-test" role="tabpanel" aria-labelledby="tab-test">
+    <div class="grid">
+      <div class="qs" id="qs"></div>
+      <aside class="ledger" aria-label="得点集計">
+        <div>
+          <div class="lt" style="font-size:12px;letter-spacing:.08em;color:var(--ink-2)">合計得点</div>
+          <div class="total"><span class="n num" id="l-total">0</span><span class="of">/ 30点</span></div>
+          <div class="mini num" id="l-mini"></div>
+        </div>
+        <div class="progress" aria-hidden="true"><i id="l-prog"></i></div>
+        <div id="l-pill"></div>
+        <table class="num" id="l-table"></table>
+        <div class="timer" id="timer">
+          <span>無反応の目安</span>
+          <button type="button" data-sec="5">5秒</button>
+          <button type="button" data-sec="10">10秒</button>
+          <span class="tv num" id="t-v">–</span>
+        </div>
+        <button class="btn ghost" type="button" data-goto="result">結果を見る</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 結果 -->
+  <section id="p-result" role="tabpanel" aria-labelledby="tab-result" hidden>
+    <div class="stack">
+      <div class="panel">
+        <div class="res-top">
+          <div class="n num" id="r-total">0<small> / 30</small></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div id="r-pill"></div>
+            <p id="r-text"></p>
+          </div>
+        </div>
+        <div class="scale-wrap"><div class="scale-inner">
+          <div class="scale" id="scale"></div>
+        </div></div>
+        <p class="note">赤い帯（20点以下）は認知症の疑いが高い範囲。上の目盛りは重症度別の平均点（目安）。</p>
+      </div>
+
+      <div class="panel stack">
+        <h2 class="h2">項目別プロフィール <small>満点に対する得点の割合</small></h2>
+        <div class="prof num" id="prof"></div>
+      </div>
+
+      <div class="stack">
+        <h2 class="h2">重点的に取り組みたい訓練 <small>失点の大きい項目から順に表示</small></h2>
+        <div class="train-list" id="r-train"></div>
+      </div>
+
+      <div class="panel stack">
+        <h2 class="h2">すべての方に共通する生活習慣</h2>
+        <div class="two">
+          <ul class="prose" style="padding-left:1.2em;margin:0">
+            <li><b>有酸素運動</b>：早歩きなどを1日30分、週5日が目安。脳の血流を増やし、海馬の萎縮を抑えるという報告があります。</li>
+            <li><b>運動と頭の体操を同時に</b>：歩きながらしりとりや引き算をする「二重課題」。国立長寿医療研究センターの「コグニサイズ」が代表例です。</li>
+            <li><b>人と話す・出かける</b>：会話は記憶、言語、注意を同時に使います。趣味の会や地域の通いの場への参加が役立ちます。</li>
+          </ul>
+          <ul class="prose" style="padding-left:1.2em;margin:0">
+            <li><b>聞こえと見え方の補正</b>：難聴は認知症の大きな危険因子です。補聴器や眼鏡の調整をためらわずに。</li>
+            <li><b>生活習慣病の管理</b>：高血圧、糖尿病、脂質異常症は脳の血管を傷めます。服薬と食事を続けましょう。</li>
+            <li><b>睡眠と生活リズム</b>：毎日同じ時刻に起きて日光を浴びると、見当識と睡眠の両方が整います。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel stack">
+        <h2 class="h2">記録用テキスト <small>カルテや連絡帳に貼り付けできます</small></h2>
+        <div><button class="btn" type="button" id="btn-copy">結果をコピー</button></div>
+        <textarea id="copyfb" readonly aria-label="結果のテキスト"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 脳部位 -->
+  <section id="p-brain" role="tabpanel" aria-labelledby="tab-brain" hidden>
+    <div class="stack">
+      <div class="prose">
+        <h2 class="h2">各項目の責任病巣と認知機能</h2>
+        <p>HDS-R の各設問が主にどの認知機能を測り、どの脳部位が関わるかをまとめました。実際の認知機能は複数の領域がネットワークとして働いて成り立つため、ここで挙げる部位は「障害されると成績が下がりやすい代表的な部位」と考えてください。どこが傷んでいるかを点数だけで決めることはできず、部位の診断には画像検査などが必要です。</p>
+      </div>
+      <div class="brain-table-wrap">
+        <table class="brain-table" id="brain-table"></table>
+      </div>
+      <div class="two">
+        <div class="panel prose">
+          <h3>アルツハイマー型で崩れやすい順序</h3>
+          <p>病変は海馬と嗅内皮質から始まることが多く、まず<b>遅延再生（問7）</b>と<b>日時の見当識（問2）</b>が落ちます。進行すると頭頂葉や側頭葉外側に広がり、<b>場所の見当識・計算・語想起</b>も下がります。</p>
+        </div>
+        <div class="panel prose">
+          <h3>ヒントで思い出せるかどうか</h3>
+          <p>問7でヒントを出すと思い出せる場合は、記憶は残っていて取り出しが苦手な「検索障害」で、前頭葉と皮質下の回路が関わります。ヒントがあっても出ない場合は覚え込み（符号化）自体の障害で、海馬の障害を示唆します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 手引き -->
+  <section id="p-guide" role="tabpanel" aria-labelledby="tab-guide" hidden>
+    <div class="two">
+      <div class="panel prose">
+        <h2 class="h2">HDS-R とは</h2>
+        <p>1974年に聖マリアンナ医科大学の長谷川和夫氏らが開発し、1991年に改訂された認知機能のスクリーニング検査です。2004年に「痴呆」が「認知症」に改められ、現在は「長谷川式認知症スケール」と呼ばれます。口頭の質問9問、30点満点で、所要時間は5〜10分です。</p>
+        <p>MMSE（11項目、10〜15分）と違い、文章を書く、図形を写すといった課題がなく、口頭だけで実施できます。</p>
+      </div>
+      <div class="panel prose">
+        <h2 class="h2">点数の目安</h2>
+        <p><b>20点以下</b>で認知症の疑いが高いと判定されます。</p>
+        <table class="ref-table num">
+          <tr><td>認知症でない人の平均</td><td>24点前後</td></tr>
+          <tr><td>軽度認知症の平均</td><td>19点前後</td></tr>
+          <tr><td>中等度認知症の平均</td><td>15点前後</td></tr>
+          <tr><td>重度認知症の平均</td><td>10点前後</td></tr>
+        </table>
+        <p class="note">軽度認知障害（MCI）の明確な基準はHDS-Rにはなく、他の検査と組み合わせて判断します。</p>
+      </div>
+      <div class="panel prose">
+        <h2 class="h2">準備するもの</h2>
+        <ul>
+          <li>評価用紙（このページで代用できます）と筆記用具</li>
+          <li>相互に関係のない5つの品物。例：時計、鍵、ペン、硬貨、くし。見た目と用途が違うものを選びます。</li>
+          <li>静かで、本人が落ち着ける場所</li>
+        </ul>
+      </div>
+      <div class="panel prose">
+        <h2 class="h2">実施のポイント</h2>
+        <ul>
+          <li>耳が遠い方には、始める前に聞き取れる声の大きさを確かめ、ゆっくりはっきり話します。</li>
+          <li>失語症が疑われる場合は、先に問8と問9を行い、HDS-Rが適切かを判断します。</li>
+          <li>質問後10秒以上返答がなければ、無理に待たず次へ進みます（右の「10秒」タイマーを使えます）。</li>
+          <li>検査問題そのものを練習に使わないでください。点数が実力より高く出て、正しく評価できなくなります。</li>
+          <li>本人が拒否する、負担が大きい、精神状態が不安定なときは実施を見合わせ、医療機関での評価を優先します。</li>
+        </ul>
+      </div>
+      <div class="panel prose">
+        <h2 class="h2">点数の受け止め方</h2>
+        <p>HDS-Rは記憶を中心に調べる検査です。初期に記憶障害が目立たないレビー小体型や前頭側頭型の認知症では、認知症でも高得点になることがあります。逆に、当日の体調や緊張、難聴、教育歴の影響で実力より低く出ることもあります。</p>
+        <p>診断は、生活歴、視聴覚障害、精神疾患や服薬、脳画像検査などを合わせて医師が総合的に行います。</p>
+      </div>
+      <div class="panel prose">
+        <h2 class="h2">ほかの認知症テスト</h2>
+        <ul>
+          <li><b>Mini-Cog</b>：3語の記憶と時計描画。約2分、2点以下で疑い。</li>
+          <li><b>MoCA-J</b>：遂行機能や抽象概念まで幅広く評価。約10分、25点以下でMCIの疑い。</li>
+          <li><b>DASC-21</b>：生活上の行動の変化を21項目で評価。5〜10分。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <p class="disclaimer">このページは認知症の可能性を探るスクリーニングの補助ツールで、診断を行うものではありません。高得点でも認知症を否定できず、低得点でも認知症とは限りません。同じ話を繰り返す、物の置き場所がわからなくなるなど、これまでと違う様子が続くときは、かかりつけ医やもの忘れ外来に相談してください。入力内容はこのブラウザの中だけで扱われ、外部には送信されません。</p>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+"use strict";
+const WORDS={A:["桜","猫","電車"],B:["梅","犬","自動車"]};
+const HINTS=["植物","動物","乗り物"];
+const DOW="日月火水木金土";
+
+/* ---------- 状態 ---------- */
+function blank(){
+  return {name:"",date:today(),birth:"",set:"A",
+    q1:null,q2y:null,q2m:null,q2d:null,q2w:null,q3:null,
+    q4a:null,q4b:null,q4c:null,q5a:null,q5b:null,q6a:null,q6b:null,
+    q7a:null,q7b:null,q7c:null,
+    q8_0:null,q8_1:null,q8_2:null,q8_3:null,q8_4:null,
+    obj:["時計","鍵","ペン","硬貨","くし"],veg:[],q9done:false};
+}
+function example(){
+  const s=blank();
+  Object.assign(s,{name:"記入例（架空）",birth:"1946-05-12",
+    q1:1,q2y:1,q2m:1,q2d:0,q2w:0,q3:2,q4a:1,q4b:1,q4c:1,q5a:1,q5b:0,q6a:1,q6b:0,
+    q7a:2,q7b:1,q7c:0,q8_0:1,q8_1:1,q8_2:1,q8_3:0,q8_4:1,
+    veg:["キャベツ","にんじん","大根","玉ねぎ","トマト","きゅうり","なす"],q9done:true});
+  return s;
+}
+function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+let S=example();
+let isExample=true;
+
+/* ---------- 設問定義 ---------- */
+const Q=[
+ {id:1,title:"年齢",max:1,prompt:"お歳はいくつですか？",note:"2年までの誤差は正解とします。",
+  rows:[{k:"q1",lab:"年齢",opts:[[1,"正解",1],[0,"不正解",0]]}],aid:"age"},
+ {id:2,title:"日時の見当識",max:4,prompt:"今日は何年の何月何日ですか？ 何曜日ですか？",note:"年・月・日・曜日が正解でそれぞれ1点。",
+  rows:[["q2y","年"],["q2m","月"],["q2d","日"],["q2w","曜日"]].map(([k,l])=>({k,lab:l,opts:[[1,"正解",1],[0,"不正解",0]]})),aid:"date"},
+ {id:3,title:"場所の見当識",max:2,prompt:"私たちがいまいるところはどこですか？",note:"自発的に答えられれば2点。5秒おいて「家ですか？ 病院ですか？ 施設ですか？」の中から正しく選べれば1点。",
+  rows:[{k:"q3",lab:"場所",opts:[[2,"自発的に正解",2],[1,"ヒントで正解",1],[0,"不正解",0]]}]},
+ {id:4,title:"3つの言葉の記銘",max:3,prompt:"これから言う3つの言葉を言ってみてください。あとでまた聞きますので、よく覚えておいてください。",note:"どちらかの系列を選び、以後は同じ系列を使います。",
+  rows:[0,1,2].map(i=>({k:"q4"+"abc"[i],word:i,opts:[[1,"正解",1],[0,"不正解",0]]})),aid:"set"},
+ {id:5,title:"計算",max:2,prompt:"100から7を順番に引いてください。",note:"「100引く7は？」「それからまた7を引くと？」と質問します。最初の答えが不正解なら打ち切ります。",
+  rows:[{k:"q5a",lab:"100 − 7 = 93",opts:[[1,"正解",1],[0,"不正解",0]]},{k:"q5b",lab:"93 − 7 = 86",opts:[[1,"正解",1],[0,"不正解",0]],cutBy:"q5a"}]},
+ {id:6,title:"数字の逆唱",max:2,prompt:"私がこれから言う数字を逆から言ってください。",note:"数字は1秒に1つの速さで読み上げます。3桁の逆唱に失敗したら打ち切ります。",
+  rows:[{k:"q6a",lab:"6-8-2",sub:"→ 2-8-6",opts:[[1,"正解",1],[0,"不正解",0]]},{k:"q6b",lab:"3-5-2-9",sub:"→ 9-2-5-3",opts:[[1,"正解",1],[0,"不正解",0]],cutBy:"q6a"}]},
+ {id:7,title:"3つの言葉の遅延再生",max:6,prompt:"先ほど覚えてもらった言葉を、もう一度言ってみてください。",note:"自発的に答えられれば各2点。答えが出ない言葉には「植物」「動物」「乗り物」のヒントを出し、正解なら1点。",
+  rows:[0,1,2].map(i=>({k:"q7"+"abc"[i],word:i,hint:true,opts:[[2,"自発",2],[1,"ヒントで",1],[0,"不正解",0]]}))},
+ {id:8,title:"5つの物品記銘",max:5,prompt:"これから5つの品物を見せます。それを隠しますので、何があったか言ってください。",note:"品物は1つずつ名前を言いながら目の前に置き、すべて隠してから尋ねます。1品につき1点。品物名は書き換えられます。",
+  rows:[0,1,2,3,4].map(i=>({k:"q8_"+i,obj:i,opts:[[1,"正解",1],[0,"不正解",0]]}))},
+ {id:9,title:"言葉の流暢性（野菜）",max:5,prompt:"知っている野菜の名前をできるだけ多く言ってください。",note:"答えた野菜を記録し、重複は数えません。途中で詰まり、約10秒待っても出ない場合はそこで打ち切ります。5個までは0点、6個=1点、7個=2点、8個=3点、9個=4点、10個以上=5点。",
+  custom:"veg"}
+];
+const SUBKEYS=[];Q.forEach(q=>(q.rows||[]).forEach(r=>SUBKEYS.push(r)));
+
+/* ---------- 脳部位と訓練 ---------- */
+const BRAIN={
+ 1:{fn:"自己についての見当識、自伝的（遠隔）記憶",
+    region:["海馬・内側側頭葉","前頭前野","後部帯状回・楔前部"],
+    why:"自分の年齢は、生年という古い記憶と「今」の情報を結びつけて答えます。古い記憶は比較的保たれやすいため、ここを誤る場合は見当識障害がかなり進んでいるか、注意力の低下が考えられます。",
+    train:["家族や本人の誕生日を大きなカレンダーに書き込み、毎月話題にする","昔の写真やアルバムを見ながら、その頃の年齢や出来事を語り合う（回想法）","年金や通院の書類など、生年月日を自分で記入する機会を残しておく"]},
+ 2:{fn:"時間の見当識（今がいつかを把握する力）",
+    region:["海馬・嗅内皮質","後部帯状回・楔前部","前頭前野"],
+    why:"日付は毎日更新される情報で、新しく覚え続ける力が要ります。アルツハイマー型認知症で最も早く崩れやすい項目の一つです。曜日や日付の取り違えは、記憶の更新がうまくいっていないサインです。",
+    train:["日めくりカレンダーを本人がめくる、終わった日に×をつけるなどを朝の習慣にする","新聞やテレビの日付・季節の話題を食事中の会話に取り入れる","ごみ出しやデイサービスなど曜日ごとの予定を表にして目に付く場所に貼る","日付と曜日が大きく表示される時計を置く"]},
+ 3:{fn:"場所の見当識、空間の把握",
+    region:["海馬・海馬傍回","頭頂葉（楔前部）","後部帯状回"],
+    why:"海馬と海馬傍回は「自分がどこにいるか」を地図のように保持します。頭頂葉は周囲の空間を把握する役割を持ちます。この項目の失点は、道に迷う、外出先で混乱するといった生活上の困りごとにつながりやすくなります。",
+    train:["散歩のときに、曲がり角や目印になる建物を声に出して確認しながら歩く","地図や路線図を一緒に見て、行き先や道順を話してから出かける","トイレや寝室のドアに文字や絵の目印を付け、迷いにくい環境をつくる"]},
+ 4:{fn:"即時記憶（聞いた言葉をその場で保つ力）、注意の集中",
+    region:["前頭前野背外側部","左下頭頂小葉（縁上回）","左上側頭回（聴覚性言語の理解）"],
+    why:"聞いた言葉を頭の中で繰り返して保つ「音韻ループ」が働きます。この段階でつまずく場合は、記憶より前に、注意の集中や聴力、言語の理解に問題がある可能性も考えます。",
+    train:["買い物に行く前に、メモを見ずに品物を3つ言ってから出かける","電話番号や伝言を聞いたら、メモする前に一度声に出して復唱する","新聞のコラムや本を毎日数分音読する","補聴器の調整など、聞こえの問題は先に解決しておく"]},
+ 5:{fn:"計算、作業記憶（ワーキングメモリ）、注意の持続",
+    region:["前頭前野背外側部","頭頂間溝・左角回"],
+    why:"引き算の答えを覚えておきながら次の計算を進めるため、作業記憶と注意を同時に使います。左角回は数の知識の取り出しに関わり、ここが傷むと計算障害（失算）が起こります。",
+    train:["買い物でおつりや合計金額を先に暗算してからレジで確かめる","料理の分量を人数に合わせて計算する（2人分を3人分に、など）","家計簿をつける、そろばんや計算ドリルを楽しめる範囲で続ける"]},
+ 6:{fn:"作業記憶（情報を頭の中で操作する力）",
+    region:["前頭前野背外側部","頭頂葉（後部頭頂皮質）"],
+    why:"数字を覚えるだけでなく、頭の中で並べ替える必要があり、遂行機能の中心となる前頭前野の働きをよく反映します。脳血管性認知症や前頭葉の機能低下で落ちやすい項目です。",
+    train:["料理で複数の工程を段取りする（煮物をしながら汁物を作る、など）","歩きながらしりとりや「3の倍数で手をたたく」をする二重課題（コグニサイズ）","トランプの「7並べ」や将棋、囲碁など、先を読みながら遊ぶゲーム"]},
+ 7:{fn:"近時記憶（エピソード記憶）の保持と再生",
+    region:["海馬・嗅内皮質","パペッツ回路（乳頭体・視床前核・帯状回）","前頭葉（思い出す手がかりの検索）"],
+    why:"HDS-Rの中で、アルツハイマー型認知症を最もよく見分ける項目です。ヒントで思い出せるなら取り出しの障害（前頭葉・皮質下）、ヒントでも出ないなら覚え込みの障害（海馬）が疑われます。",
+    train:["夕方に「3行日記」をつけ、その日の出来事を自分の言葉で思い出す","眼鏡、財布、鍵などの置き場所を決め、「定位置に戻す」を習慣にする","予定はメモやホワイトボードにまとめ、思い出す手がかりを生活に組み込む","テレビや本の内容を、家族にあとで話して聞かせる"]},
+ 8:{fn:"視覚性記憶、物の認知と呼称",
+    region:["後頭葉・下側頭葉（物を見て認識する経路）","右側頭葉内側・海馬（形や絵の記憶）","左側頭葉（物の名前の想起）"],
+    why:"見た物を認識し、名前と結びつけて覚え、後で思い出す課題です。聞いて覚える問4・問7とは違う経路を使うため、両方の結果を比べると記憶障害が言葉に偏るのか、見た物にも及ぶのかが分かります。",
+    train:["トランプの神経衰弱や間違い探しなど、見て覚える遊び","外出先で見た物を、帰宅後に家族へ写真を見せながら説明する","冷蔵庫を開けて中身を見た後、閉めてから何があったか思い出してみる"]},
+ 9:{fn:"語の想起（意味記憶）、言葉の流暢性、遂行機能",
+    region:["左側頭葉（前部・外側：言葉の意味の記憶）","前頭前野（言葉を探す戦略と切り替え）"],
+    why:"「野菜」のように仲間の言葉を挙げる課題は、言葉の意味の倉庫である側頭葉と、効率よく探す前頭葉の両方を使います。最初は勢いよく出ても途中で止まる場合は、前頭葉の検索戦略の低下が疑われます。",
+    train:["しりとりや「花の名前」「駅の名前」など、野菜以外のテーマで言葉集めをする","献立を一緒に考え、使う食材を挙げる","家族や友人との会話、手紙、俳句・川柳づくりなど、言葉を使う時間を増やす"]}
+};
+
+/* ---------- 得点 ---------- */
+const v=k=>S[k]==null?0:S[k];
+function vegScore(n){return Math.max(0,Math.min(5,n-5));}
+function scores(){
+  return {
+    1:v("q1"),2:v("q2y")+v("q2m")+v("q2d")+v("q2w"),3:v("q3"),
+    4:v("q4a")+v("q4b")+v("q4c"),
+    5:S.q5a===1?1+v("q5b"):0,
+    6:S.q6a===1?1+v("q6b"):0,
+    7:v("q7a")+v("q7b")+v("q7c"),
+    8:[0,1,2,3,4].reduce((a,i)=>a+v("q8_"+i),0),
+    9:vegScore(S.veg.length)};
+}
+function isCut(r){return r.cutBy&&S[r.cutBy]===0;}
+function qAnswered(q){
+  if(q.custom==="veg")return S.q9done;
+  return q.rows.every(r=>S[r.k]!=null||isCut(r));
+}
+function progress(){
+  let done=0,all=0;
+  SUBKEYS.forEach(r=>{all++;if(S[r.k]!=null||isCut(r))done++;});
+  all++;if(S.q9done)done++;
+  return {done,all};
+}
+
+/* ---------- 描画 ---------- */
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function segHTML(r,label){
+  return '<div class="seg" role="group" aria-label="'+esc(label)+'">'+r.opts.map(([val,txt,pt])=>
+    '<button type="button" data-k="'+r.k+'" data-v="'+val+'" aria-pressed="false">'+txt+'<span>'+pt+'点</span></button>').join("")+'</div>';
+}
+function renderQs(){
+  $("#qs").innerHTML=Q.map(q=>{
+    let body='<p class="prompt">'+esc(q.prompt)+'</p><p class="note">'+esc(q.note)+'</p>';
+    if(q.aid)body+='<div class="aid" id="aid-'+q.id+'"></div>';
+    if(q.rows){
+      body+='<div class="rows">'+q.rows.map(r=>{
+        let lab;
+        if(r.word!=null)lab='<span class="lab" data-word="'+r.word+'"></span>';
+        else if(r.obj!=null)lab='<span class="lab"><input class="obj" id="obj-'+r.obj+'" data-obj="'+r.obj+'" aria-label="品物'+(r.obj+1)+'"></span>';
+        else lab='<span class="lab num">'+esc(r.lab)+(r.sub?'<small>'+esc(r.sub)+'</small>':'')+'</span>';
+        const cut=r.cutBy?'<span class="cut" data-cut="'+r.k+'" hidden>打ち切り（0点）</span>':'';
+        return '<div class="row">'+lab+'<span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+cut+segHTML(r,"問"+q.id+" "+(r.lab||""))+'</span></div>';
+      }).join("")+'</div>';
+    }
+    if(q.custom==="veg"){
+      body+='<form class="veg-in" id="veg-form"><input id="veg-input" placeholder="野菜名を入力して Enter" autocomplete="off" aria-label="野菜名"><button class="btn" type="submit">記録</button><button class="btn ghost" type="button" id="veg-plus">名前なしで＋1</button></form>'+
+        '<div class="chips" id="veg-chips" aria-live="polite"></div>'+
+        '<div class="vegcount"><span><span class="big num" id="veg-n">0</span> 個</span><span class="num" id="veg-pt"></span>'+
+        '<label class="check" for="veg-done"><input type="checkbox" id="veg-done"> 回答を締め切った</label></div>';
+    }
+    return '<article class="q" id="q'+q.id+'"><div class="no num">'+q.id+'</div><div class="head"><h3>'+esc(q.title)+'</h3><span class="pts num"><b data-qs="'+q.id+'">0</b> / '+q.max+'点</span></div><div class="body">'+body+'</div></article>';
+  }).join("");
+}
+
+function sync(){
+  // 打ち切り時は値を消す
+  ["q5b","q6b"].forEach(k=>{const r=SUBKEYS.find(x=>x.k===k);if(isCut(r))S[k]=null;});
+  document.querySelectorAll(".seg button").forEach(b=>{
+    const k=b.dataset.k,on=S[k]!=null&&String(S[k])===b.dataset.v;
+    b.setAttribute("aria-pressed",on?"true":"false");
+    const r=SUBKEYS.find(x=>x.k===k);b.disabled=isCut(r);
+  });
+  document.querySelectorAll("[data-cut]").forEach(el=>{el.hidden=!isCut(SUBKEYS.find(x=>x.k===el.dataset.cut));});
+  const W=WORDS[S.set];
+  document.querySelectorAll("[data-word]").forEach(el=>{
+    const i=+el.dataset.word,isRecall=el.closest("#q7");
+    el.innerHTML=esc(W[i])+(isRecall?'<small>ヒント：'+HINTS[i]+'</small>':'');
+  });
+  document.querySelectorAll("[data-obj]").forEach(el=>{if(document.activeElement!==el)el.value=S.obj[+el.dataset.obj];});
+  $("#f-name").value=S.name;$("#f-date").value=S.date;$("#f-birth").value=S.birth;
+
+  // 補助情報
+  const ex=S.date?new Date(S.date+"T00:00"):new Date();
+  $("#aid-2").innerHTML='正答：<b class="num">'+ex.getFullYear()+'年 '+(ex.getMonth()+1)+'月 '+ex.getDate()+'日（'+DOW[ex.getDay()]+'曜日）</b>　<span class="note">検査日から表示</span>';
+  if(S.birth){
+    const b=new Date(S.birth+"T00:00");let age=ex.getFullYear()-b.getFullYear();
+    if(ex.getMonth()<b.getMonth()||(ex.getMonth()===b.getMonth()&&ex.getDate()<b.getDate()))age--;
+    $("#aid-1").innerHTML='満年齢 <b class="num">'+age+'歳</b>　正解とする範囲：<b class="num">'+(age-2)+'〜'+(age+2)+'歳</b>';
+  }else $("#aid-1").innerHTML='上の「生年月日」を入れると、正解とする年齢の範囲を表示します。';
+  $("#aid-4").innerHTML='<span style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center">使用する系列 <span class="switch" role="group" aria-label="系列">'+
+    ['A','B'].map(s=>'<button type="button" data-set="'+s+'" aria-pressed="'+(S.set===s)+'">'+WORDS[s].join("・")+'</button>').join("")+'</span></span>';
+
+  // 野菜
+  $("#veg-chips").innerHTML=S.veg.length?S.veg.map((n,i)=>'<button type="button" class="chip" data-del="'+i+'" title="クリックで削除"><i class="num">'+(i+1)+'</i>'+esc(n)+'</button>').join(""):'<span class="note">まだ記録がありません</span>';
+  $("#veg-n").textContent=S.veg.length;
+  $("#veg-pt").textContent="→ "+vegScore(S.veg.length)+"点";
+  $("#veg-done").checked=S.q9done;
+
+  // 集計
+  const sc=scores(),total=Object.values(sc).reduce((a,b)=>a+b,0),pg=progress();
+  Q.forEach(q=>{document.querySelector('[data-qs="'+q.id+'"]').textContent=sc[q.id];});
+  $("#l-total").textContent=total;
+  $("#l-prog").style.width=(pg.done/pg.all*100)+"%";
+  $("#l-mini").textContent="採点済み "+pg.done+" / "+pg.all;
+  $("#l-table").innerHTML=Q.map(q=>'<tr class="'+(qAnswered(q)?"":"pending")+'"><td>'+q.id+'. '+q.title+'</td><td>'+(qAnswered(q)?sc[q.id]:"–")+' / '+q.max+'</td></tr>').join("");
+  const pill=pillHTML(total,pg);
+  $("#l-pill").innerHTML=pill;
+  renderResult(sc,total,pg,pill);
+  $("#banner").hidden=!isExample;
+}
+function pillHTML(total,pg){
+  if(pg.done<pg.all)return '<span class="pill wait">採点中（未採点 '+(pg.all-pg.done)+'）</span>';
+  return total<=20?'<span class="pill bad">20点以下：認知症の疑いあり</span>':'<span class="pill good">21点以上：疑いは低い範囲</span>';
+}
+
+function renderResult(sc,total,pg,pill){
+  $("#r-total").innerHTML=total+'<small> / 30</small>';
+  $("#r-pill").innerHTML=pill;
+  let t;
+  if(pg.done<pg.all)t="まだ採点していない項目があります。すべての項目を採点すると判定が確定します。";
+  else if(total<=20)t="カットオフ値（20点）以下です。認知症の疑いが高い範囲にあたります。この点数だけでは診断できないため、かかりつけ医やもの忘れ外来で、画像検査などを含めた評価を受けることをおすすめします。";
+  else if(total<=23)t="カットオフ値は上回っていますが、認知症でない人の平均（24点前後）よりやや低い点数です。日常生活の変化に気を配り、心配があれば早めに相談してください。軽度認知障害（MCI）の判断には、MoCA-Jなど別の検査が役立ちます。";
+  else t="認知症の疑いは低い範囲です。ただし、レビー小体型や前頭側頭型など、初期に記憶障害が目立たないタイプでは高得点になることがあります。生活の様子に変化があれば相談してください。";
+  $("#r-text").textContent=t;
+
+  const refs=[[10,"重度 10"],[15,"中等度 15"],[19,"軽度 19"],[24,"非認知症 24"]];
+  let sh='<div class="cutline" title="カットオフ 20/21"></div>';
+  for(let i=0;i<=30;i+=5)sh+='<span class="tick num" style="left:'+(i/30*100)+'%">'+i+'</span>';
+  refs.forEach(([x,l])=>sh+='<span class="ref num" style="left:'+(x/30*100)+'%">'+l+'</span>');
+  sh+='<span class="me" style="left:'+(total/30*100)+'%" aria-label="現在の得点 '+total+'点"></span>';
+  $("#scale").innerHTML=sh;
+
+  $("#prof").innerHTML=Q.map(q=>{
+    const r=sc[q.id]/q.max,col=r>=1?"var(--indigo)":r>0?"var(--warn)":"var(--bad)";
+    const ans=qAnswered(q);
+    return '<span>'+q.id+'. '+q.title+'</span><span class="bar"><i style="width:'+(ans?r*100:0)+'%;background:'+col+'"></i></span><span class="v">'+(ans?sc[q.id]:"–")+'/'+q.max+'</span>';
+  }).join("");
+
+  const order=Q.map(q=>({q,lost:q.max-sc[q.id],ratio:(q.max-sc[q.id])/q.max,ans:qAnswered(q)}))
+    .sort((a,b)=>(b.ans&&b.lost>0)-(a.ans&&a.lost>0)||b.ratio-a.ratio||a.q.id-b.q.id);
+  $("#r-train").innerHTML=order.map(({q,lost,ans})=>{
+    const B=BRAIN[q.id],flag=ans&&lost>0;
+    return '<article class="tcard'+(flag?' lost':'')+'"><header><h3>'+q.id+'. '+q.title+'</h3>'+
+      (flag?'<span class="pill bad num">−'+lost+'点</span>':ans?'<span class="pill good">満点</span>':'<span class="pill wait">未採点</span>')+'</header>'+
+      '<div class="tags">'+B.region.map(r=>'<span class="tag">'+esc(r)+'</span>').join("")+'</div>'+
+      '<p><b>'+esc(B.fn)+'</b></p>'+
+      '<div class="lbl">日常生活でできる訓練</div><ul>'+B.train.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></article>';
+  }).join("");
+
+  $("#copyfb").value=summary(sc,total,pg);
+}
+function summary(sc,total,pg){
+  const W=WORDS[S.set];
+  let s="【HDS-R 結果】\n";
+  if(S.name)s+="対象者："+S.name+"\n";
+  s+="検査日："+(S.date||"-")+"\n";
+  s+="合計："+total+" / 30点"+(pg.done<pg.all?"（未採点あり）":total<=20?"（20点以下：認知症の疑いあり）":"（21点以上）")+"\n";
+  Q.forEach(q=>{s+="  "+q.id+". "+q.title+"："+(qAnswered(q)?sc[q.id]:"未")+" / "+q.max+"\n";});
+  s+="使用した言葉："+W.join("・")+"\n物品："+S.obj.join("・")+"\n";
+  s+="野菜（"+S.veg.length+"個）："+(S.veg.join("、")||"なし")+"\n";
+  s+="※スクリーニング検査であり診断ではありません。";
+  return s;
+}
+
+function renderBrain(){
+  $("#brain-table").innerHTML='<thead><tr><th>設問</th><th>主に測る機能</th><th>関わる脳部位（責任病巣）</th><th>解説</th></tr></thead><tbody>'+
+    Q.map(q=>{const B=BRAIN[q.id];return '<tr><td>'+q.id+'. '+q.title+'</td><td>'+esc(B.fn)+'</td><td><div class="tags">'+B.region.map(r=>'<span class="tag">'+esc(r)+'</span>').join("")+'</div></td><td>'+esc(B.why)+'</td></tr>';}).join("")+'</tbody>';
+}
+
+renderQs();renderBrain();
+/* ---------- 操作 ---------- */
+function touch(){isExample=false;}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.k){const k=b.dataset.k,val=+b.dataset.v;S[k]=S[k]===val?null:val;touch();sync();return;}
+  if(b.dataset.set){S.set=b.dataset.set;touch();sync();return;}
+  if(b.dataset.del!=null){S.veg.splice(+b.dataset.del,1);touch();sync();return;}
+  if(b.dataset.tab){showTab(b.dataset.tab);return;}
+  if(b.dataset.goto){showTab(b.dataset.goto);window.scrollTo({top:0});return;}
+  if(b.dataset.sec){startTimer(+b.dataset.sec);return;}
+});
+$("#veg-form").addEventListener("submit",e=>{
+  e.preventDefault();const inp=$("#veg-input");
+  inp.value.split(/[、,，\s]+/).map(x=>x.trim()).filter(Boolean).forEach(n=>{
+    if(S.veg.includes(n)){toast("「"+n+"」はすでに記録済みです");return;}
+    S.veg.push(n);
+  });
+  inp.value="";touch();sync();inp.focus();
+});
+$("#veg-plus").addEventListener("click",()=>{S.veg.push("（記録なし）"+(S.veg.length+1));touch();sync();});
+$("#veg-done").addEventListener("change",e=>{S.q9done=e.target.checked;touch();sync();});
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset.obj!=null){S.obj[+t.dataset.obj]=t.value;touch();$("#copyfb").value=summary(scores(),Object.values(scores()).reduce((a,b)=>a+b,0),progress());}
+});
+$("#f-name").addEventListener("input",e=>{S.name=e.target.value;touch();sync();});
+$("#f-date").addEventListener("change",e=>{S.date=e.target.value;touch();sync();});
+$("#f-birth").addEventListener("change",e=>{S.birth=e.target.value;touch();sync();});
+$("#btn-new").addEventListener("click",()=>{S=blank();isExample=false;sync();showTab("test");window.scrollTo({top:0});toast("新しい検査を開始しました");});
+$("#btn-copy").addEventListener("click",()=>{
+  const ta=$("#copyfb"),txt=ta.value;
+  const fallback=()=>{ta.focus();ta.select();toast("テキストを選択しました。コピーしてください");};
+  try{navigator.clipboard.writeText(txt).then(()=>toast("コピーしました"),fallback);}catch(_){fallback();}
+});
+
+function showTab(id){
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===id?"true":"false"));
+  ["test","result","brain","guide"].forEach(t=>{$("#p-"+t).hidden=t!==id;});
+  try{history.replaceState(null,"","#"+id);}catch(_){}
+}
+
+let tid=null;
+function startTimer(sec){
+  clearInterval(tid);let left=sec;const box=$("#timer"),tv=$("#t-v");
+  box.classList.add("run");tv.textContent=left;
+  tid=setInterval(()=>{left--;tv.textContent=left>0?left:"次へ";if(left<=0){clearInterval(tid);box.classList.remove("run");}},1000);
+}
+let toT=null;
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toT);toT=setTimeout(()=>t.hidden=true,2200);}
+
+sync();
+const h=(location.hash||"").slice(1);
+if(["test","result","brain","guide"].includes(h))showTab(h);
+})();
+</script>
+
+</html>
