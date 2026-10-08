@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>HDS-R 採点シート</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Old+Mincho:wght@600;700&display=swap">
 <style>
 /* Layout: a clinic score sheet. Ruled question cards on the left, a sticky running-total ledger on the right (bottom bar on phones). Indigo ink on cool paper. */
 :root{
@@ -20,8 +17,8 @@
   --warn-soft:#FBF0DC;
   --bad:#B3322E;
   --bad-soft:#F9E3E2;
-  --f-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --f-display:"BIZ UDPMincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP","Noto Serif CJK JP",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,"Noto Sans JP","Noto Sans CJK JP",sans-serif;
   --step-0:15px; --step-1:17px; --step-2:21px; --step-3:28px; --step-4:44px;
   --radius:6px;
 }
@@ -159,6 +156,15 @@ button,input{font:inherit;color:inherit}
 .tcard p{font-size:14.5px}
 
 .brain-table-wrap{overflow-x:auto}
+.domains{display:grid;grid-template-columns:minmax(9em,14em) minmax(0,1fr) 4.5em;gap:8px 12px;align-items:center;font-size:14px}
+.domains .bar{height:12px;background:var(--paper);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.domains .bar i{display:block;height:100%}
+.domains .v{text-align:right}
+.find{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.find li{border-left:3px solid var(--warn);padding:2px 0 2px 12px;font-size:14.5px}
+.find li b{display:block;font-size:13px;color:var(--warn);letter-spacing:.04em}
+.lead{font-size:var(--step-1)}
+@media (max-width:880px){.domains{grid-template-columns:7.5em minmax(0,1fr) 3.5em}}
 .brain-table{border-collapse:collapse;width:100%;min-width:760px;background:var(--sheet);font-size:14px}
 .brain-table th,.brain-table td{border:1px solid var(--rule);padding:10px 12px;vertical-align:top;text-align:left}
 .brain-table th{background:var(--indigo-soft);color:var(--ink);font-weight:700;white-space:nowrap}
@@ -299,6 +305,16 @@ textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);backgroun
   <section id="p-brain" role="tabpanel" aria-labelledby="tab-brain" hidden>
     <div class="stack">
       <div class="prose">
+        <h2 class="h2">今回の結果から考えられる機能低下</h2>
+        <p>「検査・採点」タブで点数を取れなかった部分について、どの機能のどの段階が弱くなっているかを、失点の形から読み解きます。採点を変えると自動で書き換わります。</p>
+      </div>
+      <div class="panel stack">
+        <h3 class="h2" style="font-size:var(--step-1)">機能領域ごとの得点率</h3>
+        <div class="domains num" id="b-domains"></div>
+        <p class="lead" id="b-lead"></p>
+      </div>
+      <div class="train-list" id="b-find"></div>
+      <div class="prose">
         <h2 class="h2">各項目の責任病巣と認知機能</h2>
         <p>HDS-R の各設問が主にどの認知機能を測り、どの脳部位が関わるかをまとめました。実際の認知機能は複数の領域がネットワークとして働いて成り立つため、ここで挙げる部位は「障害されると成績が下がりやすい代表的な部位」と考えてください。どこが傷んでいるかを点数だけで決めることはできず、部位の診断には画像検査などが必要です。</p>
       </div>
@@ -371,7 +387,7 @@ textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);backgroun
     </div>
   </section>
 
-  <p class="disclaimer">このページは認知症の可能性を探るスクリーニングの補助ツールで、診断を行うものではありません。高得点でも認知症を否定できず、低得点でも認知症とは限りません。同じ話を繰り返す、物の置き場所がわからなくなるなど、これまでと違う様子が続くときは、かかりつけ医やもの忘れ外来に相談してください。入力内容はこのブラウザの中だけで扱われ、外部には送信されません。</p>
+  <p class="disclaimer">このページは認知症の可能性を探るスクリーニングの補助ツールで、診断を行うものではありません。高得点でも認知症を否定できず、低得点でも認知症とは限りません。同じ話を繰り返す、物の置き場所がわからなくなるなど、これまでと違う様子が続くときは、かかりつけ医やもの忘れ外来に相談してください。このファイルはインターネット接続なしで動作します。入力内容はこのブラウザの中だけで扱われ、外部には送信されません。</p>
 </div>
 <div class="toast" id="toast" hidden></div>
 
@@ -597,6 +613,8 @@ function renderResult(sc,total,pg,pill){
     return '<span>'+q.id+'. '+q.title+'</span><span class="bar"><i style="width:'+(ans?r*100:0)+'%;background:'+col+'"></i></span><span class="v">'+(ans?sc[q.id]:"–")+'/'+q.max+'</span>';
   }).join("");
 
+  FIND=analyze(sc);
+  renderAnalysis(sc);
   const order=Q.map(q=>({q,lost:q.max-sc[q.id],ratio:(q.max-sc[q.id])/q.max,ans:qAnswered(q)}))
     .sort((a,b)=>(b.ans&&b.lost>0)-(a.ans&&a.lost>0)||b.ratio-a.ratio||a.q.id-b.q.id);
   $("#r-train").innerHTML=order.map(({q,lost,ans})=>{
@@ -605,6 +623,7 @@ function renderResult(sc,total,pg,pill){
       (flag?'<span class="pill bad num">−'+lost+'点</span>':ans?'<span class="pill good">満点</span>':'<span class="pill wait">未採点</span>')+'</header>'+
       '<div class="tags">'+B.region.map(r=>'<span class="tag">'+esc(r)+'</span>').join("")+'</div>'+
       '<p><b>'+esc(B.fn)+'</b></p>'+
+      (FIND[q.id]&&FIND[q.id].length?'<div class="lbl">低下が疑われる機能</div><ul>'+FIND[q.id].map(f=>'<li>'+esc(f.fn)+'</li>').join("")+'</ul>':'')+
       '<div class="lbl">日常生活でできる訓練</div><ul>'+B.train.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></article>';
   }).join("");
 
@@ -619,8 +638,75 @@ function summary(sc,total,pg){
   Q.forEach(q=>{s+="  "+q.id+". "+q.title+"："+(qAnswered(q)?sc[q.id]:"未")+" / "+q.max+"\n";});
   s+="使用した言葉："+W.join("・")+"\n物品："+S.obj.join("・")+"\n";
   s+="野菜（"+S.veg.length+"個）："+(S.veg.join("、")||"なし")+"\n";
+  const fk=Object.keys(FIND);
+  if(fk.length){s+="低下が疑われる機能：\n";fk.forEach(i=>FIND[i].forEach(f=>{s+="  問"+i+" "+f.fn+"\n";}));}
   s+="※スクリーニング検査であり診断ではありません。";
   return s;
+}
+
+/* ---------- 失点の読み解き ---------- */
+let FIND={};
+const DOMAINS=[
+ {name:"見当識（時間・場所・自己）",ids:[1,2,3]},
+ {name:"注意・即時記憶・作業記憶",ids:[4,5,6]},
+ {name:"記憶（言葉と物の遅延再生）",ids:[7,8]},
+ {name:"言語・語想起",ids:[9]}];
+function analyze(sc){
+  const F={};const add=(id,fn,t)=>(F[id]=F[id]||[]).push({fn,t});
+  const W=WORDS[S.set],ABC="abc";
+  if(S.q1===0)add(1,"自己の見当識・自伝的記憶","長年使ってきた「自分の年齢」という情報を正しく取り出せていません。古い記憶は比較的保たれやすいため、見当識障害がかなり進んでいるか、質問に注意を向け続けられていない可能性があります（海馬・前頭前野・後部帯状回）。");
+  const miss2=[["q2y","年"],["q2m","月"],["q2d","日"],["q2w","曜日"]].filter(([k])=>S[k]===0).map(x=>x[1]);
+  if(miss2.length){
+    if(S.q2y!==0&&S.q2m!==0)add(2,"近時記憶による「今日」の更新","誤ったのは"+miss2.join("・")+"です。年と月は合っており、毎日変わる情報の更新が追いついていない形です。新しいことを覚え続ける近時記憶（海馬・嗅内皮質）の低下で最初に出やすいパターンです。");
+    else add(2,"時間の見当識の全般的な低下","誤ったのは"+miss2.join("・")+"です。年や月のように変化の少ない情報まで誤っており、時間の見当識の低下が広い範囲に及んでいます。記憶の更新に加えて、時間の流れを把握する後部帯状回・楔前部のネットワークの機能低下も考えられます。");
+  }
+  if(S.q3===1)add(3,"場所の自発的な想起","今いる場所を自分からは言えず、選択肢があれば選べました。場所の情報は残っているものの、自分から思い出す（想起する）力が落ちています。前頭葉による記憶の検索の弱さが考えられます。");
+  if(S.q3===0)add(3,"場所の見当識・空間の把握","選択肢があっても今いる場所を判断できませんでした。周りの様子から場所を推理し、空間の情報を保つ海馬傍回や頭頂葉（楔前部）の働きが低下している可能性があります。");
+  const miss4=[0,1,2].filter(i=>S["q4"+ABC[i]]===0).map(i=>"「"+W[i]+"」");
+  if(miss4.length)add(4,"聴覚性の即時記憶・注意の集中","その場で復唱できなかった言葉：" +miss4.join("")+"。聞いた言葉を頭の中で繰り返して保つ仕組み（音韻ループ、前頭前野背外側部・左縁上回）か、注意の集中が低下しています。聴力や言葉の理解の問題でも起こるため、まず聞こえを確認してください。覚え込めていない言葉は、問7の失点を記憶障害と判断できません。");
+  if(S.q5a===0)add(5,"計算の知識・注意の集中","最初の引き算（100−7）でつまずきました。数の知識を取り出して計算する力（左角回・頭頂間溝）か、問題に注意を向け続ける力の低下が考えられます。");
+  if(S.q5a===1&&S.q5b===0)add(5,"作業記憶（覚えながら考える力）","1回目は正解し、2回目で誤りました。計算の知識は保たれていますが、前の答え（93）を覚えておきながら次の計算をする作業記憶（前頭前野背外側部）が低下しています。");
+  if(S.q6a===0)add(6,"作業記憶の容量と操作","3桁の逆唱ができませんでした。数字を一時的に保つ容量か、それを頭の中で並べ替える操作（中央実行系）が大きく低下しています。注意の集中の低下も関わります（前頭前野背外側部・後部頭頂皮質）。");
+  if(S.q6a===1&&S.q6b===0)add(6,"作業記憶の容量","3桁はできて4桁で誤りました。頭の中で同時に扱える情報の量が少なくなっています。前頭葉の機能の軽い低下のほか、疲れや緊張でも起こります。");
+  const hintW=[],lostW=[],encW=[];
+  [0,1,2].forEach(i=>{const v7=S["q7"+ABC[i]];if(v7===1)hintW.push("「"+W[i]+"」");if(v7===0)(S["q4"+ABC[i]]===0?encW:lostW).push("「"+W[i]+"」");});
+  if(hintW.length)add(7,"記憶の検索（思い出す過程）",hintW.join("")+"はヒントで思い出せました。記憶は残っているのに自分から取り出せない「検索の障害」です。前頭葉と皮質下を結ぶ回路の機能低下で起こりやすく、脳血管性認知症などで目立ちます。");
+  if(lostW.length)add(7,"記銘・保持（覚えて蓄える過程）",lostW.join("")+"はヒントがあっても思い出せませんでした。問4では言えていたので、覚えた記憶が数分のうちに消えている「保持の障害」です。海馬・嗅内皮質の機能低下を示唆し、アルツハイマー型認知症に特徴的な形です。");
+  if(encW.length)add(7,"記憶以前の聞き取り・注意",encW.join("")+"は問4の時点で言えなかったため、記憶の段階より前の、聞き取りや注意の段階でつまずいています。");
+  const lost8=[0,1,2,3,4].filter(i=>S["q8_"+i]===0);
+  if(lost8.length){
+    let t="思い出せなかった品物："+lost8.map(i=>"「"+S.obj[i]+"」").join("")+"。見た物を覚えて取り出す視覚性記憶（下側頭葉、右側頭葉内側・海馬）の低下です。";
+    if(sc[7]<=3)t+="言葉の遅延再生（問7）も低いため、記憶の低下は耳から入る情報に限らず全般に及んでいると考えられます。";
+    else if(sc[7]>=5&&lost8.length>=2)t+="言葉の遅延再生（問7）は保たれているため、見た物の認識や視覚的な記憶に偏った低下の可能性があります。視覚認知が先に落ちるレビー小体型認知症などでもみられる形です。";
+    t+="品物は覚えていても名前が出てこない様子なら、記憶ではなく物の呼称（左側頭葉）の問題も考えます。";
+    add(8,"視覚性記憶",t);
+  }
+  if(S.q9done&&sc[9]<5){
+    const n=S.veg.length;
+    let t=n<=5?"野菜の名前は"+n+"個で止まりました。言葉の意味の記憶（意味記憶、左側頭葉）から仲間の言葉を引き出す力か、効率よく探して切り替える遂行機能（前頭前野）が低下していると考えられます。"
+             :"野菜の名前は"+n+"個で、満点（10個以上）には届きませんでした。言葉を次々に引き出す速さや持続がやや落ちています。";
+    t+="最初は出ても途中で止まる場合は前頭葉の検索の戦略、同じ言葉を繰り返す場合は保続（前頭葉）、野菜以外の言葉が混じる場合は意味記憶の障害を考えます。";
+    add(9,n<=5?"語想起（意味記憶・遂行機能）":"語想起の速さ・持続",t);
+  }
+  return F;
+}
+function renderAnalysis(sc){
+  const rows=DOMAINS.map(d=>{
+    const got=d.ids.reduce((a,i)=>a+sc[i],0),max=d.ids.reduce((a,i)=>a+Q[i-1].max,0),done=d.ids.every(i=>qAnswered(Q[i-1]));
+    return {d,got,max,r:got/max,done};
+  });
+  $("#b-domains").innerHTML=rows.map(({d,got,max,r,done})=>{
+    const col=r>=1?"var(--indigo)":r>=.6?"var(--warn)":"var(--bad)";
+    return '<span>'+esc(d.name)+'<span class="note"> 問'+d.ids.join("・")+'</span></span><span class="bar"><i style="width:'+(done?r*100:0)+'%;background:'+col+'"></i></span><span class="v">'+(done?got:"–")+' / '+max+'</span>';
+  }).join("");
+  const done=rows.filter(x=>x.done&&x.r<1).sort((a,b)=>a.r-b.r);
+  let lead;
+  if(!done.length)lead=rows.every(x=>x.done)?"すべての領域で満点です。この検査で捉えられる範囲では、明らかな機能低下は見られません。":"採点が終わった領域では失点はありません。";
+  else lead="最も得点率が低いのは「"+done[0].d.name+"」（"+Math.round(done[0].r*100)+"%）です。"+(done[0].d.ids.includes(7)?"記憶の領域が最も低い形は、海馬を中心とした障害で始まるアルツハイマー型認知症でよくみられます。":done[0].d.ids.includes(5)?"注意や作業記憶が記憶より目立って低い形は、前頭葉の機能低下（脳血管性認知症など）や、意識・覚醒の低下、うつ状態でもみられます。":"");
+  $("#b-lead").textContent=lead;
+  const ids=Q.map(q=>q.id).filter(i=>FIND[i]);
+  $("#b-find").innerHTML=ids.length?ids.map(i=>{const q=Q[i-1];return '<article class="tcard lost"><header><h3>'+q.id+'. '+esc(q.title)+'</h3><span class="pill bad num">'+sc[i]+' / '+q.max+'点</span></header><ul class="find">'+FIND[i].map(f=>'<li><b>'+esc(f.fn)+'</b>'+esc(f.t)+'</li>').join("")+'</ul></article>';}).join("")
+    :'<div class="panel"><p>失点した項目はまだありません。採点を進めると、ここに失点の読み解きが表示されます。</p></div>';
 }
 
 function renderBrain(){
