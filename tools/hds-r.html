@@ -60,7 +60,56 @@ button,input{font:inherit;color:inherit}
 
 /* test layout */
 .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
-.qs{display:flex;flex-direction:column;gap:16px;min-width:0}
+.deck{min-width:0;display:flex;flex-direction:column;gap:10px}
+.deck-nav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center}
+.navb{border:1px solid var(--rule);background:var(--sheet);border-radius:var(--radius);padding:6px 12px;cursor:pointer;font-weight:700;color:var(--indigo)}
+.navb:disabled{opacity:.35;cursor:default}
+.dots{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);background:var(--sheet);font-size:13px;cursor:pointer;padding:0}
+.dot.done{background:var(--indigo-soft);color:var(--indigo);border-color:var(--indigo-soft);font-weight:700}
+.dot[aria-current="true"]{background:var(--indigo);color:var(--sheet);border-color:var(--indigo)}
+.qs{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;align-items:flex-start;min-width:0;transition:height .25s}
+.qs::-webkit-scrollbar{display:none}
+.qs>.q{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always}
+.qfoot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:4px}
+.ledger tr[data-jump]{cursor:pointer}
+.ledger tr[data-jump]:hover td{color:var(--indigo)}
+/* brain figure */
+.brain svg{display:block;width:100%;height:auto}
+.mini-brain{margin:0;display:flex;flex-direction:column;gap:4px;border-top:1px dashed var(--rule);padding-top:10px}
+.mini-brain svg{max-width:620px}
+.mini-brain figcaption{font-size:13px;color:var(--ink-2)}
+.bn-out{fill:var(--sheet);stroke:var(--ink-2);stroke-width:1.5}
+.bn-cb{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.2}
+.bn-sulc{fill:none;stroke:var(--ink-2);stroke-width:1.2;stroke-linecap:round}
+.bn-cc{fill:var(--rule);stroke:var(--ink-2);stroke-width:.8}
+.bt{fill:var(--ink);font-size:14px;font-weight:700}
+.bt2{fill:var(--ink-2);font-size:11px}
+.rg{fill:var(--paper);stroke:var(--ink-2);stroke-width:.8;transition:fill .2s,stroke .2s}
+.rgs{fill:none;stroke:var(--rule);stroke-width:12;stroke-linecap:round;transition:stroke .2s}
+.rgs.thin{stroke-width:4}
+.rg.on{fill:var(--indigo);fill-opacity:.42;stroke:var(--indigo);stroke-width:2}
+.rgs.on{stroke:var(--indigo);stroke-opacity:.55}
+.rg.l1{fill:var(--warn);fill-opacity:.35;stroke:var(--warn)}
+.rg.l2{fill:var(--bad);fill-opacity:.45;stroke:var(--bad);stroke-width:1.5}
+.rg.l3{fill:var(--bad);fill-opacity:.7;stroke:var(--bad);stroke-width:2}
+.rgs.l1{stroke:var(--warn);stroke-opacity:.5}.rgs.l2{stroke:var(--bad);stroke-opacity:.55}.rgs.l3{stroke:var(--bad);stroke-opacity:.8}
+.rg.sel,.rgs.sel{stroke:var(--ink);stroke-width:2.5}
+.rl{fill:var(--ink);font-size:11.5px;text-anchor:middle;pointer-events:none;font-weight:700}
+.rl.sm{font-size:10px}
+.rl.mini{font-size:18px}
+.lead-line{stroke:var(--ink-2);stroke-width:.8}
+#b-fig [data-r]{cursor:pointer}
+#b-fig [data-r]:focus-visible{outline:none;stroke:var(--ink);stroke-width:3}
+.bmodes{display:flex;flex-wrap:wrap;gap:6px}
+.bmodes button{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:4px 12px;cursor:pointer;font-size:13.5px}
+.bmodes button[aria-pressed="true"]{background:var(--indigo);color:var(--sheet);border-color:var(--indigo);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2);align-items:center}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid}
+.figcap{display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.rlist{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.rlist button{all:unset;cursor:pointer;color:var(--indigo);font-weight:700;border-bottom:1px dotted var(--indigo)}
+.rlist button:focus-visible{outline:2px solid var(--indigo)}
 .q{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);padding:18px 20px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px}
 .q .no{font-family:var(--f-display);font-size:var(--step-3);line-height:1;color:var(--indigo)}
 .q .head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:baseline}
@@ -192,7 +241,7 @@ textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);backgroun
   .res-top{grid-template-columns:minmax(0,1fr)}
   .prof{grid-template-columns:7.5em minmax(0,1fr) 3em}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 <div class="wrap">
@@ -229,7 +278,15 @@ textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);backgroun
   <!-- 検査 -->
   <section id="p-test" role="tabpanel" aria-labelledby="tab-test">
     <div class="grid">
-      <div class="qs" id="qs"></div>
+      <div class="deck" id="deck">
+        <div class="deck-nav">
+          <button class="navb" type="button" id="prev" aria-label="前の問題">‹ 前へ</button>
+          <div class="dots" id="dots" role="tablist" aria-label="設問の選択"></div>
+          <button class="navb" type="button" id="next" aria-label="次の問題">次へ ›</button>
+        </div>
+        <div class="qs" id="qs" aria-label="設問。左右にスワイプして移動"></div>
+        <p class="note">左右にスワイプ、または キーボードの ← → で設問を移動できます。</p>
+      </div>
       <aside class="ledger" aria-label="得点集計">
         <div>
           <div class="lt" style="font-size:12px;letter-spacing:.08em;color:var(--ink-2)">合計得点</div>
@@ -312,6 +369,13 @@ textarea#copyfb{width:100%;min-height:10em;font:13px/1.6 var(--f-body);backgroun
         <h3 class="h2" style="font-size:var(--step-1)">機能領域ごとの得点率</h3>
         <div class="domains num" id="b-domains"></div>
         <p class="lead" id="b-lead"></p>
+      </div>
+      <div class="panel stack">
+        <h3 class="h2" style="font-size:var(--step-1)">脳機能の図解 <small>部位をクリックすると、その働きと関わる設問を表示します</small></h3>
+        <div class="bmodes" id="bmodes" role="group" aria-label="表示の切り替え"></div>
+        <figure class="brain" style="margin:0" id="b-fig"></figure>
+        <div class="legend" id="b-legend"></div>
+        <div class="figcap" id="b-figcap" aria-live="polite"></div>
       </div>
       <div class="train-list" id="b-find"></div>
       <div class="prose">
@@ -482,6 +546,83 @@ const BRAIN={
     train:["しりとりや「花の名前」「駅の名前」など、野菜以外のテーマで言葉集めをする","献立を一緒に考え、使う食材を挙げる","家族や友人との会話、手紙、俳句・川柳づくりなど、言葉を使う時間を増やす"]}
 };
 
+/* ---------- 脳の図解 ---------- */
+const RN={
+ pfc:{n:"前頭前野（背外側部）",f:"注意を向け続ける、情報を覚えながら考える（作業記憶）、記憶を探して取り出す"},
+ par:{n:"頭頂葉（頭頂間溝）",f:"空間の把握、数の大きさの操作、作業記憶の保持"},
+ smg:{n:"縁上回",f:"聞いた言葉の音を一時的に保つ（音韻ループ）"},
+ ang:{n:"角回",f:"計算の知識（九九など）の取り出し、文字や数と言葉の結びつき"},
+ stg:{n:"上側頭回",f:"耳から入った言葉の音を聞き分けて理解する"},
+ atl:{n:"側頭葉前部・外側",f:"言葉や物の意味の知識（意味記憶）"},
+ itg:{n:"下側頭回",f:"見た物が何であるかを認識する"},
+ occ:{n:"後頭葉",f:"目から入った情報を最初に処理する（視覚の入口）"},
+ hip:{n:"海馬・嗅内皮質",f:"新しい出来事を覚え込み、保っておく（記銘・保持）"},
+ phg:{n:"海馬傍回",f:"場所や景色の記憶。海馬へ情報を送る入口"},
+ pcc:{n:"後部帯状回・楔前部",f:"「いつ・どこにいるか」を自分と結びつけて把握する"},
+ papez:{n:"パペッツ回路（帯状回・視床・乳頭体・脳弓）",f:"海馬とつながって記憶を固める回路。傷むと新しいことを覚えにくくなる"}
+};
+const RID={1:["hip","pfc","pcc"],2:["hip","pcc","pfc"],3:["hip","phg","pcc","par"],4:["pfc","smg","stg"],5:["pfc","ang","par"],6:["pfc","par"],7:["hip","papez","pfc"],8:["occ","itg","hip"],9:["atl","pfc"]};
+const OUTLINE="M60 170 C40 120 70 55 140 40 C200 25 280 30 330 70 C365 98 372 145 350 175 C335 195 305 200 285 198 C270 215 240 222 215 215 C190 225 150 222 125 210 C95 205 70 195 60 170 Z";
+function brainSVG(st,big,label){
+  const cls=id=>(st[id]||"")+(big&&bRegion===id?" sel":"");
+  const ti=id=>'<title>'+RN[id].n+'</title>';
+  const tab=big?' tabindex="0" role="button"':'';
+  const E=(id,cx,cy,rx,ry)=>'<ellipse class="rg '+cls(id)+'" data-r="'+id+'" cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'"'+tab+'>'+ti(id)+'</ellipse>';
+  const L=(id,x,y,t,sm)=>(big||st[id])?'<text class="rl'+(big?(sm?' sm':''):' mini')+'" x="'+x+'" y="'+y+'">'+t+'</text>':'';
+  const base='<path class="bn-cb" d="M252 200 L276 200 L272 268 L258 268 Z"/><ellipse class="bn-cb" cx="302" cy="214" rx="46" ry="24"/><path class="bn-out" d="'+OUTLINE+'"/>';
+  const lat='<g><text class="bt" x="205" y="20" text-anchor="middle">外側面（左から見た脳）</text>'+base+
+    '<path class="bn-sulc" d="M118 172 C160 152 210 146 262 152"/><path class="bn-sulc" d="M214 36 C206 80 200 118 192 150"/>'+
+    E("pfc",112,100,46,32)+E("par",262,72,40,22)+E("smg",240,128,26,17)+E("ang",298,122,24,17)+E("stg",205,168,46,11)+E("atl",138,193,30,13)+E("itg",230,198,40,10)+E("occ",340,140,19,30)+
+    L("pfc",112,104,"前頭前野")+L("par",262,76,"頭頂間溝")+L("smg",240,132,"縁上回")+L("ang",298,126,"角回")+L("stg",205,172,"上側頭回",1)+L("atl",138,197,"側頭葉前部",1)+L("itg",230,202,"下側頭回",1)+L("occ",340,144,"後頭葉")+
+    '<text class="bt2" x="40" y="290">← 前（顔の側）</text></g>';
+  const med='<g transform="translate(420,0)"><text class="bt" x="205" y="20" text-anchor="middle">内側面（左右の間で割った断面）</text>'+base+
+    '<path class="bn-cc" d="M140 128 C170 100 250 96 285 120 C290 128 282 132 275 128 C245 110 180 112 150 134 Z"><title>脳梁</title></path>'+
+    '<path class="rgs '+cls("papez")+'" data-r="papez" d="M128 138 C138 88 230 70 282 96"'+tab+'>'+ti("papez")+'</path>'+
+    '<path class="rgs thin '+cls("papez")+'" data-r="papez" d="M214 182 C258 162 258 122 222 120 C194 120 182 148 188 166">'+ti("papez")+'</path>'+
+    '<ellipse class="rg '+cls("papez")+'" data-r="papez" cx="215" cy="145" rx="22" ry="13">'+ti("papez")+'</ellipse>'+
+    '<circle class="rg '+cls("papez")+'" data-r="papez" cx="188" cy="172" r="6">'+ti("papez")+'</circle>'+
+    E("pcc",292,104,30,24)+E("hip",232,188,36,9)+E("phg",244,205,36,7)+E("occ",342,150,19,30)+
+    (big||st.papez?'<text class="rl'+(big?'':' mini')+'" x="168" y="'+(big?84:80)+'">帯状回</text><text class="rl'+(big?' sm':' mini')+'" x="215" y="'+(big?149:151)+'">視床</text><text class="rl'+(big?' sm':' mini')+'" x="'+(big?160:150)+'" y="'+(big?176:178)+'">乳頭体</text>':'')+
+    (big||st.pcc?'<text class="rl'+(big?' sm':' mini')+'" x="292" y="'+(big?101:98)+'">後部帯状回</text><text class="rl'+(big?' sm':' mini')+'" x="292" y="'+(big?114:118)+'">楔前部</text>':'')+
+    L("hip",232,192,"海馬",1)+
+    (big||st.phg?'<line class="lead-line" x1="236" y1="211" x2="212" y2="226"/><text class="rl'+(big?' sm':' mini')+'" x="'+(big?190:170)+'" y="'+(big?236:242)+'">海馬傍回・嗅内皮質</text>':'')+
+    L("occ",342,154,"後頭葉")+
+    '<text class="bt2" x="40" y="290">← 前（顔の側）</text></g>';
+  return '<svg viewBox="0 0 830 300" role="img" aria-label="'+esc(label)+'">'+lat+med+'</svg>';
+}
+let bMode="lost",bRegion=null;
+function regionWeights(sc){
+  const w={};
+  Q.forEach(q=>{if(!qAnswered(q))return;const lost=(q.max-sc[q.id])/q.max;if(lost>0)RID[q.id].forEach(r=>w[r]=(w[r]||0)+lost);});
+  return w;
+}
+function renderFigure(sc){
+  const w=regionWeights(sc),anyLost=Object.keys(w).length>0;
+  $("#bmodes").innerHTML='<button type="button" data-bmode="lost" aria-pressed="'+(bMode==="lost")+'">今回の失点</button>'+Q.map(q=>'<button type="button" data-bmode="'+q.id+'" aria-pressed="'+(bMode==q.id)+'">問'+q.id+' '+esc(q.title.replace(/（.*）/,""))+'</button>').join("");
+  const st={};let label,cap="";
+  if(bMode==="lost"){
+    Object.entries(w).forEach(([r,v])=>st[r]=v>=1.5?"l3":v>=.75?"l2":"l1");
+    label="今回失点した設問に関わる脳部位の図。色が濃いほど多くの失点に関わる";
+    $("#b-legend").innerHTML=anyLost?'<span><i class="sw" style="background:var(--warn);opacity:.6;border-color:var(--warn)"></i>少し関わる</span><span><i class="sw" style="background:var(--bad);opacity:.55;border-color:var(--bad)"></i>関わる</span><span><i class="sw" style="background:var(--bad);border-color:var(--bad)"></i>強く関わる</span>':'';
+    if(anyLost){
+      const list=Object.entries(w).sort((a,b)=>b[1]-a[1]);
+      cap='<p>失点した設問ごとに「失点の割合」を関わる部位へ足し合わせ、色の濃さで表しました。前頭前野は多くの設問に関わるため色が付きやすい点に注意してください。</p><ul class="rlist">'+
+        list.map(([r])=>{const qs=Q.filter(q=>RID[q.id].includes(r)&&qAnswered(q)&&sc[q.id]<q.max).map(q=>"問"+q.id);return '<li><button type="button" data-region="'+r+'">'+esc(RN[r].n)+'</button>：'+esc(RN[r].f)+'<span class="note">（失点：'+qs.join("・")+'）</span></li>';}).join("")+'</ul>';
+    }else cap='<p>失点した設問がないため、色の付いた部位はありません。上の設問ボタンを押すと、その設問に関わる部位を表示します。</p>';
+  }else{
+    const q=Q[bMode-1];RID[q.id].forEach(r=>st[r]="on");
+    label="問"+q.id+"に関わる脳部位："+RID[q.id].map(r=>RN[r].n).join("、");
+    $("#b-legend").innerHTML='<span><i class="sw" style="background:var(--indigo);opacity:.5;border-color:var(--indigo)"></i>問'+q.id+'に関わる部位</span>';
+    cap='<p><b>問'+q.id+' '+esc(q.title)+'</b>：'+esc(BRAIN[q.id].fn)+'</p><ul class="rlist">'+RID[q.id].map(r=>'<li><button type="button" data-region="'+r+'">'+esc(RN[r].n)+'</button>：'+esc(RN[r].f)+'</li>').join("")+'</ul>';
+  }
+  if(bRegion){
+    const qs=Q.filter(q=>RID[q.id].includes(bRegion)).map(q=>"問"+q.id+" "+q.title);
+    cap='<div class="aid"><b>'+esc(RN[bRegion].n)+'</b>　'+esc(RN[bRegion].f)+'<br><span class="note">この部位が関わる設問：'+esc(qs.join("、"))+'</span></div>'+cap;
+  }
+  $("#b-fig").innerHTML=brainSVG(st,true,label)+'<figcaption class="note">左右の脳の違いは省いた模式図です。言葉に関わる縁上回・角回・上側頭回・側頭葉前部は、多くの人で左側が中心になります。</figcaption>';
+  $("#b-figcap").innerHTML=cap;
+}
+
 /* ---------- 得点 ---------- */
 const v=k=>S[k]==null?0:S[k];
 function vegScore(n){return Math.max(0,Math.min(5,n-5));}
@@ -535,6 +676,9 @@ function renderQs(){
         '<div class="vegcount"><span><span class="big num" id="veg-n">0</span> 個</span><span class="num" id="veg-pt"></span>'+
         '<label class="check" for="veg-done"><input type="checkbox" id="veg-done"> 回答を締め切った</label></div>';
     }
+    const rs=RID[q.id],st={};rs.forEach(r=>st[r]="on");
+    body+='<figure class="mini-brain brain">'+brainSVG(st,false,"問"+q.id+"に関わる脳部位："+rs.map(r=>RN[r].n).join("、"))+'<figcaption>関わる脳部位：'+rs.map(r=>esc(RN[r].n)).join("、")+'</figcaption></figure>';
+    body+='<div class="qfoot"><button class="btn ghost" type="button" data-step="-1"'+(q.id===1?' disabled':'')+'>‹ 前の問題</button>'+(q.id<9?'<button class="btn" type="button" data-step="1">次の問題 ›</button>':'<button class="btn" type="button" data-goto="result">結果を見る</button>')+'</div>';
     return '<article class="q" id="q'+q.id+'"><div class="no num">'+q.id+'</div><div class="head"><h3>'+esc(q.title)+'</h3><span class="pts num"><b data-qs="'+q.id+'">0</b> / '+q.max+'点</span></div><div class="body">'+body+'</div></article>';
   }).join("");
 }
@@ -579,10 +723,11 @@ function sync(){
   $("#l-total").textContent=total;
   $("#l-prog").style.width=(pg.done/pg.all*100)+"%";
   $("#l-mini").textContent="採点済み "+pg.done+" / "+pg.all;
-  $("#l-table").innerHTML=Q.map(q=>'<tr class="'+(qAnswered(q)?"":"pending")+'"><td>'+q.id+'. '+q.title+'</td><td>'+(qAnswered(q)?sc[q.id]:"–")+' / '+q.max+'</td></tr>').join("");
+  $("#l-table").innerHTML=Q.map(q=>'<tr data-jump="'+(q.id-1)+'" class="'+(qAnswered(q)?"":"pending")+'"><td>'+q.id+'. '+q.title+'</td><td>'+(qAnswered(q)?sc[q.id]:"–")+' / '+q.max+'</td></tr>').join("");
   const pill=pillHTML(total,pg);
   $("#l-pill").innerHTML=pill;
   renderResult(sc,total,pg,pill);
+  updateDeck();
   $("#banner").hidden=!isExample;
 }
 function pillHTML(total,pg){
@@ -691,6 +836,7 @@ function analyze(sc){
   return F;
 }
 function renderAnalysis(sc){
+  renderFigure(sc);
   const rows=DOMAINS.map(d=>{
     const got=d.ids.reduce((a,i)=>a+sc[i],0),max=d.ids.reduce((a,i)=>a+Q[i-1].max,0),done=d.ids.every(i=>qAnswered(Q[i-1]));
     return {d,got,max,r:got/max,done};
@@ -715,6 +861,48 @@ function renderBrain(){
 }
 
 renderQs();renderBrain();
+/* ---------- 一問ずつのスワイプ ---------- */
+let cur=0;
+const track=$("#qs");
+$("#dots").innerHTML=Q.map((q,i)=>'<button type="button" class="dot num" data-jump="'+i+'" role="tab" aria-label="問'+q.id+' '+q.title+'">'+q.id+'</button>').join("");
+function gapPx(){return parseFloat(getComputedStyle(track).columnGap)||16;}
+function fitHeight(){const c=track.children[cur];if(c)track.style.height=c.offsetHeight+"px";}
+function updateDeck(){
+  document.querySelectorAll(".dot").forEach((d,i)=>{d.setAttribute("aria-current",i===cur?"true":"false");d.setAttribute("aria-selected",i===cur?"true":"false");d.classList.toggle("done",qAnswered(Q[i]));});
+  $("#prev").disabled=cur===0;$("#next").disabled=cur===Q.length-1;
+  fitHeight();
+}
+function go(i){
+  cur=Math.max(0,Math.min(Q.length-1,i));
+  track.scrollTo({left:cur*(track.clientWidth+gapPx())});
+  updateDeck();
+  const top=$("#deck").getBoundingClientRect().top;
+  if(top<0)$("#deck").scrollIntoView({block:"start"});
+}
+let scT=null;
+track.addEventListener("scroll",()=>{
+  clearTimeout(scT);
+  scT=setTimeout(()=>{const i=Math.round(track.scrollLeft/(track.clientWidth+gapPx()));if(i!==cur){cur=i;updateDeck();const top=$("#deck").getBoundingClientRect().top;if(top<0)$("#deck").scrollIntoView({block:"start"});}},90);
+});
+window.addEventListener("resize",()=>{track.scrollLeft=cur*(track.clientWidth+gapPx());fitHeight();});
+$("#prev").addEventListener("click",()=>go(cur-1));
+$("#next").addEventListener("click",()=>go(cur+1));
+document.addEventListener("keydown",e=>{
+  if($("#p-test").hidden)return;
+  const t=e.target;if(t.closest&&t.closest("input,textarea,select"))return;
+  if(e.key==="ArrowRight"){e.preventDefault();go(cur+1);}
+  else if(e.key==="ArrowLeft"){e.preventDefault();go(cur-1);}
+});
+document.addEventListener("click",e=>{
+  const j=e.target.closest("[data-jump]");if(j){if($("#p-test").hidden)showTab("test");go(+j.dataset.jump);return;}
+  const st=e.target.closest("[data-step]");if(st){go(cur+(+st.dataset.step));return;}
+  const bm=e.target.closest("[data-bmode]");if(bm){bMode=bm.dataset.bmode==="lost"?"lost":+bm.dataset.bmode;bRegion=null;renderFigure(scores());return;}
+  const rg=e.target.closest("#b-fig [data-r],[data-region]");if(rg){const id=rg.dataset.r||rg.dataset.region;bRegion=bRegion===id?null:id;renderFigure(scores());return;}
+});
+document.addEventListener("keydown",e=>{
+  const rg=e.target.closest&&e.target.closest("#b-fig [data-r]");
+  if(rg&&(e.key==="Enter"||e.key===" ")){e.preventDefault();bRegion=bRegion===rg.dataset.r?null:rg.dataset.r;renderFigure(scores());const again=document.querySelector('#b-fig [data-r="'+rg.dataset.r+'"]');if(again)again.focus();}
+});
 /* ---------- 操作 ---------- */
 function touch(){isExample=false;}
 document.addEventListener("click",e=>{
@@ -743,7 +931,7 @@ document.addEventListener("input",e=>{
 $("#f-name").addEventListener("input",e=>{S.name=e.target.value;touch();sync();});
 $("#f-date").addEventListener("change",e=>{S.date=e.target.value;touch();sync();});
 $("#f-birth").addEventListener("change",e=>{S.birth=e.target.value;touch();sync();});
-$("#btn-new").addEventListener("click",()=>{S=blank();isExample=false;sync();showTab("test");window.scrollTo({top:0});toast("新しい検査を開始しました");});
+$("#btn-new").addEventListener("click",()=>{S=blank();isExample=false;bMode="lost";bRegion=null;sync();showTab("test");go(0);window.scrollTo({top:0});toast("新しい検査を開始しました");});
 $("#btn-copy").addEventListener("click",()=>{
   const ta=$("#copyfb"),txt=ta.value;
   const fallback=()=>{ta.focus();ta.select();toast("テキストを選択しました。コピーしてください");};
@@ -753,6 +941,7 @@ $("#btn-copy").addEventListener("click",()=>{
 function showTab(id){
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===id?"true":"false"));
   ["test","result","brain","guide"].forEach(t=>{$("#p-"+t).hidden=t!==id;});
+  if(id==="test")requestAnimationFrame(()=>{track.scrollLeft=cur*(track.clientWidth+gapPx());fitHeight();});
   try{history.replaceState(null,"","#"+id);}catch(_){}
 }
 
