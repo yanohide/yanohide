@@ -144,14 +144,7 @@ export default function HomePage() {
             代表者
           </p>
           <p className="portfolio-script-title mb-5 text-center text-lg font-bold leading-snug text-blue-900 md:text-xl">
-            ヤノヒデ｜{PORTFOLIO.name}
-          </p>
-          <p className="mb-4 text-base font-bold leading-relaxed text-slate-700 md:mb-5">
-            介護リハビリ18年{" "}
-            <span className="text-blue-700">×</span>{" "}
-            AIクライアントワーク{" "}
-            <span className="text-blue-700">×</span>{" "}
-            100以上の案件対応
+            {PORTFOLIO.name}
           </p>
           <ProfileMangaEmbed />
           <div className="mx-auto mb-4 w-full max-w-md md:mb-5">
