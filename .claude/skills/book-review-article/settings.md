@@ -27,6 +27,11 @@ AI がこのファイルを読んで、筆者の立場・文体・アフィリ�
 ### Audible 無料体験
 （ここにURL）
 
+### 動画配信（映像化作品のとき使う）
+- Amazon Prime Video：（ここにURL）
+- U-NEXT：（ここにURL）
+- Netflix：（ここにURL。Netflixは公式のアフィリエイトがないため、通常リンクで可）
+
 ### Amazon 商品リンクの作り方（任意）
 （例：https://www.amazon.co.jp/dp/<ASIN>?tag=<トラッキングID>）
 
