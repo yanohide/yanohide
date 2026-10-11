@@ -1,0 +1,21 @@
+"""書評記事の各段落（空行で区切られた1行）が120字未満かを確認する。
+
+Usage: python3 check_paragraph_length.py articles/book-review/<slug>.md
+表・見出し・HTMLコメントは対象外。リンクURLと太字記号は字数に含めない。
+"""
+import re
+import sys
+
+text = open(sys.argv[1], encoding="utf-8").read().split("\n---\n", 1)[-1]
+over = 0
+for line in text.split("\n"):
+    s = line.strip()
+    if not s or s.startswith(("|", "#", "<!--")):
+        continue
+    body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
+    body = re.sub(r"^[-*>]\s*|\*\*", "", body)
+    if len(body) >= 120:
+        over += 1
+        print(f"{len(body)}字: {body[:40]}…")
+print("OK" if over == 0 else f"{over}か所が120字以上")
+sys.exit(1 if over else 0)
