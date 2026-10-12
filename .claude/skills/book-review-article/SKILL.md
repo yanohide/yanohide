@@ -11,7 +11,7 @@ description: 本のタイトルを受け取り、小説／非小説（エッセ�
 ## 最初に必ずやること
 
 1. 同じフォルダの `settings.md` を読む（筆者のプロフィール・一人称・文体・アフィリエイトリンク）
-2. 同じフォルダの `template.md` を読む（記事の型。**見出し構成はこれに従う**。`{{ }}` を埋め、`KINDLE_URL` / `AUDIBLE_URL` / `VIDEO_URL` / `AMAZON_URL` は settings.md の値に置き換える。`{{映像化作品のみ}}` の行は映像化がなければ削除。front matter はファイルの1行目から始める）
+2. 同じフォルダの `template.md` を読む（記事の型。**見出し構成はこれに従う**。`{{ }}` を埋め、`KINDLE_URL` / `AUDIBLE_URL` / `VIDEO_URL` / `PRIME_URL` / `AMAZON_URL` は settings.md の値に置き換える。`{{映像化作品のみ}}` の行は映像化がなければ削除。front matter はファイルの1行目から始める）
 3. `settings.md` のアフィリエイトURLが空欄なら、質問はせずに `【アフィリエイトURLを入れる】` のプレースホルダーのまま進める（最後に一言伝える）
 
 ## 受け取るもの
