@@ -31,6 +31,9 @@ AI がこのファイルを読んで、筆者の立場・文体・アフィリ�
 - Amazon Prime Video：（ここにURL）
 - U-NEXT：（ここにURL）
 - Netflix：（ここにURL。Netflixは公式のアフィリエイトがないため、通常リンクで可）
+- FOD（FODプレミアム）：（ここにURL）
+- Hulu：（ここにURL）
+- DMM TV：（ここにURL）
 
 ### Amazon 商品リンクの作り方（任意）
 （例：https://www.amazon.co.jp/dp/<ASIN>?tag=<トラッキングID>）
