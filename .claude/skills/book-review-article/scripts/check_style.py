@@ -107,4 +107,26 @@ for f, s in dups[:8]:
 if dups:
     warn += 1
 
+# 6. 他記事と同じ見出し（定番見出しは除く）
+STANDARD = {"はじめに", "まとめ", "よくある質問", "参考情報", "本の概要", "あらすじ", "この本の内容",
+            "主な登場人物", "この本に登場するキーワード", "この記事を書いた人", "こんな人に読んでほしい"}
+def heads(text):
+    return {re.sub(r"^#+\s*", "", l).strip() for l in text.split("\n") if re.match(r"^#{2,3}\s", l)} - STANDARD
+my_heads = heads(raw)
+same_heads = []
+for other in glob.glob(os.path.join(os.path.dirname(path), "*.md")):
+    if os.path.abspath(other) != os.path.abspath(path):
+        same_heads += [(os.path.basename(other), h) for h in my_heads & heads(open(other, encoding="utf-8").read())]
+print(f"■ 他記事と同じ見出し：{len(same_heads)}件")
+for f, h in same_heads[:8]:
+    print(f"   {f}：{h}")
+if same_heads:
+    warn += 1
+
+# 7. 書いた人・要確認
+print("■ 「この記事を書いた人」：" + ("あり" if "この記事を書いた人" in raw else "なし（追加する）"))
+if "この記事を書いた人" not in raw:
+    warn += 1
+print(f"■ 【要確認】の残り：{raw.count('【要確認')}件（公開前に本人が解消）")
+
 print("STYLE OK" if warn == 0 else f"STYLE 要見直し {warn}項目")
