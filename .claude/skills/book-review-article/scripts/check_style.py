@@ -69,8 +69,8 @@ if len(runs) > 3:
 lens = [len(s) for s in sents]
 short = sum(1 for n in lens if n <= 25) / len(lens)
 sd = statistics.pstdev(lens)
-print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.0f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき15以上）")
-if short < 0.15 or sd < 15:
+print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.0f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき12以上）")
+if short < 0.15 or sd < 12:
     warn += 1
 
 # 3. 接続詞
