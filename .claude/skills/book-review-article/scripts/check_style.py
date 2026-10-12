@@ -20,7 +20,7 @@ raw = open(path, encoding="utf-8").read()
 body = raw.split("\n---\n", 1)[-1]
 
 # 誘導ボックス・プライムの囲み・参考情報・署名など、全記事共通の部分は除く
-for marker in ("👇", "💡 **Kindle", "🎁", "### 参考情報"):
+for marker in ("👇", "💡 **Kindle", "🎁", "### この記事を書いた人", "### 参考情報"):
     body = re.sub(rf"{re.escape(marker)}.*?(?=\n---\n|\Z)", "", body, flags=re.S)
 
 
@@ -97,7 +97,7 @@ for other in glob.glob(os.path.join(os.path.dirname(path), "*.md")):
     if os.path.abspath(other) == os.path.abspath(path):
         continue
     o = open(other, encoding="utf-8").read().split("\n---\n", 1)[-1]
-    for m in ("👇", "💡 **Kindle", "🎁", "### 参考情報"):
+    for m in ("👇", "💡 **Kindle", "🎁", "### この記事を書いた人", "### 参考情報"):
         o = re.sub(rf"{re.escape(m)}.*?(?=\n---\n|\Z)", "", o, flags=re.S)
     common = mine & set(sentences_of(o))
     dups += [(os.path.basename(other), s) for s in common]
