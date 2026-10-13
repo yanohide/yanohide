@@ -10,7 +10,7 @@ text = open(sys.argv[1], encoding="utf-8").read().split("\n---\n", 1)[-1]
 over = 0
 for line in text.split("\n"):
     s = line.strip()
-    if not s or s.startswith(("|", "#", "<!--")):
+    if not s or s.startswith(("|", "#", "<!--", "![")):
         continue
     body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
     body = re.sub(r"^[-*>]\s*|\*\*", "", body)

@@ -28,7 +28,7 @@ def sentences_of(text):
     lines = []
     for line in text.split("\n"):
         s = line.strip()
-        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---")):
+        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![")):
             continue
         s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
         s = re.sub(r"^([-*]|\d+\.)\s*|\*\*", "", s)
