@@ -5,7 +5,7 @@ Usage: python3 check_style.py articles/book-review/<slug>.md
 見るもの（本文のみ。表・見出し・引用・リンク・誘導ボックス・参考情報は対象外）:
   1. 文末の単調さ  … 同じ文末が3文以上続く箇所
   2. 文の長さ      … 短文（25字以下）の割合と、長さのばらつき
-  3. 接続詞        … 「また」「さらに」などで始まる文の数
+  3. 接続詞        … 「しかし」「また」などで始まる文が、見出しごとに1個までか
   4. 定型表現      … AIの文章に多い決まり文句
   5. 他記事との重複 … 他の書評記事とまったく同じ文（共通の誘導ボックス等は除く）
 """
@@ -73,16 +73,29 @@ print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{s
 if short < 0.15 or sd < 10:
     warn += 1
 
-# 3. 接続詞（原則ゼロ。1記事に2つまで）
+# 3. 接続詞（1つの見出しに1個まで）
 conj_strong = ("そして", "しかし", "けれども", "だから", "したがって", "さらに", "一方で", "このように", "そのため",
                "加えて", "ところが", "それでも", "要するに", "ちなみに", "なお、", "だけど", "それなのに")
 conj_comma = ("また", "ただ", "でも", "では", "まず", "まずは", "つまり", "むしろ", "逆に", "実は", "じつは", "それに",
               "さて", "そこで", "次に", "最後に", "すると", "じゃあ", "だが", "けれど", "とはいえ", "もっとも")
-hits = [s for s in sents if s.startswith(conj_strong) or any(s.startswith(c + "、") for c in conj_comma)]
-print(f"■ 接続詞で始まる文：{len(hits)}文（目安2以下）")
-for s in hits[:5]:
-    print(f"   {s[:30]}…")
-if len(hits) > 2:
+
+
+def is_conj(s):
+    return s.startswith(conj_strong) or any(s.startswith(c + "、") for c in conj_comma)
+
+
+sections = re.split(r"\n(?=#{2,3} )", body)
+total, over = 0, []
+for sec in sections:
+    title = sec.strip().split("\n", 1)[0][:30]
+    n = sum(1 for s in sentences_of(sec) if is_conj(s))
+    total += n
+    if n > 1:
+        over.append((title, n))
+print(f"■ 接続詞で始まる文：{total}文（目安：1つの見出しに1個まで）")
+for title, n in over:
+    print(f"   {n}個：{title}")
+if over:
     warn += 1
 
 # 4. 定型表現
