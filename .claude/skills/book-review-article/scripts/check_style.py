@@ -90,6 +90,16 @@ print("■ 定型表現：" + ("なし" if not found else "、".join(f"「{w}」
 if sum(found.values()) > 5:
     warn += 1
 
+# 4b. 感想の優等生フレーズ（きれいごとの決意表明・抽象語）
+imp = re.search(r"^## [^\n]*(?:感想|医療・介護)[^\n]*\n(.*?)\n---", body, flags=re.S | re.M)
+if imp:
+    goody = ["改めて", "気づかされ", "大切にしたい", "寄り添", "その人らしさを支え", "胸が熱く",
+             "希望を感じ", "たいものです", "ではないでしょうか", "心に刻", "忘れずにいたい"]
+    gfound = {w: imp.group(1).count(w) for w in goody if imp.group(1).count(w)}
+    print("■ 感想の優等生フレーズ：" + ("なし" if not gfound else "、".join(f"「{w}」×{n}" for w, n in gfound.items())))
+    if sum(gfound.values()) > 1:
+        warn += 1
+
 # 5. 他記事との重複
 mine = {s for s in sents if len(s) >= 25}
 dups = []
