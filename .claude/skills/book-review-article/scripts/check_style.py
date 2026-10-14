@@ -69,16 +69,20 @@ if len(runs) > 3:
 lens = [len(s) for s in sents]
 short = sum(1 for n in lens if n <= 25) / len(lens)
 sd = statistics.pstdev(lens)
-print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.0f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき12以上）")
-if short < 0.15 or sd < 12:
+print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.0f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき10以上）")
+if short < 0.15 or sd < 10:
     warn += 1
 
-# 3. 接続詞
-conj = ("また", "さらに", "そして", "したがって", "つまり", "一方で", "このように", "そのため", "加えて", "まず")
-hits = [s for s in sents if s.startswith(conj)]
-per1000 = len(hits) / max(1, sum(lens)) * 1000
-print(f"■ 接続詞で始まる文：{len(hits)}文（1,000字あたり{per1000:.1f}。目安3以下）")
-if per1000 > 3:
+# 3. 接続詞（原則ゼロ。1記事に2つまで）
+conj_strong = ("そして", "しかし", "けれども", "だから", "したがって", "さらに", "一方で", "このように", "そのため",
+               "加えて", "ところが", "それでも", "要するに", "ちなみに", "なお、", "だけど", "それなのに")
+conj_comma = ("また", "ただ", "でも", "では", "まず", "まずは", "つまり", "むしろ", "逆に", "実は", "じつは", "それに",
+              "さて", "そこで", "次に", "最後に", "すると", "じゃあ", "だが", "けれど", "とはいえ", "もっとも")
+hits = [s for s in sents if s.startswith(conj_strong) or any(s.startswith(c + "、") for c in conj_comma)]
+print(f"■ 接続詞で始まる文：{len(hits)}文（目安2以下）")
+for s in hits[:5]:
+    print(f"   {s[:30]}…")
+if len(hits) > 2:
     warn += 1
 
 # 4. 定型表現
