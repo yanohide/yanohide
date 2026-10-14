@@ -229,3 +229,42 @@ def wars():
     b.append(T(400,382,"科学と社会の関係をあらためて問い直す",17,INK,"middle"))
     save("kanamori-science-wars","two-views",svg(W,H,"".join(b)))
 wars()
+
+# 11 世界文学のアーキテクチャ：本の構成を建物に
+def wl_building():
+    W,H=800,500; slug="fukushima-ryota-world-literature-architecture"
+    b=[T(400,40,"本の構成を「建物」にたとえると（三部構成）",22,INK,"middle",700)]
+    # roof / part3
+    b.append(f'<path d="M150,190 L400,80 L650,190 Z" fill="{SOFT2}" stroke="{A2}" stroke-width="3"/>')
+    b.append(T(400,140,"第三部　思考のテーマ",18,A2,"middle",700))
+    b.append(T(400,170,"環境・絶滅・主体・制作・可塑性・不確実性・時間",15,INK,"middle"))
+    # part2 floors
+    b.append(f'<rect x="170" y="200" width="460" height="150" fill="{SOFT}" stroke="{A1}" stroke-width="3"/>')
+    b.append(T(400,240,"第二部　進化史",18,A1,"middle",700))
+    b.append(T(400,272,"国や時代をこえて、小説がどう進化してきたか",15,INK,"middle"))
+    b.append(T(400,300,"（中国の小説、日本の文学、海をめぐる物語 など）",15,MUTED,"middle"))
+    for x in (230,300,500,570): b.append(f'<rect x="{x}" y="318" width="40" height="32" fill="#fff" stroke="{A1}" stroke-width="2"/>')
+    # part1 foundation
+    b.append(f'<rect x="120" y="360" width="560" height="70" fill="#eceff3" stroke="{MUTED}" stroke-width="3"/>')
+    b.append(T(400,392,"第一部　地盤",18,INK,"middle",700))
+    b.append(T(400,418,"ゲーテの「世界文学」と、小説の古い層",15,INK,"middle"))
+    b.append(T(400,470,"土台の上に歴史の階が積まれ、その上で今の問いを考える。読む順番の目安にもなる",15,MUTED,"middle"))
+    save(slug,"structure",svg(W,H,"".join(b)))
+wl_building()
+
+# 12 小説は「変換装置」
+def wl_converter():
+    W,H=800,440; slug="fukushima-ryota-world-literature-architecture"
+    b=[T(400,40,"小説は、心や社会を「言葉」に変える装置（※イメージ図）",22,INK,"middle",700)]
+    boxes=[(40,"心の動き","社会の出来事",SOFT,A1),(300,"小説","言葉に変換する",SOFT2,A2),(560,"商品として流通","世界中の読者へ",SOFT,A1)]
+    for x,t1,t2,soft,col in boxes:
+        b.append(f'<rect x="{x}" y="110" width="200" height="130" rx="16" fill="{soft}"/>')
+        b.append(T(x+100,165,t1,19,col,"middle",700)); b.append(T(x+100,198,t2,16,INK,"middle"))
+    for x in (248,508):
+        b.append(f'<path d="M{x},175 L{x+44},175" stroke="{INK}" stroke-width="3"/><path d="M{x+36},167 L{x+46},175 L{x+36},183" fill="none" stroke="{INK}" stroke-width="3"/>')
+    b.append(f'<path d="M660,250 C660,296 140,296 140,250" fill="none" stroke="{MUTED}" stroke-width="2.5" stroke-dasharray="7 6"/><path d="M132,262 L140,248 L148,262" fill="none" stroke="{MUTED}" stroke-width="2.5"/>')
+    b.append(T(400,330,"読まれた小説が、また人の心や社会を変えていく",16,MUTED,"middle"))
+    b.append(T(400,380,"本書は、この仕組みが資本主義とともにどう育ってきたかを、",16,INK,"middle"))
+    b.append(T(400,406,"18世紀以降の「世界文学」の歴史としてたどっていく",16,INK,"middle"))
+    save(slug,"converter",svg(W,H,"".join(b)))
+wl_converter()
