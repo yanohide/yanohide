@@ -7,6 +7,7 @@ Usage: python3 check_style.py articles/book-review/<slug>.md
   2. 文の長さ      … 短文（25字以下）の割合と、長さのばらつき
   3. 接続詞        … 「しかし」「また」などで始まる文が、見出しごとに1個までか
   4. 定型表現      … AIの文章に多い決まり文句
+  3b. ひとりごと   … 本文のある見出しに（ ）のひとりごとが1つずつあるか
   5. 他記事との重複 … 他の書評記事とまったく同じ文（共通の誘導ボックス等は除く）
 """
 import glob
@@ -96,6 +97,32 @@ print(f"■ 接続詞で始まる文：{total}文（目安：1つの見出しに
 for title, n in over:
     print(f"   {n}個：{title}")
 if over:
+    warn += 1
+
+# 3b. ひとりごと（本文のある見出しに1つ、（ ）で囲んだ40〜100字の段落）
+skip_titles = ("本の概要", "よくある質問", "参考情報", "この記事を書いた人")
+missing, extra, badlen = [], [], []
+for sec in sections:
+    lines = sec.strip().split("\n")
+    title = lines[0]
+    if not title.startswith("#") or any(t in title for t in skip_titles):
+        continue
+    asides = [l.strip() for l in lines[1:] if l.strip().startswith("（") and l.strip().endswith("）")]
+    prose = [l for l in lines[1:] if l.strip() and not l.strip().startswith(("|", "-", "*", ">", "!", "<", "※", "👉", "（"))
+             and not re.match(r"^\d+\.", l.strip()) and "{{" not in l]
+    if not asides and len(prose) >= 2:
+        missing.append(title[:30])
+    if len(asides) > 1:
+        extra.append(title[:30])
+    badlen += [a[:20] for a in asides if not 40 <= len(a) - 2 <= 100]
+print(f"■ ひとりごと：なし{len(missing)}見出し／2つ以上{len(extra)}見出し／字数外{len(badlen)}件（目安：本文のある見出しに1つ・40〜100字）")
+for t in missing:
+    print(f"   なし：{t}")
+for t in extra:
+    print(f"   2つ以上：{t}")
+for a in badlen:
+    print(f"   字数外：{a}…")
+if missing or extra or badlen:
     warn += 1
 
 # 4. 定型表現
