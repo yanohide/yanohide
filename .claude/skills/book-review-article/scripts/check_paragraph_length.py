@@ -10,7 +10,7 @@ text = open(sys.argv[1], encoding="utf-8").read().split("\n---\n", 1)[-1]
 over = 0
 for line in text.split("\n"):
     s = line.strip()
-    if not s or s.startswith(("|", "#", "<!--", "![")):
+    if not s or s.startswith(("|", "#", "<!--", "![", ":::")) or re.match(r"^(speaker|side|tone|avatarUrl)\s*:", s):
         continue
     body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
     body = re.sub(r"^[-*>]\s*|\*\*", "", body)
@@ -21,6 +21,7 @@ core = text
 for marker in ("👇", "💡 **Kindle", "🎁", "### この記事を書いた人", "### 参考情報"):
     core = re.sub(rf"{re.escape(marker)}.*?(?=\n---\n|\Z)", "", core, flags=re.S)
 plain = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", re.sub(r"<!--.*?-->", "", core, flags=re.S))
+plain = re.sub(r"^(:::\S*|(speaker|side|tone|avatarUrl)\s*:.*)$", "", plain, flags=re.M)
 plain = re.sub(r"^(#+|>|[-*]|\d+\.)\s*|\*\*|\||^-{3,}$", "", plain, flags=re.M)
 plain = re.sub(r"^:?-{3,}:?$", "", plain.replace(":", ":"), flags=re.M)
 total = len("".join(plain.split()))

@@ -8,6 +8,7 @@ Usage: python3 check_style.py articles/book-review/<slug>.md
   3. 接続詞        … 「しかし」「また」などで始まる文が、見出しごとに1個までか
   3b. ひとりごと   … 本文のある見出しに（ ）のひとりごとが1つずつあるか
   3c. 読みやすさ   … 1段落3文まで・漢字35%以下・あおり言葉なし
+  3d. 吹き出し     … 読者と筆者のやりとりが2〜3組あるか
   4. 定型表現      … AIの文章に多い決まり文句
   5. 他記事との重複 … 他の書評記事とまったく同じ文（共通の誘導ボックス等は除く）
 """
@@ -26,11 +27,14 @@ for marker in ("👇", "💡 **Kindle", "🎁", "### この記事を書いた人
     body = re.sub(rf"{re.escape(marker)}.*?(?=\n---\n|\Z)", "", body, flags=re.S)
 
 
+SPEECH_META = re.compile(r"^(speaker|side|tone|avatarUrl)\s*:")
+
+
 def sentences_of(text):
     lines = []
     for line in text.split("\n"):
         s = line.strip()
-        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![")):
+        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![", ":::")) or SPEECH_META.match(s):
             continue
         s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
         s = re.sub(r"^([-*]|\d+\.)\s*|\*\*", "", s)
@@ -71,7 +75,7 @@ if len(runs) > 3:
 lens = [len(s) for s in sents]
 short = sum(1 for n in lens if n <= 25) / len(lens)
 sd = statistics.pstdev(lens)
-print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.0f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき10以上）")
+print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.1f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき10以上）")
 if short < 0.15 or sd < 10:
     warn += 1
 
@@ -109,7 +113,8 @@ for sec in sections:
     if not title.startswith("#") or any(t in title for t in skip_titles):
         continue
     asides = [l.strip() for l in lines[1:] if l.strip().startswith("（") and l.strip().endswith("）")]
-    prose = [l for l in lines[1:] if l.strip() and not l.strip().startswith(("|", "-", "*", ">", "!", "<", "※", "👉", "（"))
+    prose = [l for l in lines[1:] if l.strip() and not l.strip().startswith(("|", "-", "*", ">", "!", "<", "※", "👉", "（", ":::"))
+             and not SPEECH_META.match(l.strip())
              and not re.match(r"^\d+\.", l.strip()) and "{{" not in l]
     if not asides and len(prose) >= 2:
         missing.append(title[:30])
@@ -130,7 +135,7 @@ if missing or extra or badlen:
 long_paras = []
 for line in body.split("\n"):
     s = line.strip()
-    if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![", "-", "*", "（")) or re.match(r"^\d+\.", s):
+    if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![", "-", "*", "（", ":::")) or re.match(r"^\d+\.", s) or SPEECH_META.match(s):
         continue
     n = len([x for x in re.split(r"(?<=[。？！])", s) if x.strip()])
     if n >= 4:
@@ -146,6 +151,15 @@ for s in long_paras[:5]:
 for w in hype:
     print(f"   あおり言葉：「{w}」")
 if long_paras or ratio > 0.35 or hype:
+    warn += 1
+
+# 3d. 吹き出し（:::speech。読者と筆者のやりとりを2〜3組）
+speeches = re.findall(r":::speech\s*\n(.*?)\n:::", body, flags=re.S)
+reader = sum(1 for s in speeches if re.search(r"^speaker:\s*読者", s, flags=re.M))
+author = sum(1 for s in speeches if re.search(r"^speaker:\s*矢野英人", s, flags=re.M))
+other = len(speeches) - reader - author
+print(f"■ 吹き出し：{len(speeches)}個（読者{reader}・筆者{author}・その他{other}）（目安：やりとり2〜3組＝4〜6個）")
+if not 4 <= len(speeches) <= 6 or other:
     warn += 1
 
 # 4. 定型表現
