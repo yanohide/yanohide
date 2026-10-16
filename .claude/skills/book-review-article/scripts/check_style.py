@@ -6,8 +6,9 @@ Usage: python3 check_style.py articles/book-review/<slug>.md
   1. 文末の単調さ  … 同じ文末が3文以上続く箇所
   2. 文の長さ      … 短文（25字以下）の割合と、長さのばらつき
   3. 接続詞        … 「しかし」「また」などで始まる文が、見出しごとに1個までか
-  4. 定型表現      … AIの文章に多い決まり文句
   3b. ひとりごと   … 本文のある見出しに（ ）のひとりごとが1つずつあるか
+  3c. 読みやすさ   … 1段落3文まで・漢字35%以下・あおり言葉なし
+  4. 定型表現      … AIの文章に多い決まり文句
   5. 他記事との重複 … 他の書評記事とまったく同じ文（共通の誘導ボックス等は除く）
 """
 import glob
@@ -123,6 +124,28 @@ for t in extra:
 for a in badlen:
     print(f"   字数外：{a}…")
 if missing or extra or badlen:
+    warn += 1
+
+# 3c. 読みやすさ（段落の文数・漢字の割合・あおり言葉）
+long_paras = []
+for line in body.split("\n"):
+    s = line.strip()
+    if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![", "-", "*", "（")) or re.match(r"^\d+\.", s):
+        continue
+    n = len([x for x in re.split(r"(?<=[。？！])", s) if x.strip()])
+    if n >= 4:
+        long_paras.append(s[:25])
+text = "".join(sents)
+jp = re.findall(r"[\u3040-\u30ff\u4e00-\u9fff]", text)
+kanji = re.findall(r"[\u4e00-\u9fff]", text)
+ratio = len(kanji) / max(1, len(jp))
+hype = [w for w in ("神本", "絶対読むべき", "必読", "人生が変わる", "最強", "読まないと損") if w in body]
+print(f"■ 読みやすさ：4文以上の段落{len(long_paras)}個／漢字の割合{ratio:.0%}（目安35%以下）／あおり言葉{len(hype)}個")
+for s in long_paras[:5]:
+    print(f"   4文以上：{s}…")
+for w in hype:
+    print(f"   あおり言葉：「{w}」")
+if long_paras or ratio > 0.35 or hype:
     warn += 1
 
 # 4. 定型表現
