@@ -27,6 +27,6 @@ plain = re.sub(r"^:?-{3,}:?$", "", plain.replace(":", ":"), flags=re.M)
 total = len("".join(plain.split()))
 m = re.search(r"^## [^\n]*(?:感想|医療・介護|医療従事者)[^\n]*\n(.*?)\n---", text, flags=re.S | re.M)
 impression = len("".join(re.sub(r"\*\*|\]\([^)]*\)|\[", "", m.group(1)).split())) if m else 0
-print(f"本文：約{total}字（共通の誘導ボックス・プライムの囲み・書いた人・参考情報を除く。目安4,500〜5,500字）／感想：約{impression}字（目安800〜1,000字）")
+print(f"本文：約{total}字（共通の誘導ボックス・プライムの囲み・書いた人・参考情報を除く。目安4,000〜5,000字）／感想：約{impression}字（目安400〜600字）")
 print("OK" if over == 0 else f"{over}か所が120字以上")
 sys.exit(1 if over else 0)
