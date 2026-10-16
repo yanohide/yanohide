@@ -4,7 +4,7 @@
  * - GFM 表 → ptTable（セルはプレーンテキスト）
  * - GFM アラート（> [!NOTE] 等）→ calloutBlock
  * - コードフェンス → ptCodeBlock、HR → ptDivider
- * - :::speech / :::titled-box フェンス → speechBalloon / titledBoxBlock
+ * - :::speech / :::titled-box / :::author フェンス → speechBalloon / titledBoxBlock / authorBox
  * - 画像（![]()）→ 既定は {src} 付き image（upload-article 側で asset に解決）
  *
  * @portabletext/markdown が子ブロックまで再帰的にトラバースしないため、
@@ -309,6 +309,20 @@ function fenceToBlock(kind, inner) {
       side: meta.side === "left" ? "left" : "right",
       tone: ["stone", "sand", "sky"].includes(meta.tone) ? meta.tone : "sky",
     };
+    if (meta.avatarUrl) block.avatarUrl = meta.avatarUrl;
+    return [block];
+  }
+
+  if (k === "author" || k === "author-box") {
+    const { meta, body } = parseMetaBody(inner);
+    const block = {
+      _type: "authorBox",
+      _key: key(),
+      name: meta.name || "矢野英人",
+      body: convertMdSegment(body),
+    };
+    if (meta.tagline) block.tagline = meta.tagline;
+    if (meta.catch) block.catchCopy = meta.catch;
     if (meta.avatarUrl) block.avatarUrl = meta.avatarUrl;
     return [block];
   }

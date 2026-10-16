@@ -1,3 +1,4 @@
+import authorBox from "./authorBox";
 import calloutBlock from "./calloutBlock";
 import category from "./category";
 import post from "./post";
@@ -24,6 +25,7 @@ const schemas = [
   speechBalloon,
   summaryBox,
   titledBoxBlock,
+  authorBox,
 ];
 
 export default schemas;

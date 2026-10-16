@@ -139,6 +139,7 @@ export default defineType({
                 "recommendationCard",
                 "summaryBox",
                 "speechBalloon",
+                "authorBox",
               ],
             },
           ],
@@ -230,6 +231,7 @@ export default defineType({
         defineArrayMember({ type: "recommendationCard" }),
         defineArrayMember({ type: "summaryBox" }),
         defineArrayMember({ type: "speechBalloon" }),
+        defineArrayMember({ type: "authorBox", title: "この記事を書いた人（囲み枠）" }),
       ],
     }),
     defineField({

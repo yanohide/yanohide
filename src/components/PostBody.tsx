@@ -872,6 +872,70 @@ const speechBalloonComponent = ({
   );
 };
 
+type AuthorBoxValue = {
+  name?: string;
+  tagline?: string;
+  catchCopy?: string;
+  body?: PortableTextBlock[];
+  avatar?: { asset?: unknown; alt?: string };
+  avatarUrl?: string;
+};
+
+/** 「この記事を書いた人」：枠で囲み、左に紹介文、右に大きめのアイコン（スマホではアイコンが上） */
+const authorBoxComponent = ({ value }: { value?: AuthorBoxValue }) => {
+  if (!value?.name) return null;
+  let avatarSrc = "/avatars/profile-avatar.png";
+  if (value.avatar?.asset) {
+    avatarSrc =
+      urlForImage(value.avatar as SanityImageSource).width(480).auto("format").url() ?? avatarSrc;
+  } else if (value.avatarUrl) {
+    avatarSrc = value.avatarUrl;
+  }
+  const body = value.body ?? [];
+  return (
+    <section
+      className="not-prose my-10 rounded-md border border-[#8B7E74] bg-paper-elevate px-5 py-6 sm:px-7"
+      aria-label="この記事を書いた人"
+    >
+      <div className="grid items-center gap-6 md:grid-cols-2">
+        <div className="order-2 min-w-0 md:order-1">
+          <p className="m-0 font-serif-jp text-lg font-bold text-ink">
+            {value.name}
+            {value.tagline ? (
+              <span className="ml-2 font-sans text-[0.9rem] font-bold text-walnut">｜{value.tagline}</span>
+            ) : null}
+          </p>
+          {value.catchCopy ? (
+            <p className="mt-1 mb-0 text-[0.92rem] font-bold tracking-wide text-gold">{value.catchCopy}</p>
+          ) : null}
+          <div className="prose prose-sm mt-4 max-w-none text-espresso/95 prose-p:my-2">
+            <PortableText
+              value={body}
+              components={cellPortableComponents}
+              onMissingComponent={(message, { nodeType }) => {
+                if (nodeType === "mark") return;
+                console.warn(message);
+              }}
+            />
+          </div>
+        </div>
+        <div className="order-1 flex justify-center md:order-2">
+          <div className="relative aspect-square w-40 overflow-hidden rounded-full border border-stone-200 bg-white shadow-sm sm:w-48 md:w-56 [&_img]:!my-0">
+            <Image
+              src={avatarSrc}
+              alt={value.avatar?.alt || value.name}
+              width={448}
+              height={448}
+              className="block h-full w-full object-cover object-center"
+              unoptimized={shouldBypassImageOptimization(avatarSrc)}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const postPortableComponents: PortableTextComponents = {
   ...portableBlocksListsMarks,
   types: {
@@ -886,6 +950,7 @@ const postPortableComponents: PortableTextComponents = {
     recommendationCard: recommendationCardComponent,
     summaryBox: summaryBoxComponent,
     speechBalloon: speechBalloonComponent,
+    authorBox: authorBoxComponent,
   },
   unknownType: ({ value }) => (
     <p className="my-4 rounded border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-sm text-ink">
