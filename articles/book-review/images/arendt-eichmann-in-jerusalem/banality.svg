@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="Noto Sans JP, sans-serif">
+  <rect width="800" height="460" fill="#faf8f4"/>
+  <text x="400" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#3f3a36">「悪の陳腐さ」が生まれるまで</text>
+  <text x="400" y="70" text-anchor="middle" font-size="16" fill="#6e6860">アーレントが裁判で見たアイヒマンの姿（考え方の図）</text>
+  <g font-size="17" fill="#1a1614">
+    <rect x="40" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#8B7E74" stroke-width="2"/>
+    <text x="120" y="150" text-anchor="middle" font-weight="700">組織の命令</text>
+    <text x="120" y="178" text-anchor="middle" font-size="15" fill="#3f3a36">上からの指示を</text>
+    <text x="120" y="200" text-anchor="middle" font-size="15" fill="#3f3a36">こなすのが仕事</text>
+    <rect x="230" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#8B7E74" stroke-width="2"/>
+    <text x="310" y="150" text-anchor="middle" font-weight="700">決まり文句</text>
+    <text x="310" y="178" text-anchor="middle" font-size="15" fill="#3f3a36">お役所言葉で</text>
+    <text x="310" y="200" text-anchor="middle" font-size="15" fill="#3f3a36">現実を言いかえる</text>
+    <rect x="420" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#8B7E74" stroke-width="2"/>
+    <text x="500" y="150" text-anchor="middle" font-weight="700">考えない</text>
+    <text x="500" y="178" text-anchor="middle" font-size="15" fill="#3f3a36">相手の立場から</text>
+    <text x="500" y="200" text-anchor="middle" font-size="15" fill="#3f3a36">ものを見ない</text>
+    <rect x="610" y="110" width="160" height="110" rx="12" fill="#6e6860" stroke="#524d47" stroke-width="2"/>
+    <text x="690" y="150" text-anchor="middle" font-weight="700" fill="#fffcf7">巨大な悪に</text>
+    <text x="690" y="176" text-anchor="middle" font-weight="700" fill="#fffcf7">加担する</text>
+    <text x="690" y="202" text-anchor="middle" font-size="15" fill="#f1ece4">本人に罪の自覚は薄い</text>
+  </g>
+  <g stroke="#b8860b" stroke-width="3" fill="#b8860b">
+    <line x1="202" y1="165" x2="222" y2="165"/><polygon points="228,165 218,159 218,171"/>
+    <line x1="392" y1="165" x2="412" y2="165"/><polygon points="418,165 408,159 408,171"/>
+    <line x1="582" y1="165" x2="602" y2="165"/><polygon points="608,165 598,159 598,171"/>
+  </g>
+  <rect x="120" y="270" width="560" height="120" rx="14" fill="#f1ece4" stroke="#c9c4be" stroke-width="1.5"/>
+  <text x="400" y="310" text-anchor="middle" font-size="19" font-weight="700" fill="#3f3a36">怪物ではなく、出世を気にする「ふつうの役人」</text>
+  <text x="400" y="342" text-anchor="middle" font-size="16" fill="#3f3a36">悪は、悪意からではなく、考えることをやめたところから広がる</text>
+  <text x="400" y="368" text-anchor="middle" font-size="15" fill="#6e6860">──これが「悪の陳腐さ」という言葉の中心</text>
+  <text x="780" y="440" text-anchor="end" font-size="14" fill="#6e6860">※本の考え方を整理したイメージ図</text>
+</svg>
