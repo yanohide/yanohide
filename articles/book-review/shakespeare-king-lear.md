@@ -72,7 +72,9 @@ avatarUrl: /avatars/profile-avatar.png
 | 出版時の著者の年齢 | 44歳ごろ（1564年4月26日に洗礼。正確な誕生日は不明）。執筆時：41〜42歳ごろ（1605〜1606年ごろ） |
 | ジャンル | 戯曲（悲劇）・シェイクスピア四大悲劇のひとつ |
 | 本の分量 | 中くらい（五幕構成の戯曲。文庫1冊） |
-| 映像化 | 黒澤明監督『乱』（1985年、舞台を戦国時代の日本に翻案）、ローレンス・オリヴィエ主演のテレビ版（1983年）など |
+| オーディオブック（Audible） | ✕ 日本語訳は見つからず（2026年10月時点） |
+| Kindle（電子書籍） | ？ 福田恆存訳（新潮文庫）に電子版あり【要確認：Kindle版】（2026年10月時点） |
+| 映像作品 | ◯ 黒澤明監督『乱』（1985年、翻案）、テレビ版（1983年）など |
 
 ---
 
@@ -109,7 +111,7 @@ tone: sky
 - **あらすじを確認しながら、刺さった言葉をハイライトで残したい方**
   👉 [Kindle Unlimited 30日間無料体験はこちら](【アフィリエイトURLを入れる】)
 - **忙しくて本を開く時間がない方・耳で物語に浸りたい方**
-  👉 [Audible 30日間無料体験で名作を聴く](【アフィリエイトURLを入れる】) 【要確認：『リア王』日本語版のAudible配信状況】
+  👉 [Audible 30日間無料体験で名作を聴く](【アフィリエイトURLを入れる】) （『リア王』日本語版は2026年10月時点で見つからず）
 - **映画版（黒澤明監督『乱』）で観たい方**（2026年10月時点：U-NEXT見放題／Prime Videoレンタル）
   👉 [U-NEXTで『乱』を観る](【アフィリエイトURLを入れる】)
 
@@ -273,7 +275,7 @@ A. 二つの家族の話が並んで進むので、少し複雑です。映画�
 
 **Q. 『リア王』をオーディブル（Audible）やKindleで読む方法はありますか？**
 
-A. 日本語訳がAudibleで配信されているかは、確認できていません【要確認】。Kindle版がある訳と、Kindle Unlimitedの対象かどうかも【要確認】です。
+A. 日本語訳は、2026年10月時点でAudibleでは見つかりませんでした。福田恆存訳（新潮文庫）には電子書籍版がありますが、Kindleでの配信とKindle Unlimitedの対象かどうかは【要確認】です。
 
 電子書籍なら、人物名で本文を検索できるので、「誰の子だっけ」と迷ったときに前の場面へすぐ戻れます。
 
@@ -347,3 +349,4 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [1603 London plague（英語版Wikipedia。1603年のペストの死者数の推計）](https://en.wikipedia.org/wiki/1603_London_plague)
 - [Sovereign and sick city: 1603（Shakespeare Birthplace Trust。ペストによる劇場の閉鎖）](https://shakespeare.org.uk/explore-shakespeare/blogs/sovereign-and-sick-city-1603)
 - ['The Most Piteous Tale'（Utah Shakespeare Festival。1605年秋の日食・月食と1606年12月26日の宮廷上演）](https://www.bard.org/study-guides/the-most-piteous-tale/)
+- [リア王（新潮社・新潮文庫 福田恆存訳。電子書籍版あり）](https://www.shinchosha.co.jp/book/202005/)
