@@ -124,6 +124,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1997年6月、左派のジョスパンが首相になり、保守のシラク大統領との「保革共存」が始まりました。
+- **科学技術**：1997年2月、大人の羊の細胞から生まれたクローン羊「ドリー」が発表されました。
+- **流行**：1997年12月、映画『タイタニック』がアメリカで公開され、のちに世界の興行記録を塗りかえました。
+- **数字**：1997年4〜6月、フランス本土の失業率は10.9%でした（INSEE）。
+
+クローン羊のニュースで、科学の言葉が毎日のようにテレビや新聞に出た年です。そのさなかに、思想家が科学の言葉を正しく使っているかを問う本が、パリで出ました。アメリカで起きた騒ぎが、フランスに飛び火した形です。
+
+発売の前から、フランスの雑誌は「わが国の知識人はペテン師か」と見出しを打ちました。批判されたクリステヴァは、著者の二人を「フランス嫌い」と呼んでいます。
+
+二人は1997年12月、『ル・モンド』紙にデリダらへの反論を載せました。1999年には、批判に答える序文を加えた改訂版がフランスで出ています。言いあいが行き来したこと自体が、この本へのいちばん大きな反響だったのかもしれません。
+
+---
+
 ## 図でわかる「ソーカル事件」は何を問いかけたのか
 
 :::speech
@@ -310,3 +325,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [The Furor over Impostures Intellectuelles（Alan Sokal, NYU）](https://physics.nyu.edu/sokal/tls.html)
 - [Higher Superstition（Wikipedia英語版）](https://en.wikipedia.org/wiki/Higher_Superstition)
 - [機能性表示食品について（消費者庁）](https://www.caa.go.jp/policies/policy/food_labeling/foods_with_function_claims/)
+- [Lionel Jospin (1937-2026)（Le Grand Continent。1997年6月の首相就任と保革共存）](https://legrandcontinent.eu/fr/2026/03/23/lionel-jospin-1937-2026-la-methode-et-le-socialisme/)
+- [The Life of Dolly（エディンバラ大学ロスリン研究所。1997年2月の発表）](https://vet.ed.ac.uk/roslin/about/history/dolly/facts/life-of-dolly)
+- [Titanic (1997 film)（Wikipedia英語版。1997年12月公開と興行記録）](https://en.wikipedia.org/wiki/Titanic_(1997_film))
+- [L'économie française 2008（INSEE。1997年4〜6月期の失業率10.9%）](https://www.insee.fr/fr/statistiques/fichier/1373264/ECOFRA08f.PDF)
+- [J'accuse: a history（Times Higher Education。フランスでの反響とクリステヴァの反論）](https://timeshighereducation.com/node/96343)
+- [Alan Sokal（ニューヨーク大学。ル・モンド紙への反論と1999年の改訂版）](https://physics.nyu.edu/sokal/)

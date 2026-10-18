@@ -144,6 +144,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2011年9月、ニューヨークで「ウォール街を占拠せよ」の運動が始まり、全米に広がりました。
+- **科学技術**：2011年2月、IBMのコンピューター「ワトソン」が、アメリカのクイズ番組で人間の王者に勝ちました。
+- **流行**：アデルのアルバム『21』が、2011年に世界で1810万枚売れ、その年の1位になりました。
+- **数字**：2011年末、フェイスブックの月間利用者は8億4500万人で、1年で39%ふえました。
+
+ネットの呼びかけから始まった運動が、3週間ほどで全米の600をこえる地域に広がった年です。何がはやり、何が埋もれるのか。本書のミュージックラボ実験の話は、この時代の空気とよく重なります。
+
+刊行当時の評価は分かれました。イギリスの『マネジメント・トゥデイ』は、常識への賢くておもしろい挑戦だと評しています。アメリカの『デイリー・ビースト』には、ワッツの主張そのものに異をとなえる書評が載りました。
+
+ヒットは中身だけでは決まらない、という本書の見方は、SNSの時代にいっそう身近になりました。「いいね」の数を見るときに、ちょっと思い出したい見方です。
+
+---
+
 ## 『偶然の科学』常識が揺らぐ3つの場面
 
 ※本書は著作権のある作品のため、本文の言葉は原文を確認できたものだけを引用します。下の3か所は、お手持ちの本で原文を確かめて差し替えてください。【要確認：原文を本で確かめて差し替え】
@@ -318,3 +333,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Richard Smith: Why is the Mona Lisa the most famous painting in the world?（BMJ Blogs）](https://blogs.bmj.com/bmj/2016/11/21/richard-smith-why-is-the-mona-lisa-the-most-famous-painting-in-the-world-and-facebook-and-harry-potter-so-popular/)
 - [Watts, Duncan J. 1971-（Encyclopedia.com）](https://encyclopedia.com/arts/educational-magazines/watts-duncan-j-1971)
 - [Collective dynamics of 'small-world' networks（Nature 393, 1998／RePEc）](https://ideas.repec.org/a/nat/nature/v393y1998i6684d10.1038_30918.html)
+- [Occupy Wall Street（Wikipedia英語版。2011年9月17日の開始と全米への広がり）](https://en.wikipedia.org/wiki/Occupy_Wall_Street)
+- [IBM's Watson Beats Humans on Jeopardy!（Channel Insider。2011年2月のクイズ番組）](https://www.channelinsider.com/news-and-trends/ibms-watson-beats-humans-on-jeopardy/)
+- [First album to top the global chart for two consecutive years（ギネス世界記録。『21』の2011年の売上1810万枚）](https://www.guinnessworldrecords.com/world-records/107840-first-album-to-top-the-global-chart-for-two-consecutive-years)
+- [Facebook's S-1 Reveals: 845 Million Users Every Month（TechCrunch。2011年末の月間利用者）](https://techcrunch.com/?p=491595)
+- [Book review: Everything is obvious, by Duncan J Watts（Management Today。刊行当時の書評）](https://www.managementtoday.co.uk/book-review-everything-obvious-duncan-j-watts/article/1086013)
+- [Everything Is Obvious by Duncan Watts: Review（The Daily Beast。刊行当時の書評）](https://thedailybeast.com/everything-is-obvious-by-duncan-watts-review)

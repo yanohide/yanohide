@@ -126,6 +126,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：刊行の翌年、1981年5月にミッテランが勝ち、フランスで初めての社会党の大統領が生まれました。
+- **科学技術**：1980年、のちのミニテルにつながる、画面で情報を調べる通信の実験がフランスで始まりました。
+- **流行**：1982年6月21日、だれでも街で演奏できる「音楽の日（フェット・ド・ラ・ミュージック）」が始まりました。
+- **数字**：1980年1月1日のフランス本土の人口は、約5370万人でした（INSEE）。
+
+本書が出た1980年、フランスでは電話の線とテレビの画面をつないで、情報を引く実験が始まっていました。中心をもたず、どこからでも横につながる「リゾーム」の考え方は、こうした網の目の時代と重なって見えます。
+
+原著はパリのミニュイ社から出ました。英語版は1987年、ブライアン・マスミの訳で出ています。日本では1983年、ドゥルーズらを論じた浅田彰『構造と力』が、思想書なのに大きく売れました。
+
+いまは、だれもがSNSで横につながっています。40年以上前の本が、いまのほうが身近に読めるのかもしれません。中心のないつながりは、べんりさと、まとまりにくさの両方をかかえています。
+
+---
+
 ## 図でわかる「樹木」と「リゾーム」
 
 :::speech
@@ -315,3 +330,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Félix Guattari（Wikipedia英語版）](https://en.wikipedia.org/wiki/F%C3%A9lix_Guattari)
 - [『千のプラトー』全一巻・ハードカバー愛蔵版の刊行（河出書房新社プレスリリース／公募ガイド）](https://koubo.jp/press-release/prtimes/c12754_r1183)
 - [Intellectual Impostures（Odile Jacob）](https://en.odilejacob.fr/catalogue/human-sciences/epistemology-history-of-science/intellectual-impostures_9782738105035.php)
+- [Minitel（Wikipedia英語版。1980年のサン・マロとヴェリジーでの通信実験）](https://en.wikipedia.org/wiki/Minitel)
+- [Date with history: Mitterrand rises to power（Chatham House。1981年5月の大統領選）](https://www.chathamhouse.org/publications/the-world-today/2021-04/date-history-mitterrand-rises-power)
+- [Fête de la musique : 40 ans（フランス文化省。1982年6月21日の第1回）](https://www.culture.gouv.fr/presse/dossiers-de-presse/fete-de-la-musique-40-ans)
+- [フランス本土の人口の推移 HISTO14（INSEE。1980年1月1日に約5370万人）](https://insee.fr/fr/statistiques/fichier/1374371/HISTO14_g_Flot1_pop.pdf)
+- [A thousand plateaus（カナダ建築センター所蔵目録。1987年ミネソタ大学出版局、マスミ訳）](https://www.cca.qc.ca/en/search/details/library/publication/16472336)
+- [構造と力（紀伊國屋書店ウェブストア。1983年刊のベストセラー）](https://www.kinokuniya.co.jp/f/dsg-08-EK-1215592)

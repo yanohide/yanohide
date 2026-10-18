@@ -123,6 +123,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1999年9月、茨城県東海村のJCOの工場で臨界事故がおき、作業員2人が亡くなりました。
+- **科学技術**：2000年6月、ヒトのゲノム（いのちの設計図）の下書きが、ほぼ読みおわったと発表されました。
+- **流行**：2000年の新語・流行語大賞には「IT革命」がえらばれ、ネットが家にやってきたころです。
+- **数字**：2000年末、ネットを使う人は4708万人で、人口の37.1%でした（総務省）。
+
+本書が出たころ、日本でも科学にまつわるニュースがつづきました。原子力の事故があり、遺伝子の研究もおおきく進みます。「科学はだれのものか」という本書の問いは、海のむこうだけの話ではありませんでした。
+
+本書は2000年に、サントリー学芸賞をうけました。おなじ年の5月には、ソーカルらの『「知」の欺瞞』の日本語版も出ています。アメリカの論争を、日本語で追いかけやすくなった年です。
+
+2014年には新装版が出て、いまも手にとりやすい形で読めます。ネットで科学の話がとびかういま読むと、むしろ身近に感じられるかもしれません。
+
+---
+
 ## 図でわかる「科学は誰のものか」という問い
 
 :::speech
@@ -302,3 +317,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [金森修 著者紹介（版元ドットコム）](https://www.hanmoto.com/bd/isbn/9784326102525)
 - [Higher Superstition（Wikipedia英語版）](https://en.wikipedia.org/wiki/Higher_Superstition)
 - [Sokal affair（Wikipedia英語版）](https://en.wikipedia.org/wiki/Sokal_affair)
+- [東海村ウラン加工工場臨界事故（内閣府 防災白書。作業員2人が死亡）](https://www.bousai.go.jp/kaigirep/hakusho/h13/bs2001/sb1.2.8.5.html)
+- [Remarks on the Completion of the First Survey of the Human Genome（The American Presidency Project。2000年6月26日）](https://presidency.ucsb.edu/documents/remarks-the-completion-the-first-survey-the-human-genome)
+- [【2000年のINTERNET Watch】「IT革命」が流行語に（INTERNET Watch）](https://internet.watch.impress.co.jp/docs/special/30th/2076355.html)
+- [平成12年「通信利用動向調査」の結果（総務省。2000年末の利用者4708万人・普及率37.1%）](https://www.soumu.go.jp/johotsusintokei/statistics/data/010424_1.pdf)
+- [「知」の欺瞞 単行本（ブクログ。日本語版は2000年5月刊）](https://booklog.jp/item/1/4000056786)

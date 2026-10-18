@@ -130,6 +130,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2007年、アメリカで住宅ローンのこげつきが表に出て、8月にはヨーロッパの大手銀行がファンドの引き出しをとめました。
+- **科学技術**：2007年6月29日、アメリカで初代iPhoneが発売されました。
+- **流行**：2007年7月に『ハリー・ポッター』の最終巻が出て、アメリカでは24時間で830万部が売れました。
+- **数字**：2007年10月9日、ダウ平均は1万4164ドルの最高値をつけています。
+
+本書が出た2007年、アメリカの株価は最高値にむかっていました。その夏から、住宅ローンのこげつきがじわじわと広がります。めったに起きないはずの大事件の前の晩に、この本は書店にならんだことになります。
+
+翌2008年9月にはリーマン・ブラザーズがつぶれ、危機は世界に広がりました。日本語版が出たのは、そのつぎの年の2009年です。
+
+原著は300万部をこえて売れ、31の言語に訳されたと紹介されています。株価がふたたび最高値をぬいたのは、2013年3月のことでした。「まさか」のあと元にもどるまで、5年あまりかかった計算です。
+
+---
+
 ## 図でわかる「月並みの国」と「果ての国」
 
 ![左は高さのそろった棒グラフで「月並みの国」、右はほとんど低い棒の中に一本だけ極端に高い棒がある「果ての国」を比べた図](images/taleb-black-swan/two-lands.png "図：月並みの国と果ての国")
@@ -303,3 +318,7 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [The Black Swan: The Impact of the Highly Improbable（Wikipedia英語版。ベストセラーリスト36週）](https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable)
 - [2022（令和4）年 国民生活基礎調査の概況（厚生労働省。介護が必要となった主な原因、2026年10月確認）](https://www.mhlw.go.jp/toukei/saikin/hw/k-tyosa/k-tyosa22/index.html)
 - [介護が必要となった主な原因の数値（浜松市の資料。国民生活基礎調査2022年を引用）](https://www.city.hamamatsu.shizuoka.jp/documents/158585/hyousi3syou_32181_marked.pdf)
+- [Financial Crisis Timeline（セントルイス連邦準備銀行。2007年8月のBNPパリバの資金凍結、2008年9月のリーマン破たん）](https://fraser.stlouisfed.org/timeline/financial-crisis)
+- [iPhone (1st generation)（Wikipedia英語版。2007年6月29日発売）](https://en.wikipedia.org/wiki/IPhone_(1st_generation))
+- [That 8.3 Million Copies Sold Was Just the Beginning（Publishers Weekly。最終巻の24時間の売上）](https://www.publishersweekly.com/article/395643-That_8_3_Million_Copies_Sold_Was_Just_the_Beginning.php)
+- [14,253.77: Dow Rallies, Finishing In Record Territory（NPR。2007年10月9日の最高値1万4164ドルと2013年の更新）](https://www.npr.org/sections/thetwo-way/2013/03/05/173508639/will-it-hit-a-new-high-dow-flirts-with-record)
