@@ -127,6 +127,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1953年7月、3年あまり続いた朝鮮戦争の休戦協定が結ばれました。
+- **科学技術**：4月、ワトソンとクリックが、DNAの二重らせんのしくみを科学誌『ネイチャー』で発表しました。
+- **流行**：1947年の目撃談をきっかけに、アメリカでは「空飛ぶ円盤」の話題が広がっていたころです。
+- **数字**：アメリカでテレビのある世帯は、1952年の約1,530万から、53年には約2,040万にふえました。
+
+物語は、米ソがロケットの打ち上げをきそう場面からはじまります。核やロケットの競争が身近な不安だった、冷戦の空気がそのまま映っています。空から来るものへの想像も、円盤の話題が広まった時代と重なります。
+
+初版は売り切れ、書評もおおむね好意的でした。クラークにとって、はじめて商業的に成功した長編です。三部に分かれた形を、ぎこちないと見る評者もいました。
+
+いまでは、クラークのいちばんの傑作に挙げられることも多い作品です。部ごとに主役がかわる形は、いま読むと連続ドラマのようにも感じられます。
+
+---
+
 ## ドラマ版『幼年期の終わり』で、オーヴァーロードの姿を先に想像しておく
 
 空をおおう宇宙船は、頭のなかだけでは描きにくい場面です。映像で船の大きさを先に見ておくと、原作の景色が浮かびやすくなります。目と文字の両方で出会った物語は、忘れにくいとも言われます。
@@ -317,3 +332,7 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Childhood's End: background（SuperSummary）](https://www.supersummary.com/childhoods-end/background)（1990年版序文での冒頭の注記と第1章改稿の説明）
 - [Wow, wait, what, wow: Arthur C. Clarke's Childhood's End（Tor.com）](https://tor.com/2012/07/31/wow-wait-what-wow-arthur-c-clarkes-childhoods-end)
 - [介護保険法 第1条（e-Gov法令検索）](https://laws.e-gov.go.jp/law/409AC0000000123)
+- [Korean Armistice Agreement（英語版Wikipedia。1953年7月の休戦協定の根拠）](https://en.wikipedia.org/wiki/Korean_Armistice_Agreement)
+- [1953 in science（英語版Wikipedia。DNA二重らせん構造の発表の根拠）](https://en.wikipedia.org/wiki/1953_in_science)
+- [Kenneth Arnold UFO sighting（英語版Wikipedia。1947年の目撃談と「空飛ぶ円盤」の根拠）](https://en.wikipedia.org/wiki/Kenneth_Arnold_UFO_sighting)
+- [テレビ保有世帯数の推移（ジョンズ・ホプキンズ大学図書館。Historical Statistics of the United Statesによる1952・53年の世帯数の根拠）](https://blogs.library.jhu.edu/?p=60)

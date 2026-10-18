@@ -123,6 +123,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2005年7月7日、ロンドンで地下鉄とバスをねらった同時爆破テロが起き、52人が亡くなりました。
+- **科学技術**：2003年4月に、ヒトの遺伝情報を読みとく「ヒトゲノム計画」の完了が発表されています。
+- **流行**：2005年2月に動画共有サイトのYouTubeが生まれ、4月に最初の動画が公開されました。
+- **数字**：2005年なかごろのイングランドとウェールズの人口は、約5,339万人と推計されています。
+
+物語は「1990年代末のイギリス」と、はじめに示されます。遺伝子の研究が大きく進んだころの作品ですが、科学の説明はほとんど出てきません。描かれるのは、寄宿学校の思い出と、かぎられた時間を生きる若者の日々です。
+
+刊行の翌年には、SFの賞であるアーサー・C・クラーク賞の最終候補にもなりました。全米批評家協会賞の候補にも挙がっています。文学とSFの、どちらの読者からも読まれたことがわかります。
+
+いま読むと、技術の話というより、「人をどうあつかうか」の物語として身近に感じられます。
+
+---
+
 ## 映画・ドラマ『わたしを離さないで』を観てから読むと、原作が入りやすい
 
 イシグロの文章は、静かで説明が少ない文体です。先に映像で人物の顔や寄宿学校の風景を知っておくと、原作の場面が頭に浮かびやすくなります。
@@ -296,3 +311,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [イシグロ氏にノーベル文学賞（デイリースポーツ、2017年）](https://www.daily.co.jp/gossip/2017/10/06/0010618738.shtml)
 - [映画『わたしを離さないで』の配信状況（Filmarks）](https://filmarks.com/movies/36812/vod)
 - [ドラマ『わたしを離さないで』の配信状況（JustWatch）](https://www.justwatch.com/jp/テレビ番組/watashiwoli-sanaide)
+- [7 July 2005 London bombings（英語版Wikipedia。テロの日付と犠牲者52人の根拠）](https://en.wikipedia.org/wiki/7_July_2005_London_bombings)
+- [International Consortium Completes Human Genome Project（米国立ヒトゲノム研究所。2003年4月の完了発表の根拠）](https://www.genome.gov/11006929/2003-release-international-consortium-completes-hgp)
+- [YouTube（英語版Wikipedia。2005年2月の設立と4月の最初の動画の根拠）](https://en.wikipedia.org/wiki/YouTube)
+- [ONS Mid-2005 Population Estimates（ロンドン市GLA。イングランドとウェールズの人口5,339万人の根拠）](https://data.london.gov.uk/download/emx5m/593af02a-3104-4880-b758-641d76355e46/Update%202006-15%20ONS%20Mid-2005%20Estimates.pdf)
+- [Kazuo Ishiguro（Science Fiction Awards Database。2006年アーサー・C・クラーク賞最終候補の根拠）](https://www.sfadb.com/Kazuo_Ishiguro)
+- [Never Let Me Go（CBC Books。全米批評家協会賞の候補の根拠）](https://www.cbc.ca/1.4339616)

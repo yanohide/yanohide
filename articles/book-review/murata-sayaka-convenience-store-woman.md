@@ -121,6 +121,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2016年4月、熊本地震で震度7のゆれが2度観測されました。
+- **科学技術**：3月、囲碁AI「アルファ碁」が、韓国のトップ棋士イ・セドルさんに4勝1敗で勝ちました。
+- **流行**：7月22日、外を歩いて遊ぶスマホゲーム「ポケモンGO」の日本配信がはじまりました。
+- **数字**：2016年末のコンビニは全国で5万4,501店あり、1年で1,497店ふえています。
+
+コンビニが町のどこにでもあり、暮らしの一部になっていたころの作品です。恵子が店の音や手順に安心する場面には、その身近さがよく表れています。AIが人に勝ったとさわがれた年に、人が店の「部品」になる話が出たのも、ふしぎな重なりです。
+
+芥川賞が決まった日も、村田さんはふだんどおりコンビニで働いていました。週3回お店に立つ作家として、受賞の会見でも話題になります。店の中のようすがくわしいのは、その経験があるからだといわれています。
+
+いま読むと、「普通」を求める声の強さは、10年たってもあまり変わっていないように見えます。
+
+---
+
 ## 『コンビニ人間』心に残る3つの言葉
 
 ### 1. 店の音に満たされる朝
@@ -289,3 +304,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [大久保佳代子さん朗読『コンビニ人間』Audible配信開始（共同通信PRワイヤー、2018年）](https://kyodonewsprwire.jp/release/201801159902)
 - [村田沙耶香さんインタビュー（Business Insider Japan）](https://www.businessinsider.jp/article/269409/)
 - [Convenience Store Woman（Wikipedia）](https://en.wikipedia.org/wiki/Convenience_Store_Woman)
+- [平成28年（2016年）熊本地震の概要（気象庁。震度7を2度観測したことの根拠）](https://www.data.jma.go.jp/kumamoto/The-2016-Kumamoto-Earthquake/gaiyo.html)
+- [AlphaGo versus Lee Sedol（英語版Wikipedia。2016年3月の対局と4勝1敗の根拠）](https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol)
+- [『Pokémon GO』日本配信開始（Pokémon GO公式。2016年7月22日配信開始の根拠）](https://pokemongo.com/ja/post/launch-jp)
+- [2016年のコンビニ売上高・店舗数（データ・マックス。日本フランチャイズチェーン協会発表の店舗数の根拠）](https://www.data-max.co.jp/article/14958)
+- [村田沙耶香さん受賞後のコンビニ勤務（オリコンニュース。受賞当日の勤務と週3回勤務の根拠）](https://www.oricon.co.jp/news/2076213/full/)
