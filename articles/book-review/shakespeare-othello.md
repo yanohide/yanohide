@@ -72,7 +72,9 @@ avatarUrl: /avatars/profile-avatar.png
 | 出版時の著者の年齢 | 出版は没後（1616年に52歳で死去）。初演記録の1604年時点で40歳ごろ（1564年4月26日に洗礼。正確な誕生日は不明） |
 | ジャンル | 戯曲（悲劇）・シェイクスピア四大悲劇のひとつ |
 | 本の分量 | 短め〜中くらい（五幕構成の戯曲。文庫1冊） |
-| 映像化 | オーソン・ウェルズ監督・主演版（1951年）、オリヴァー・パーカー監督版（1995年、主演：ローレンス・フィッシュバーン）など |
+| オーディオブック（Audible） | ？ 要確認【要確認：日本語朗読の有無（CD版ダイジェストはあり）】 |
+| Kindle（電子書籍） | ◯ 福田恆存訳（新潮文庫）・河合祥一郎訳（角川文庫）に電子版あり |
+| 映像作品 | ◯ オーソン・ウェルズ版（1951年）、パーカー監督版（1995年）など |
 
 ---
 
@@ -271,7 +273,9 @@ A. 読めます。主な人物は6〜7人で、場面もヴェニスとキプロ
 
 **Q. 『オセロー』はオーディブル（Audible）やKindleでも楽しめますか？**
 
-A. 日本語の翻訳がAudibleで配信されているかは、確認できていません【要確認】。Kindle版の有無と、Kindle Unlimitedの対象かどうかも【要確認】です。
+A. 日本語の翻訳がAudibleで配信されているかは、確認できていません【要確認】。
+
+電子書籍版は、福田恆存訳（新潮文庫）と河合祥一郎訳（角川文庫）に出ています（2026年10月時点）。Kindleストアでの配信と、Kindle Unlimitedの対象かどうかは【要確認】です。
 
 電子書籍なら、イアーゴーの独白だけハイライトしておくと、あとで読み返しやすくなります。
 
@@ -349,3 +353,5 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Christmas 1604 ledger shows Shakespeare top of the bill（The National Archives。1604年11月1日の宮廷上演）](https://www.nationalarchives.gov.uk/about/news/christmas-1604-ledger-shows-shakespeare-top-of-the-bill/)
 - [Henry Jackson (priest)（英語版Wikipedia。1610年オックスフォードでの観劇の手紙）](https://en.wikipedia.org/wiki/Henry_Jackson_(priest))
 - [Margaret Hughes（英語版Wikipedia。1660年に女性が初めてデズデモーナを演じた記録）](https://en.wikipedia.org/wiki/Margaret_Hughes)
+- [オセロー（新潮社・新潮文庫 福田恆存訳。発行形態に電子書籍あり）](https://www.shinchosha.co.jp/book/202002/)
+- [新訳 オセロー（honto。河合祥一郎訳・角川文庫の電子書籍版）](https://honto.jp/ebook/pd_29176865.html)
