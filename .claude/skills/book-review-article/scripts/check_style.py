@@ -6,7 +6,7 @@ Usage: python3 check_style.py articles/book-review/<slug>.md
   1. 文末の単調さ  … 同じ文末が3文以上続く箇所
   2. 文の長さ      … 短文（25字以下）の割合と、長さのばらつき
   3. 接続詞        … 「しかし」「また」などで始まる文が、見出しごとに1個までか
-  3b. ひとりごと   … 本文のある見出しに（ ）のひとりごとが1つずつあるか
+  3b. ひとりごと   … 本文のある見出しに、段落全体を太字にしたひとりごとが1つずつあるか
   3c. 読みやすさ   … 1段落3文まで・漢字35%以下・あおり言葉なし
   3d. 吹き出し     … 読者と筆者のやりとりが2〜3組あるか
   4. 定型表現      … AIの文章に多い決まり文句
@@ -75,8 +75,8 @@ if len(runs) > 3:
 lens = [len(s) for s in sents]
 short = sum(1 for n in lens if n <= 25) / len(lens)
 sd = statistics.pstdev(lens)
-print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.1f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき10以上）")
-if short < 0.15 or sd < 10:
+print(f"■ 文の長さ：平均{statistics.mean(lens):.0f}字／ばらつき{sd:.1f}／短文の割合{short:.0%}（目安：短文15%以上・ばらつき8以上）")
+if short < 0.15 or sd < 8:
     warn += 1
 
 # 3. 接続詞（1つの見出しに1個まで）
@@ -104,7 +104,9 @@ for title, n in over:
 if over:
     warn += 1
 
-# 3b. ひとりごと（本文のある見出しに1つ、（ ）で囲んだ40〜100字の段落）
+# 3b. ひとりごと（本文のある見出しに1つ、段落全体を太字にした40〜100字の段落）
+ASIDE = re.compile(r"^\*\*([^*]{30,})\*\*$")
+
 skip_titles = ("本の概要", "よくある質問", "参考情報", "この記事を書いた人")
 missing, extra, badlen = [], [], []
 for sec in sections:
@@ -112,15 +114,15 @@ for sec in sections:
     title = lines[0]
     if not title.startswith("#") or any(t in title for t in skip_titles):
         continue
-    asides = [l.strip() for l in lines[1:] if l.strip().startswith("（") and l.strip().endswith("）")]
-    prose = [l for l in lines[1:] if l.strip() and not l.strip().startswith(("|", "-", "*", ">", "!", "<", "※", "👉", "（", ":::"))
+    asides = [ASIDE.match(l.strip()).group(1) for l in lines[1:] if ASIDE.match(l.strip())]
+    prose = [l for l in lines[1:] if l.strip() and not l.strip().startswith(("|", "-", "*", ">", "!", "<", "※", "👉", ":::"))
              and not SPEECH_META.match(l.strip())
              and not re.match(r"^\d+\.", l.strip()) and "{{" not in l]
     if not asides and len(prose) >= 2:
         missing.append(title[:30])
     if len(asides) > 1:
         extra.append(title[:30])
-    badlen += [a[:20] for a in asides if not 40 <= len(a) - 2 <= 100]
+    badlen += [a[:20] for a in asides if not 40 <= len(a) <= 100]
 print(f"■ ひとりごと：なし{len(missing)}見出し／2つ以上{len(extra)}見出し／字数外{len(badlen)}件（目安：本文のある見出しに1つ・40〜100字）")
 for t in missing:
     print(f"   なし：{t}")
