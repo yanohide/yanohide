@@ -127,6 +127,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1600年、モロッコの使節団がロンドンを訪れ、半年ほど滞在しました。
+- **科学技術**：1600年、アフリカの地理を伝えるレオ・アフリカヌスの本が英語に訳されました。
+- **流行**：たばこが都会ではやり、1604年には国王が反対の小冊子まで書いています。
+- **数字**：1570年、およそ6万人のオスマン軍が、ヴェネツィア領のキプロス島に上陸しました。
+
+翌1571年には、島の町ファマグスタも落ちました。劇の中でトルコの艦隊がキプロスをねらうのは、この30年ほど前の戦いを思わせます。遠い国の人や土地への関心が、ロンドンで高まっていたころの作品です。
+
+記録に残る最初の上演は、1604年11月1日、ホワイトホール宮殿の宴会場です。1610年にオックスフォードで観た学生は、息たえたデズデモーナの表情に胸を打たれたと書き残しました。
+
+当時は女性が舞台に立てず、この役も少年が演じていました。女性が初めてデズデモーナを演じたのは、1660年のことです。イギリスの舞台に女優が立った、早い例のひとつとされています。
+
+---
+
 ## 映画『オセロ』で表情を見てから読むと、疑いが育つ怖さがよく分かる
 
 『オセロー』の見どころは、イアーゴーのひと言ごとに、オセローの顔が曇っていくところです。文字だけで読むと、この小さな変化を読み飛ばしてしまいがちです。
@@ -322,3 +337,11 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Iago（英語版Wikipedia）](https://en.wikipedia.org/wiki/Iago)
 - [Othello: Dates and sources（Royal Shakespeare Company）](https://www.rsc.org.uk/othello/past-productions/dates-and-sources)
 - [オセロゲームの名前の由来（島根県益田市の資料・PDF）](https://www.city.masuda.lg.jp/material/files/group/6/17446.pdf)
+- [Abd el-Ouahed ben Messaoud（英語版Wikipedia。1600年のモロッコ使節団）](https://en.wikipedia.org/wiki/Abd_el-Ouahed_ben_Messaoud)
+- [A historie of special woorth and consequence（ケンブリッジ大学ゴンヴィル・アンド・キーズ・カレッジ図書館。1600年のレオ・アフリカヌス英訳）](https://www.cai.cam.ac.uk/discover/library/featured-books/historie-special-woorth)
+- [A Counterblaste to Tobacco（Royal Collection Trust。1604年の国王の反たばこ小冊子）](https://col.rct.uk/collection/1142240/a-counterblaste-to-tobacco)
+- [Cyprus: A Country Study（米国議会図書館 Country Studies。1570年のオスマン軍約6万人の上陸）](https://countrystudies.us/cyprus/7.htm)
+- [Siege of Famagusta（英語版Wikipedia。1571年のファマグスタ陥落）](https://en.wikipedia.org/wiki/Siege_of_Famagusta)
+- [Christmas 1604 ledger shows Shakespeare top of the bill（The National Archives。1604年11月1日の宮廷上演）](https://www.nationalarchives.gov.uk/about/news/christmas-1604-ledger-shows-shakespeare-top-of-the-bill/)
+- [Henry Jackson (priest)（英語版Wikipedia。1610年オックスフォードでの観劇の手紙）](https://en.wikipedia.org/wiki/Henry_Jackson_(priest))
+- [Margaret Hughes（英語版Wikipedia。1660年に女性が初めてデズデモーナを演じた記録）](https://en.wikipedia.org/wiki/Margaret_Hughes)

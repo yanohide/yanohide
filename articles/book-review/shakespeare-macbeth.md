@@ -130,6 +130,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1605年11月、王と議会をまとめて爆破しようとする「火薬陰謀事件」が見つかりました。
+- **科学技術**：1604年秋、夜空に新しい星（超新星）が現れ、ケプラーが1年以上見つづけました。
+- **流行**：魔女へのおそれは強く、1604年には魔女をきびしく罰する法律もできています。
+- **数字**：1590年からのスコットランドの魔女裁判では、70人以上がうたがいをかけられました。
+
+門番の場面で笑いのたねにされるのは、「二枚舌の男」です。事件のあとの裁判で知れわたった「言いのがれ」のやり方を、笑いにしたものと読まれています。たった一つのセリフにも、そのころのニュースが入りこんでいます。
+
+王は若いころ、スコットランドで魔女の取り調べにみずから加わりました。1597年には、魔女について書いた『悪魔学』も出しています。三人の魔女が劇の入り口に立つのも、王の好みと無関係ではなさそうです。
+
+早い観劇の記録は、占星術師フォーマンのメモです。1611年4月20日に、グローブ座で観たと読めます。ただし、このメモが本物かどうかは、研究者のあいだでも議論があるところです。
+
+---
+
 ## 黒澤明『蜘蛛巣城』を観てから読むと、霧と魔女の不気味さが目に浮かぶ
 
 『マクベス』の怖さは、霧の荒野、うす暗い城、血のまぼろしといった、目に見えにくいものの書きぶりにあります。活字だけでは、その空気をつかみにくいかもしれません。
@@ -324,3 +339,10 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Macbeth: A Scottish Play for a Scottish King（Utah Shakespeare Festival）](https://www.bard.org/news/macbeth-a-scottish-play-for-a-scottish-king)
 - [健康づくりのための睡眠ガイド2023（厚生労働省・PDF）](https://www.mhlw.go.jp/content/10904750/001222160.pdf)
 - [マクベス（新潮社・新潮文庫 福田恆存訳）](https://www.shinchosha.co.jp/book/202007/)
+- [Gunpowder Plot（英語版Wikipedia。1605年11月の火薬陰謀事件）](https://en.wikipedia.org/wiki/Gunpowder_Plot)
+- [Kepler's Supernova（英語版Wikipedia。1604年の超新星とケプラーの観測）](https://en.wikipedia.org/wiki/Kepler%27s_Supernova)
+- [An Act against Witchcraft（The National Archives。1604年の魔女法）](https://www.nationalarchives.gov.uk/education/resources/early-modern-witch-trials/an-act-against-witchcraft/)
+- [North Berwick witch trials（英語版Wikipedia。1590年からの魔女裁判と70人以上の関与）](https://en.wikipedia.org/wiki/North_Berwick_witch_trials)
+- [Daemonologie（英語版Wikipedia。1597年のジェームズ王『悪魔学』）](https://en.wikipedia.org/wiki/Daemonologie)
+- [Macbeth and the Background of Jesuitical Equivocation（PMLA／Cambridge University Press。門番の場面と「言いのがれ」）](https://www.cambridge.org/core/journals/pmla/article/macbeth-and-the-background-of-jesuitical-equivocation/95990D3D86F5D4A3DFD649CB206BC78F)
+- [Book of Plays（英語版Wikipedia。フォーマンの観劇メモと、その真偽をめぐる議論）](https://en.wikipedia.org/wiki/Book_of_Plays)

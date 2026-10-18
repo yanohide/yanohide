@@ -144,6 +144,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1604年、ジェームズ1世は、これからは「グレートブリテン王」と名のると宣言しました。
+- **科学技術**：1605年に出たベーコンの『学問の進歩』は、学問の値うちと進め方を説く本です。
+- **流行**：宮廷では仮面劇が好まれ、1605年には王妃アン自身が舞台に立ちました。
+- **数字**：1603年のペストでは、ロンドンで2万3千〜3万5千人ほどが亡くなったとされます。
+
+新しい王は、イングランドとスコットランドを一つの国にしたいと考えていました。そんな時代に、国を娘たちに分けてしまう王の劇が書かれています。グロスターが近ごろの日食と月食を不吉だと語る場面は、1605年秋の食を指すとも言われます。
+
+記録に残る上演は、1606年12月26日の夜です。ホワイトホール宮殿で、ジェームズ1世の前で演じられました。1608年の印刷本の表紙にも、その上演のことが書かれています。
+
+ペストで劇場がしばしば閉じられ、死が身近だった時代です。いま読むと、荒野の場面の冷たさにも、その空気がにじんで見えます。
+
+---
+
 ## 黒澤明『乱』を観てから読むと、二つの家族の物語が一気につながる
 
 『リア王』は、二つの家族の話が同時に進むので、四大悲劇の中でも筋が込み入っています。最初の数ページで、誰が誰の子かわからなくなる人もいるはずです。
@@ -322,3 +337,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [乱の動画配信・サブスク視聴方法まとめ（映画.com）](https://eiga.com/movie/31604/vods/)
 - [The History of King Lear（英語版Wikipedia。ネイハム・テイトの改作）](https://en.wikipedia.org/wiki/The_History_of_King_Lear)
 - [William Charles Macready and the restoration of King Lear（Folger Shakespeare Library）](https://folger.edu/blogs/shakespeare-and-beyond/william-charles-macready-king-lear-restoration)
+- [James I: The First King of Great Britain（The Royal Mint。1604年の「グレートブリテン王」の宣言）](https://www.royalmint.com/stories/collect/james-i-the-first-king-of-great-britain/)
+- [The Advancement of Learning（英語版Wikipedia。1605年のベーコン『学問の進歩』）](https://en.wikipedia.org/wiki/The_Advancement_of_Learning)
+- [The Masque of Blackness（英語版Wikipedia。1605年の仮面劇と王妃アンの出演）](https://en.wikipedia.org/wiki/The_Masque_of_Blackness)
+- [1603 London plague（英語版Wikipedia。1603年のペストの死者数の推計）](https://en.wikipedia.org/wiki/1603_London_plague)
+- [Sovereign and sick city: 1603（Shakespeare Birthplace Trust。ペストによる劇場の閉鎖）](https://shakespeare.org.uk/explore-shakespeare/blogs/sovereign-and-sick-city-1603)
+- ['The Most Piteous Tale'（Utah Shakespeare Festival。1605年秋の日食・月食と1606年12月26日の宮廷上演）](https://www.bard.org/study-guides/the-most-piteous-tale/)

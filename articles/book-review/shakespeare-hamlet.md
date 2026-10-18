@@ -129,6 +129,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1601年、女王の寵臣だったエセックス伯が反乱を起こし、処刑されました。
+- **科学技術**：1600年、医師ギルバートが「地球は大きな磁石だ」と説く本を出しました。
+- **流行**：少年だけの劇団が人気で、大人の劇団のお客をうばうほどでした。
+- **数字**：1600年ごろのロンドンの人口は、およそ20万人と見積もられています。
+
+1599年、シェイクスピアの劇団はテムズ川の南岸にグローブ座を建てました。『ハムレット』は、その少しあとに書かれています。劇の中には、子どもの劇団の人気をぼやくセリフまで出てきます。
+
+エリザベス1世は、あとつぎを決めないまま年を重ねていました。1603年に女王が亡くなり、あとをついだのはスコットランドの王でした。王位のゆくえがゆれる筋書きは、そのころの不安とよく似ています。
+
+1603年の最初の印刷本には、ロンドンのほか、ケンブリッジとオックスフォードの大学でも演じられたとあります。学者のハーヴィーも、本の余白に「分別ある人々を喜ばせる」作品だと書きこみました。
+
+---
+
 ## 映画『ハムレット』を先に観ると、長い独白もすっと入ってくる
 
 『ハムレット』は、ひとりで心の内を語る「独白」の多い作品です。文字だけで追うと、いまどこで誰が話しているのか見失いがちです。
@@ -324,3 +339,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [シェイクスピア翻訳についての解説（早稲田大学）](https://www.waseda.jp/flas/gjs/news/2097)
 - [Longest Shakespeare play（Guinness World Records）](https://www.guinnessworldrecords.com/world-records/69571-longest-shakespeare-play)
 - [ハムレット（新潮社・新潮文庫 福田恆存訳）](https://www.shinchosha.co.jp/book/202003/)
+- [Globe Theatre（英語版Wikipedia。1599年のグローブ座の建設）](https://en.wikipedia.org/wiki/Globe_Theatre)
+- [Essex's Rebellion（英語版Wikipedia。1601年の反乱と処刑、女王のあとつぎ問題）](https://en.wikipedia.org/wiki/Essex%27s_Rebellion)
+- [De Magnete（英語版Wikipedia。1600年に出たギルバートの磁石の本）](https://en.wikipedia.org/wiki/De_Magnete)
+- [Boy player（英語版Wikipedia。少年劇団の人気と『ハムレット』のセリフ）](https://en.wikipedia.org/wiki/Boy_player)
+- [Stuart London（英語版Wikipedia。1600年ごろのロンドンの人口約20万人）](https://en.wikipedia.org/wiki/Stuart_London)
+- [Gabriel Harvey の書きこみ（Shakespeare Documented／フォルジャー・シェイクスピア図書館。「分別ある人々」の記述）](https://shakespearedocumented.folger.edu/node/585)
