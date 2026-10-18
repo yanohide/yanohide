@@ -34,7 +34,7 @@ def sentences_of(text):
     lines = []
     for line in text.split("\n"):
         s = line.strip()
-        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "---", "![", ":::")) or SPEECH_META.match(s):
+        if not s or s.startswith(("|", "#", ">", "<!--", "👉", "※", "📚", "---", "![", ":::")) or SPEECH_META.match(s):
             continue
         s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
         s = re.sub(r"^([-*]|\d+\.)\s*|\*\*", "", s)
