@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460">
+  <rect width="800" height="460" fill="#f7f9fb"/>
+  <text x="400" y="44" text-anchor="middle" font-size="24" font-weight="700" fill="#2c3e50">ユートピア島のしくみ（本の第2巻より）</text>
+  <!-- 島 -->
+  <ellipse cx="400" cy="250" rx="120" ry="80" fill="#cfe8d5" stroke="#3f7d58" stroke-width="3"/>
+  <text x="400" y="244" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5e43">ユートピア</text>
+  <text x="400" y="272" text-anchor="middle" font-size="16" fill="#2f5e43">（どこにもない国）</text>
+  <!-- 4つの特徴 -->
+  <g font-size="17" fill="#2c3e50">
+    <rect x="40" y="90" width="230" height="84" rx="12" fill="#fff" stroke="#8a9bb0" stroke-width="2"/>
+    <text x="155" y="124" text-anchor="middle" font-weight="700">働くのは1日6時間</text>
+    <text x="155" y="152" text-anchor="middle" font-size="15">昼食の前に3時間、後に3時間</text>
+    <rect x="530" y="90" width="230" height="84" rx="12" fill="#fff" stroke="#8a9bb0" stroke-width="2"/>
+    <text x="645" y="124" text-anchor="middle" font-weight="700">お金はなく、物は共有</text>
+    <text x="645" y="152" text-anchor="middle" font-size="15">必要な物は倉庫から持っていく</text>
+    <rect x="40" y="320" width="230" height="84" rx="12" fill="#fff" stroke="#8a9bb0" stroke-width="2"/>
+    <text x="155" y="354" text-anchor="middle" font-weight="700">金・銀は便器や鎖に</text>
+    <text x="155" y="382" text-anchor="middle" font-size="15">ありがたがらないように</text>
+    <rect x="530" y="320" width="230" height="84" rx="12" fill="#fff" stroke="#8a9bb0" stroke-width="2"/>
+    <text x="645" y="354" text-anchor="middle" font-weight="700">町ごとに大きな病院</text>
+    <text x="645" y="382" text-anchor="middle" font-size="15">城壁の外に4つずつ</text>
+  </g>
+  <g stroke="#8a9bb0" stroke-width="2" stroke-dasharray="6 5" fill="none">
+    <path d="M270 150 L300 200"/><path d="M530 150 L500 200"/><path d="M270 345 L300 300"/><path d="M530 345 L500 300"/>
+  </g>
+  <text x="400" y="440" text-anchor="middle" font-size="14" fill="#6b7785">※本の考え方を整理したイメージ図</text>
+</svg>
