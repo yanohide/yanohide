@@ -350,7 +350,7 @@ export async function mdToPortableText(markdown, options = {}) {
     return [];
   }
 
-  const prepared = preprocessMarkdownBlockquotes(markdown);
+  const prepared = markBold(preprocessMarkdownBlockquotes(markdown));
   const segments = splitFences(prepared);
   let blocks = [];
   for (const seg of segments) {
@@ -367,8 +367,53 @@ export async function mdToPortableText(markdown, options = {}) {
 
   blocks = normalizeInvalidPortableText(blocks);
   blocks = flattenBlockquoteStyles(blocks);
+  blocks = restoreBold(blocks);
 
   return blocks;
+}
+
+/**
+ * 「。**後ろの文」のように、句読点やカギカッコで終わる太字のすぐ後に文字が続くと、
+ * CommonMark の規則で ** が閉じず、記号のまま残る（日本語でよく起きる）。
+ * そこで変換前に **〜** を私用領域の目印に置きかえ、変換後に strong の span へ分け直す。
+ */
+const BOLD_OPEN = "\uE000";
+const BOLD_CLOSE = "\uE001";
+
+function markBold(md) {
+  return md.replace(/\*\*(?=\S)([^*\n]+?)(?<=\S)\*\*/g, `${BOLD_OPEN}$1${BOLD_CLOSE}`);
+}
+
+function restoreBold(node) {
+  if (node == null) return node;
+  if (Array.isArray(node)) return node.map((item) => restoreBold(item));
+  if (typeof node === "string") return node.replace(/[\uE000\uE001]/g, "");
+  if (typeof node !== "object") return node;
+
+  const out = {};
+  for (const [k, v] of Object.entries(node)) {
+    out[k] = k === "children" && node._type === "block" ? v : restoreBold(v);
+  }
+  if (out._type === "block" && Array.isArray(out.children)) {
+    out.children = out.children.flatMap((child) => splitBoldSpan(child));
+  }
+  return out;
+}
+
+function splitBoldSpan(span) {
+  if (span?._type !== "span" || typeof span.text !== "string" || !/[\uE000\uE001]/.test(span.text)) {
+    return restoreBold([span]);
+  }
+  const marks = span.marks ?? [];
+  const parts = span.text.split(/\uE000([^\uE001]*)\uE001/);
+  return parts
+    .map((text, i) => ({
+      _type: "span",
+      _key: i === 0 ? span._key : key(),
+      text: text.replace(/[\uE000\uE001]/g, ""),
+      marks: i % 2 === 1 && !marks.includes("strong") ? [...marks, "strong"] : marks,
+    }))
+    .filter((part) => part.text);
 }
 
 /** `> 引用` は Studio 編集画面で hydration エラーになるため通常段落にする */
