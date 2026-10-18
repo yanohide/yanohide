@@ -145,6 +145,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1961年8月、東西ベルリンの境に壁が築かれ、冷戦が目に見える形になりました。
+- **科学技術**：裁判が始まった翌日の1961年4月12日、ガガーリンが人類で初めて宇宙を飛びました。
+- **流行**：テレビが茶の間の主役に。テレビ局のないイスラエルに代わり、米国の会社が法廷をビデオに収めました。
+- **数字**：裁判の様子は、約38か国のテレビやニュースで伝えられたといわれます。
+
+戦争が終わって16年。世界は宇宙とテレビに夢中で、ナチスの時代は過去になりかけていました。そこへ、画面ごしに「ふつうの男」の顔が届きます。
+
+本書は、その裁判を「怪物の物語」にしなかった報告です。本になる前の1963年3月には、ユダヤ系の団体が会員に向けて、この本を批判する文書を配りました。
+
+同じ年の6月には、友人だった思想家ショーレムも厳しい手紙を送っています。多くの人を怒らせたこの本が、いまは組織を語るときの古典として読まれています。
+
+---
+
 ## 映画『ハンナ・アーレント』を観てから本を開くと、法廷が目に浮かぶ
 
 映像で人物の顔や時代の空気を先に知っておくと、本の場面が頭に浮かびやすくなります。文字と映像の両方でふれた話は、記憶にも残りやすいものです。
@@ -306,6 +321,10 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Adolf Eichmann（Wikipedia英語版。1960年の拘束、1961年の裁判、1962年の処刑）](https://en.wikipedia.org/wiki/Adolf_Eichmann)
 - [Hannah Arendt's "Eichmann in Jerusalem" first appears in The New Yorker（Jewish Women's Archive。1963年2月16日）](https://jwa.org/thisweek/feb/16/1963/hannah-arendt)
 - [Milgram experiment（Wikipedia英語版。1961年夏に始まった服従の実験）](https://en.wikipedia.org/wiki/Milgram_experiment)
+- [Berlin Wall（Wikipedia英語版。1961年8月13日の建設開始）](https://en.wikipedia.org/wiki/Berlin_Wall)
+- [Vostok 1（Wikipedia英語版。1961年4月12日、ガガーリンの宇宙飛行）](https://en.wikipedia.org/wiki/Vostok_1)
+- [The Eichmann trial on television（VIEW Journal of European Television History and Culture。米国の会社による収録と、約38か国での放送）](https://viewjournal.eu/articles/10.18146/2213-0969.2014.jethc052)
+- [Hannah Arendt on Trial（The American Scholar。1963年3月の反名誉毀損同盟の文書、ショーレムの手紙）](https://theamericanscholar.org/hannah-arendt-on-trial/)
 - [映画『ハンナ・アーレント』の解説（東洋経済オンライン）](https://toyokeizai.net/articles/-/568061)
 - [ハンナ・アーレントの配信状況（Filmarks、2026年10月確認）](https://filmarks.com/movies/54765/vod)
 - [ハンナ・アーレントの配信状況（JustWatch、2026年10月確認）](https://www.justwatch.com/jp/映画/hannah-arendt)
