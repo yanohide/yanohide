@@ -74,6 +74,9 @@ avatarUrl: /avatars/profile-avatar.png
 | 出版時の著者の年齢 | ドゥルーズ55歳ごろ（1925年1月18日生まれ）、ガタリ49〜50歳（1930年4月30日生まれ） |
 | ジャンル | 哲学書（現代思想） |
 | 本の分量 | とても長め（文庫で上・中・下の3冊） |
+| オーディオブック（Audible） | ？ 要確認（2026年10月時点）【要確認：日本語版のAudible配信の有無】 |
+| Kindle（電子書籍） | ？ 要確認（河出文庫の電子版はあり）（2026年10月時点）【要確認：Kindle版の有無】 |
+| 映像作品 | ✕ なし |
 
 ---
 
@@ -327,6 +330,7 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 
 - [河出文庫 千のプラトー〈上〉（紀伊國屋書店ウェブストア）](https://www.kinokuniya.co.jp/f/dsg-01-9784309463421)
 - [河出文庫 千のプラトー〈下〉（紀伊國屋書店ウェブストア）](https://www.kinokuniya.co.jp/f/dsg-01-9784309463452)
+- [千のプラトー 下 資本主義と分裂症（BOOK☆WALKER。河出文庫の電子版が2014年12月から配信されている根拠）](https://bookwalker.jp/de1a2f83d8-e8da-46cc-921b-e82bb75fd3a4/)
 - [千のプラトー 下（ブクログ）](https://booklog.jp/item/1/4309463452)
 - [A Thousand Plateaus（Wikipedia英語版）](https://en.wikipedia.org/wiki/A_Thousand_Plateaus)
 - [「プラトー」の語の由来（ベイトソンのバリ島論）についてのメモ（interconnected.org）](https://interconnected.org/notes/2003/06/Journey_to_the_centre.txt)
