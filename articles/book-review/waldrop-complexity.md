@@ -131,6 +131,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1991年12月にソ連がなくなり、長く続いた東西の冷戦が終わりました。
+- **科学技術**：刊行の翌年の1993年4月には、ウェブの技術がだれでも無料で使える形になります。
+- **流行**：カオス理論を語る数学者が出てくるのは、1990年の小説『ジュラシック・パーク』です。
+- **数字**：1992年のアメリカの失業率は、1年の平均で7.5%でした。
+
+冷戦が終わり、世界の動きが一つの筋書きでは読めなくなったころです。本の研究者たちは、経済も生命も「たくさんの部分が影響し合う仕組み」として見直そうとします。
+
+米国の書評誌『パブリッシャーズ・ウィークリー』は、新しい理論を一般の読者にもわかる形で伝えたと評しました。物理学の専門誌の書評には、研究所の外の研究にほとんど触れていない、という批判も載っています。
+
+いま読むと、新しい分野が生まれる現場の記録として楽しめます。
+
+---
+
 ## 図でわかる「カオスの縁」と「創発」
 
 :::speech
@@ -315,3 +330,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Santa Fe Institute（Wikipedia英語版。1984年の設立と創設メンバー）](https://en.wikipedia.org/wiki/Santa_Fe_Institute)
 - [George Cowan, Founding President of Santa Fe Institute: 1920-2012（Pacific Standard）](https://psmag.com/social-justice/blog-40765/)
 - [M. Mitchell Waldrop（Computer History Museum。素粒子物理学の博士号と『サイエンス』誌での経歴）](https://computerhistory.org/profile/m-mitchell-waldrop/)
+- [Dissolution of the Soviet Union（Wikipedia英語版。1991年12月のソ連解体）](https://en.wikipedia.org/wiki/Dissolution_of_the_Soviet_Union)
+- [World Wide Web launches in public domain（HISTORY.com。1993年4月30日にCERNがウェブ技術を無料で公開）](https://www.history.com/this-day-in-history/april-30/world-wide-web-launches-in-public-domain)
+- [Jurassic Park by Michael Crichton（EBSCO Research Starters。1990年刊、カオス理論の数学者マルコム）](https://www.ebsco.com/research-starters/literature-and-writing/jurassic-park-michael-crichton)
+- [Macroeconomic projections evaluation tables（U.S. Bureau of Labor Statistics。1992年の失業率7.5%）](https://www.bls.gov/emp/evaluations/2002-2012-macro-tables.htm)
+- [Physics Today Vol.45 No.12（1992年12月）の書評（AIP。サンタフェ研究所の外の研究に触れない点への批判）](https://aip.brightspotcdn.com/PTO.v45.i12.83_1.online.pdf)

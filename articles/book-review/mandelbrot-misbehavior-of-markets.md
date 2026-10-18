@@ -124,6 +124,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2003年3月20日、アメリカなどがイラクへの攻撃を始め、戦争になりました。
+- **科学技術**：2004年2月には、大学生どうしをつなぐサイトとして、フェイスブックが誕生します。
+- **流行**：アップルの音楽プレーヤー「iPod」は、2004年の1年間で820万台売れました。
+- **数字**：ナスダック指数は、2000年3月の5048から2002年10月の1114まで落ちました。
+
+ITバブルがはじけ、株価の大きな上げ下げを多くの人が見た直後です。本が「市場は思ったより荒れる」と説いたのは、そうした記憶が新しい時期でした。
+
+金融の専門誌のコラムは、この本が金融の人たちに、いつもの道具や理論を見直すよう迫っていると紹介しました。内容の多くは著者の以前の著作にも出ている、とも指摘しています。
+
+米国の大手証券会社リーマン・ブラザーズの破綻は、日本語版が出た3か月後の2008年9月です。いま読むと、その前ぶれを書いた本のようにも見えます。
+
+---
+
 ## 『禁断の市場』お金の見方が変わる3つの指摘
 
 ※本書は著作権のある作品のため、本文の言葉は原文を確認できたものだけを引用します。下の3か所は、お手持ちの本で原文を確かめて差し替えてください。【要確認：原文を本で確かめて差し替え】
@@ -297,3 +312,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [The (Mis)Behaviour of Markets 書評（Plus Magazine）](https://plus.maths.org/content/misbehaviour-markets)
 - [Benoit Mandelbrot（Wikipedia英語版。生没年月日）](https://en.wikipedia.org/wiki/Benoit_Mandelbrot)
 - [介護にはどれくらいの費用・期間がかかる？（生命保険文化センター。2024年度「生命保険に関する全国実態調査」、2026年10月確認）](https://www.jili.or.jp/lifeplan/lifesecurity/1116.html)
+- [Iraq War（Britannica。2003年3月20日の攻撃開始）](https://www.britannica.com/event/Iraq-War)
+- [When Was Facebook Founded and How Did It Grow so Quickly?（History Hit。2004年2月4日の開始）](https://www.historyhit.com/2004-facebook-founded-mark-zuckerberg/)
+- [Keynote notes: iPod, iTunes sales numbers revealed（MacTech、2005年1月。2004年のiPod販売820万台）](https://www.mactech.com/2005/01/12/keynote-notes-ipod-itunes-sales-numbers-revealed)
+- [Five Years After Peak, Nasdaq Is Not Even Close to Recovery（The New York Sun。2000年3月10日の5048.62、2002年10月9日の1114.11）](https://www.nysun.com/article/business-five-years-after-peak-nasdaq-is-not-even-close)
+- [The (Mis)Behavior of Markets を取り上げたコラム（Journal of Risk Finance、2005年。Emerald Insight）](https://emeraldinsight.com/insight/content/doi/10.1108/jrf.2005.29406baf.002/full/html)
+- [Bankruptcy of Lehman Brothers（Wikipedia英語版。2008年9月15日の破綻）](https://en.wikipedia.org/wiki/Bankruptcy_of_Lehman_Brothers)

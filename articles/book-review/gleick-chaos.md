@@ -129,6 +129,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：刊行の10日前、1987年10月19日に、ニューヨークの株価が1日で22.6%下がりました。
+- **科学技術**：マウスで動かすパソコン「マッキントッシュ」の発売は、1984年です。
+- **流行**：1987年12月、お金の欲に生きる投資家を描いた映画『ウォール街』が公開されました。
+- **数字**：アメリカでパソコンを持つ家は、1984年の8.2%から1989年には15.0%に増えています。
+
+パソコンが、研究室から家の机へ移り始めたころです。本の研究者たちも、計算機で同じ式を何度も解き、思わぬ形に出会います。
+
+予測できるはずのものが、ある日とつぜん読めなくなる。刊行の直前に起きた株価の急落は、本のテーマとふしぎに重なります。
+
+本はニューヨーク・タイムズのベストセラーになり、100万部をこえて売れました。専門家どうしの話だったカオスが、ふつうの読者の手に届いたのです。いま読むと、天気予報が外れる理由を知る入り口にもなります。
+
+---
+
 ## 図でわかる「バタフライ効果」はどうして起きる？
 
 :::speech
@@ -315,3 +330,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Why We Call It the Butterfly Effect（Mental Floss。1972年の講演と題名の由来）](https://www.mentalfloss.com/language/why-we-call-it-butterfly-effect)
 - [Butterfly effect（Wikipedia英語版）](https://en.wikipedia.org/wiki/Butterfly_effect)
 - [Edward Norton Lorenz（MacTutor History of Mathematics, St Andrews）](https://mathshistory.st-andrews.ac.uk/Biographies/Lorenz_Edward/)
+- [Stock Market Crash of 1987（Federal Reserve History。1987年10月19日にダウ平均が22.6%下落）](https://www.federalreservehistory.org/essays/stock-market-crash-of-1987)
+- [Computer Profile: Apple Macintosh（University of Waterloo Computer Museum。1984年1月の発売）](https://uwaterloo.ca/computer-museum/news/computer-profile-apple-macintosh)
+- [Wall Street (1987 film)（Wikipedia英語版。1987年12月の公開）](https://en.wikipedia.org/wiki/Wall_Street_(1987_film))
+- [Computer and Internet Use 1984-2009（U.S. Census Bureau。パソコンのある世帯 1984年8.2%・1989年15.0%）](https://census.gov/history/pdf/internet-computer1984-2009.pdf)
+- [Chaos by James Gleick（Penguin Random House。100万部をこえたニューヨーク・タイムズのベストセラー）](https://www.penguinrandomhouse.com/books/321477/chaos-by-james-gleick/9780143113454/)

@@ -128,6 +128,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：1982年のアメリカは深い不況にあり、仕事を失う人が増え続けていました。
+- **科学技術**：米誌『タイム』は1982年の「今年の顔」に、人ではなくコンピューターを選びました。
+- **流行**：1982年の映画『スター・トレック2』に、フラクタルの計算で描いたCGの惑星が出てきます。
+- **数字**：1982年末のアメリカの失業率は10.8%で、戦後でいちばん高い水準でした。
+
+コンピューターが、計算の道具から「絵を描く道具」に変わり始めたころです。本に並ぶ山や海岸線の図も、手で描いたものではなく計算から生まれています。
+
+刊行の2年後には、米国の数学の月刊誌に書評が載りました。1985年には科学雑誌『サイエンティフィック・アメリカン』が、マンデルブロ集合を表紙で紹介します。日本語版が出たのも、同じ1985年です。
+
+いま見ると素朴な図も、当時は新しい景色でした。
+
+---
+
 ## 図でわかる「海岸線はどれくらい長い？」
 
 :::speech
@@ -317,3 +332,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Benoit Mandelbrot（AIP 物理学史ニュース。イェール大学スターリング教授）](https://history.aip.org/phn/11606005.html)
 - [Benoit Mandelbrot obituary（The Register、2010年10月18日。IBMでの経歴）](https://www.theregister.com/2010/10/18/mandelbrot_obituary/)
 - [Benoit Mandelbrot dies at 85（iMechanica。75歳でイェール大学の終身職）](https://imechanica.org/node/9153)
+- [Monthly Labor Review 1983年2月号（U.S. Bureau of Labor Statistics。1982年末の失業率10.8%は戦後最高）](https://www.bls.gov/opub/mlr/1983/02/art1full.pdf)
+- [First "Time Person of the Year" (inanimate object)（Guinness World Records。1982年の「マシン・オブ・ザ・イヤー」）](https://www.guinnessworldrecords.com/world-records/603388-first-time-person-of-the-year-inanimate-object)
+- [Genesis Demo（Alvy Ray Smith。『スター・トレック2』の惑星とカーペンターのフラクタル地形）](https://alvyray.com/Art/GenesisDemo.htm)
+- [Cannon, Review of The Fractal Geometry of Nature, Amer. Math. Monthly 91 (1984)（DML-CZ。書評の書誌情報）](https://dml.cz/handle/10338.dmlcz/137701)
+- [DIY Fractals: Exploring the Mandelbrot Set on a Personal Computer（Scientific American。1985年8月号の記事の再掲）](https://www.scientificamerican.com/article/mandelbrot-set)

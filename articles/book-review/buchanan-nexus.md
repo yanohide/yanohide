@@ -128,6 +128,21 @@ tone: sky
 
 ---
 
+### 作品と執筆時の時代背景
+
+- **社会**：2001年9月11日、アメリカで同時多発テロが起き、約3000人が亡くなりました。
+- **科学技術**：高速なネット回線を契約する人は、2002年の1年間に世界で72%増えています。
+- **流行**：友だちの友だちをたどれる交流サイト「フレンドスター」の創業は、2002年です。
+- **数字**：世界でネットを使う人は、2002年末に約6億2300万人になりました。
+
+人と人、機械と機械のつながりが、一気に増えた時代です。テロのあとには、実行犯どうしの関係を線で結んだ分析も公開されました。本が説く「近道が世界を縮める」という話は、そうした空気の中で読まれています。
+
+同じ2002年には、物理学者バラバシの『Linked』も出ました。2003年3月の米国の物理学誌は、この2冊を並べて「一般の読者向けに、明快に書かれている」と評しています。
+
+SNSが当たり前のいま読むと、本の話はより身近に感じられます。
+
+---
+
 ## 図でわかる「世界はなぜ狭いのか」
 
 :::speech
@@ -313,3 +328,9 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Watts & Strogatz, "Collective dynamics of 'small-world' networks", Nature 393 (1998)（RePEc）](https://ideas.repec.org/a/nat/nature/v393y1998i6684d10.1038_30918.html)
 - [Barabási & Albert, "Emergence of scaling in random networks", Science 286 (1999)（arXiv）](https://arxiv.org/pdf/cond-mat/9910332)
 - [Strength of Weak Ties（SAGE Knowledge。Granovetter, American Journal of Sociology 78, 1973）](https://sk.sagepub.com/ency/edvol/embed/power/chpt/strength-weak-ties)
+- [September 11 attacks（Britannica。2001年同時多発テロの概要と犠牲者数）](https://www.britannica.com/event/September-11-attacks)
+- [Birth of Broadband（ITU、2003年9月16日。2002年に世界のブロードバンド契約者が72%増）](https://itu.int/osg/spu/publications/sales/birthofbroadband/pressrelease-en.html)
+- [Before Facebook there was Friendster（Harvard Business School Digital Initiative。2002年の創業）](https://d3.harvard.edu/platform-digit/submission/before-facebook-there-was-friendster-yes-thats-right/)
+- [平成16年版 情報通信白書（総務省。2002年末の世界のインターネット利用者 約6億2302万人）](https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h16/html/G2902100.html)
+- [Krebs, "Uncloaking Terrorist Networks", First Monday 7(4), 2002（テロ実行犯のネットワーク分析）](https://cybra.lodz.pl/Content/1081/issues/issue7_4/krebs/index.html)
+- [Nexus / Linked 書評（Physics Today、2003年3月。2冊を一般向けに明快と評価）](https://physicstoday.aip.org/reviews/nexus-small-worlds-and-the-groundbreaking-science-of-networks-linked-the-new-science-of-networks)
