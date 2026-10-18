@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <!-- グラレコ風の背景：雨の草原、森、野井戸、レコード -->
+  <g fill="none" stroke="#3b2f2a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 空の色むら -->
+    <path d="M0 0 H1600 V420 C1300 380 1000 440 700 400 C450 370 200 420 0 390 Z" fill="#dfe9e4" stroke="none"/>
+    <!-- 雲 -->
+    <path d="M640 92 c-10-40 50-60 76-30 c14-36 80-36 92 6 c40-6 56 40 24 58 H650 c-30 0-38-28-10-34z" fill="#fffaf0"/>
+    <path d="M1180 70 c-8-30 40-46 60-22 c12-28 64-28 72 4 c32-4 44 32 18 46 H1190 c-24 0-30-22-10-28z" fill="#fffaf0"/>
+    <!-- 雨 -->
+    <g stroke="#6f8fa3" stroke-width="4">
+      <path d="M40 40 l-14 34"/><path d="M120 20 l-14 34"/><path d="M210 60 l-14 34"/><path d="M300 30 l-14 34"/>
+      <path d="M390 70 l-14 34"/><path d="M480 24 l-14 34"/><path d="M570 60 l-14 34"/><path d="M880 40 l-14 34"/>
+      <path d="M960 100 l-14 34"/><path d="M1040 36 l-14 34"/><path d="M1120 110 l-14 34"/><path d="M1400 40 l-14 34"/>
+      <path d="M1480 96 l-14 34"/><path d="M1560 30 l-14 34"/><path d="M60 300 l-14 34"/><path d="M1560 300 l-14 34"/>
+      <path d="M1540 520 l-14 34"/><path d="M50 560 l-14 34"/>
+    </g>
+    <!-- レコードと音符（右上） -->
+    <g transform="translate(1500 110) scale(.8)">
+      <circle r="78" fill="#2f2a28"/>
+      <circle r="58" stroke="#5a504a" stroke-width="3"/><circle r="40" stroke="#5a504a" stroke-width="3"/>
+      <circle r="24" fill="#c8553d"/><circle r="5" fill="#2f2a28" stroke="none"/>
+    </g>
+    <g fill="#3f7d58" stroke="#3b2f2a" stroke-width="4">
+      <path d="M1320 70 v-46 l30-8 v46" fill="none"/><ellipse cx="1312" cy="72" rx="12" ry="9"/><ellipse cx="1342" cy="64" rx="12" ry="9"/>
+      <path d="M1540 230 v-40" fill="none"/><ellipse cx="1531" cy="232" rx="12" ry="9" fill="#c8553d"/>
+    </g>
+    <!-- 遠くの丘 -->
+    <path d="M0 640 C220 560 420 600 620 590 C860 576 1080 540 1300 580 C1440 606 1530 600 1600 586 V900 H0 Z" fill="#9cc49a"/>
+    <!-- 森（針葉樹） -->
+    <g fill="#3f7d58">
+      <path d="M1520 760 l40-150 l40 150 z"/><path d="M1440 770 l44-170 l44 170 z"/><path d="M1368 776 l36-130 l36 130 z"/>
+      <path d="M40 800 l36-140 l36 140 z"/><path d="M0 820 l30-110 l30 110 z"/>
+    </g>
+    <g stroke-width="5"><path d="M1560 760 v30"/><path d="M1484 770 v30"/><path d="M1404 776 v28"/><path d="M76 800 v28"/></g>
+    <!-- 手前の草原 -->
+    <path d="M0 760 C260 720 520 760 800 740 C1080 720 1340 770 1600 750 V900 H0 Z" fill="#6fa86f"/>
+    <!-- 風になびく草 -->
+    <g stroke="#3b2f2a" stroke-width="4">
+      <path d="M200 860 q10-40 40-60"/><path d="M220 870 q4-30 30-46"/><path d="M640 850 q12-44 44-64"/><path d="M664 860 q6-30 34-48"/>
+      <path d="M980 860 q10-40 40-60"/><path d="M1000 870 q4-30 30-46"/><path d="M1300 856 q12-44 44-64"/><path d="M1324 866 q6-30 34-48"/>
+    </g>
+    <!-- 風の線 -->
+    <g stroke="#fffaf0" stroke-width="5"><path d="M330 800 q60-20 120 0 t110 -6"/><path d="M1080 806 q60-20 120 0 t100 -4"/></g>
+    <!-- 野井戸（左下、表紙のとなり） -->
+    <g transform="translate(560 790)">
+      <ellipse cx="0" cy="0" rx="54" ry="18" fill="#2f2a28"/>
+      <path d="M-54 0 v46 q54 26 108 0 v-46" fill="#b9a88f"/>
+      <path d="M-54 22 q54 22 108 0" /><path d="M-30 12 v40"/><path d="M10 16 v42"/>
+    </g>
+    <!-- 赤と緑の葉っぱ（上下巻の色） -->
+    <g stroke-width="4">
+      <path d="M600 160 c30-40 80-30 90 0 c-30 30-70 34-90 0z" fill="#c8553d"/><path d="M600 160 l90 0"/>
+      <path d="M1530 420 c30-40 80-30 90 0 c-30 30-70 34-90 0z" fill="#3f7d58" transform="rotate(-20 1575 420)"/>
+    </g>
+    <!-- 小さな星と矢印のいたずら書き -->
+    <g stroke-width="4">
+      <path d="M600 40 l6 14 l15 2 l-11 10 l3 15 l-13-8 l-13 8 l3-15 l-11-10 l15-2z" fill="#f5d76e"/>
+      <path d="M1250 760 q40-50 90-40" /><path d="M1328 708 l14 12 l-16 10"/>
+    </g>
+  </g>
+</svg>

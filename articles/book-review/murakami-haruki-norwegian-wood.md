@@ -3,6 +3,8 @@ title: "『ノルウェイの森』あらすじと名言｜37歳の「僕」が�
 slug: "murakami-haruki-norwegian-wood"
 publishedAt: "2026-10-12T00:00:00.000Z"
 excerpt: "村上春樹『ノルウェイの森』のあらすじと登場人物の関係、心に残る3つの言葉、映画版の楽しみ方を紹介。Audibleは妻夫木聡さんの朗読。介護の現場で18年リハビリを担当してきた専門職が、看病する家族の目線で読みます。"
+heroImage: "images/murakami-haruki-norwegian-wood/eyecatch.png"
+heroImageAlt: "『ノルウェイの森』（村上春樹）の書評アイキャッチ"
 ---
 
 ※本記事はアフィリエイト広告を利用しています。
