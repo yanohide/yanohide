@@ -309,6 +309,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [文春文庫 コンビニ人間（紀伊國屋書店ウェブストア）](https://www.kinokuniya.co.jp/f/dsg-01-9784167911300)
 - [『コンビニ人間』世界累計300万部・国内200万部突破（PR TIMES／公募ガイド）](https://koubo.jp/press-release/prtimes/c43732_r941)
 - [大久保佳代子さん朗読『コンビニ人間』Audible配信開始（共同通信PRワイヤー、2018年）](https://kyodonewsprwire.jp/release/201801159902)
+- [Audible版『コンビニ人間』（Audibleの作品ページ。朗読：大久保佳代子）](https://www.audible.co.jp/pd/B078MT3452)
+- [コンビニ人間（文春文庫）Kindle版（Amazon。2018年9月配信の電子書籍ページ）](https://www.amazon.co.jp/dp/B07GYMDBCM)
 - [村田沙耶香さんインタビュー（Business Insider Japan）](https://www.businessinsider.jp/article/269409/)
 - [Convenience Store Woman（Wikipedia）](https://en.wikipedia.org/wiki/Convenience_Store_Woman)
 - [平成28年（2016年）熊本地震の概要（気象庁。震度7を2度観測したことの根拠）](https://www.data.jma.go.jp/kumamoto/The-2016-Kumamoto-Earthquake/gaiyo.html)

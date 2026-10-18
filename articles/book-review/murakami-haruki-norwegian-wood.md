@@ -74,7 +74,7 @@ avatarUrl: /avatars/profile-avatar.png
 | 出版時の著者の年齢 | 38歳（1949年1月12日、京都市伏見区生まれ）。第一稿は1987年3月、ヨーロッパ滞在中に書き上げられた（執筆時：37〜38歳） |
 | ジャンル | 長編小説（恋愛小説・青春小説） |
 | 本の分量 | 中くらい（上下巻。講談社文庫版も上下2冊） |
-| オーディオブック（Audible） | ◯ あり（朗読：妻夫木聡、2023年9月配信開始） |
+| オーディオブック（Audible） | ◯ あり（朗読：妻夫木聡、2023年9月配信開始）（2026年10月時点） |
 | Kindle（電子書籍） | ◯ あり（2026年10月時点） |
 | 映像作品 | ◯ 映画『ノルウェイの森』（2010年、トラン・アン・ユン監督） |
 
@@ -330,6 +330,8 @@ Kindleで本を読んだりAudibleで聴いたりしている方は、すでにA
 - [Audible新作の紹介（日経BOOKプラス）](https://bookplus.nikkei.com/atcl/column/090500286/090500001/)
 - [自分に同情するな（PRESIDENT Online）](https://president.jp/articles/-/6991)
 - [村上春樹の名作はKindleでも楽しめる（ダ・ヴィンチWeb）](https://ddnavi.com/article/1396196/a/)
+- [ノルウェイの森（講談社文庫）Kindle版（Amazon。2018年12月配信の電子書籍ページ）](https://www.amazon.co.jp/dp/B07KVTV42B)
+- [妻夫木聡さん朗読『ノルウェイの森』Audible配信開始（PR TIMES、2023年9月）](https://prtimes.jp/main/html/rd/p/000000192.000036126.html)
 - [ヤングケアラーについて（広島県）](https://www.pref.hiroshima.lg.jp/soshiki/263/youngcarer3.html)（令和3年度 厚生労働省調査：大学3年生の6.2％）
 - [Norwegian Wood (novel)（英語版Wikipedia。物語の時代、赤と緑の装丁、刊行後の人気と著者が日本を離れたことの根拠）](https://en.wikipedia.org/wiki/Norwegian_Wood_(novel))
 - [NECの携帯電話の歩み（マイナビニュース。1987年のNTT携帯電話サービス開始の根拠）](https://news.mynavi.jp/article/nec-15/)
