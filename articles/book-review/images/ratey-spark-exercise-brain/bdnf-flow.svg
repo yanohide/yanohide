@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="Noto Sans JP, sans-serif">
+  <rect width="800" height="460" fill="#f6f9f8"/>
+  <text x="400" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#2f3b39">運動が脳に届くまで</text>
+  <text x="400" y="70" text-anchor="middle" font-size="16" fill="#5f6b69">『脳を鍛えるには運動しかない！』の考え方を整理した図</text>
+  <g font-size="17" fill="#1d2625">
+    <rect x="40" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#6f8f8a" stroke-width="2"/>
+    <text x="120" y="152" text-anchor="middle" font-weight="700">有酸素運動</text>
+    <text x="120" y="180" text-anchor="middle" font-size="15" fill="#3d4947">息が少し上がる</text>
+    <text x="120" y="202" text-anchor="middle" font-size="15" fill="#3d4947">くらいの運動</text>
+    <rect x="230" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#6f8f8a" stroke-width="2"/>
+    <text x="310" y="152" text-anchor="middle" font-weight="700">BDNFが増える</text>
+    <text x="310" y="180" text-anchor="middle" font-size="15" fill="#3d4947">脳の神経細胞を</text>
+    <text x="310" y="202" text-anchor="middle" font-size="15" fill="#3d4947">育てるたんぱく質</text>
+    <rect x="420" y="110" width="160" height="110" rx="12" fill="#ffffff" stroke="#6f8f8a" stroke-width="2"/>
+    <text x="500" y="152" text-anchor="middle" font-weight="700">海馬が育つ</text>
+    <text x="500" y="180" text-anchor="middle" font-size="15" fill="#3d4947">新しい細胞と</text>
+    <text x="500" y="202" text-anchor="middle" font-size="15" fill="#3d4947">つながりができる</text>
+    <rect x="610" y="110" width="160" height="110" rx="12" fill="#3f6f68" stroke="#2f5550" stroke-width="2"/>
+    <text x="690" y="152" text-anchor="middle" font-weight="700" fill="#ffffff">学ぶ力・気分</text>
+    <text x="690" y="180" text-anchor="middle" font-size="15" fill="#e8f1ef">ストレス・うつ・</text>
+    <text x="690" y="202" text-anchor="middle" font-size="15" fill="#e8f1ef">老化への備え</text>
+  </g>
+  <g stroke="#c07a2c" stroke-width="3" fill="#c07a2c">
+    <line x1="202" y1="165" x2="222" y2="165"/><polygon points="228,165 218,159 218,171"/>
+    <line x1="392" y1="165" x2="412" y2="165"/><polygon points="418,165 408,159 408,171"/>
+    <line x1="582" y1="165" x2="602" y2="165"/><polygon points="608,165 598,159 598,171"/>
+  </g>
+  <rect x="120" y="270" width="560" height="120" rx="14" fill="#e8f1ef" stroke="#b9cbc8" stroke-width="1.5"/>
+  <text x="400" y="310" text-anchor="middle" font-size="19" font-weight="700" fill="#2f3b39">運動は、体より先に「脳の土」を耕す</text>
+  <text x="400" y="342" text-anchor="middle" font-size="16" fill="#2f3b39">筋肉のためだけでなく、学ぶ・感じる・老いる脳のために動く</text>
+  <text x="400" y="368" text-anchor="middle" font-size="15" fill="#5f6b69">──著者がBDNFを「脳の肥料」にたとえた理由</text>
+  <text x="780" y="440" text-anchor="end" font-size="14" fill="#5f6b69">※本の考え方を整理したイメージ図</text>
+</svg>
